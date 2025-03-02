@@ -17,7 +17,7 @@ private:
 
 public:
   // Constructor: Create tensor with a shape, initialize all values to zero
-  Tensor(std::initializer_list<int> shape);
+  Tensor(std::vector<int> shape);
 
   // Access shape
   std::vector<int> shape() const { return shape_; }

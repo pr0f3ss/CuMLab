@@ -1,7 +1,7 @@
 #include "CuMLab/tensor.hpp"
 
 // Constructor: Initializes tensor with the given shape, all values set to zero
-Tensor::Tensor(std::initializer_list<int> shape) : shape_(shape) {
+Tensor::Tensor(std::vector<int> shape) : shape_(shape) {
   size_ = 1;
   for (int dim : shape_) {
     size_ *= dim;
