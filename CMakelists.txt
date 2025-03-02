@@ -1,0 +1,17 @@
+cmake_minimum_required(VERSION 3.18)
+project(CuMLab LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Library target
+add_library(CuMLab STATIC
+    src/module.cpp
+)
+
+# Include directories
+target_include_directories(CuMLab PUBLIC ${PROJECT_SOURCE_DIR}/include)
+
+# Example executable
+add_executable(example examples/example.cpp)
+target_link_libraries(example PRIVATE CuMLab)
