@@ -22,6 +22,7 @@ extensions = ['breathe']
 templates_path = ['_templates']
 exclude_patterns = []
 
+html_static_path = ['_static']
 
 breathe_projects = {"CuMLab": "../doxygen/xml"}
 breathe_default_project = "CuMLab"
