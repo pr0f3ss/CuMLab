@@ -41,9 +41,12 @@ jobs:
           cp -r build/html/* ../gh-pages-docs/
           cd ..
 
+      - name: Create .nojekyll file
+        run: touch gh-pages-docs/.nojekyll 
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: gh-pages-docs
-          token: ${{ secrets.GITHUB_TOKEN }} 
+          token: ${{ secrets.GITHUB_TOKEN }}
