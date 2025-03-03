@@ -44,10 +44,17 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#_CPPv46Tensor"><code class="docutils literal notranslate"><span class="pre">Tensor</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6Tensor6TensorERKNSt6vectorIiEE"><code class="docutils literal notranslate"><span class="pre">Tensor()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK6Tensor5shapeEv"><code class="docutils literal notranslate"><span class="pre">shape()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK6Tensor4sizeEv"><code class="docutils literal notranslate"><span class="pre">size()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv4I0E6Tensor"><code class="docutils literal notranslate"><span class="pre">Tensor</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv4I0E6Module"><code class="docutils literal notranslate"><span class="pre">Module</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6Module6ModuleEv"><code class="docutils literal notranslate"><span class="pre">Module()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6ModuleD0Ev"><code class="docutils literal notranslate"><span class="pre">~Module()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6Module18register_parameterERKNSt6stringENSt10shared_ptrI6TensorI1TEEE"><code class="docutils literal notranslate"><span class="pre">register_parameter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6Module10parametersEv"><code class="docutils literal notranslate"><span class="pre">parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6Module7forwardERKNSt10shared_ptrI6TensorI1TEEE"><code class="docutils literal notranslate"><span class="pre">forward()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6ModuleclERKNSt10shared_ptrI6TensorI1TEEE"><code class="docutils literal notranslate"><span class="pre">operator()()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6Module4saveERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">save()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6Module4loadERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">load()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6Module11parameters_E"><code class="docutils literal notranslate"><span class="pre">parameters_</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -81,41 +88,125 @@
   <section id="api-documentation">
 <h1>API Documentation<a class="headerlink" href="#api-documentation" title="Link to this heading"></a></h1>
 <dl class="cpp class">
-<dt class="sig sig-object cpp" id="_CPPv46Tensor">
-<span id="_CPPv36Tensor"></span><span id="_CPPv26Tensor"></span><span id="Tensor"></span><span class="target" id="classTensor"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#_CPPv46Tensor" title="Link to this definition"></a><br /></dt>
-<dd><div class="breathe-sectiondef docutils container">
+<dt class="sig sig-object cpp" id="_CPPv4I0E6Tensor">
+<span id="_CPPv3I0E6Tensor"></span><span id="_CPPv2I0E6Tensor"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classTensor"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#_CPPv4I0E6Tensor" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I0E6Module">
+<span id="_CPPv3I0E6Module"></span><span id="_CPPv2I0E6Module"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classModule"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Module</span></span></span><a class="headerlink" href="#_CPPv4I0E6Module" title="Link to this definition"></a><br /></dt>
+<dd><p>Forward declaration of <a class="reference internal" href="#classTensor"><span class="std std-ref">Tensor</span></a> class. </p>
+<p>Base class for all neural network modules.</p>
+<p>A <code class="docutils literal notranslate"><a class="reference internal" href="#classModule"><span class="std std-ref"><span class="pre">Module</span></span></a></code> represents a building block of a neural network, such as a layer. It supports storing parameters (e.g., weights, biases) and requires subclasses to implement a <code class="docutils literal notranslate"><span class="pre">forward</span></code> function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>T</strong> – The data type used in the tensor (e.g., <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">uint8_t</span></code>). </p>
+</dd>
+</dl>
+<p>Subclassed by CuMLab::Linear&lt; T &gt;</p>
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N6Tensor6TensorERKNSt6vectorIiEE">
-<span id="_CPPv3N6Tensor6TensorERKNSt6vectorIiEE"></span><span id="_CPPv2N6Tensor6TensorERKNSt6vectorIiEE"></span><span id="Tensor::Tensor__std::vector:i:CR"></span><span class="target" id="classTensor_1a757b2404b5c2223960fde5569bad6325"></span><span class="sig-name descname"><span class="n"><span class="pre">Tensor</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">shape</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Tensor6TensorERKNSt6vectorIiEE" title="Link to this definition"></a><br /></dt>
-<dd><p>Constructs a <a class="reference internal" href="#classTensor"><span class="std std-ref">Tensor</span></a> with the given shape, initializing all elements to zero. </p>
+<dt class="sig sig-object cpp" id="_CPPv4N6Module6ModuleEv">
+<span id="_CPPv3N6Module6ModuleEv"></span><span id="_CPPv2N6Module6ModuleEv"></span><span id="Module::Module"></span><span class="target" id="classModule_1affc6433a9406978a6fbb465a62f7a9ec"></span><span class="sig-name descname"><span class="n"><span class="pre">Module</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N6Module6ModuleEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Default constructor. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6ModuleD0Ev">
+<span id="_CPPv3N6ModuleD0Ev"></span><span id="_CPPv2N6ModuleD0Ev"></span><span id="Module::~Module"></span><span class="target" id="classModule_1a568d4e5e7505642089dd0a7af0313386"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~Module</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N6ModuleD0Ev" title="Link to this definition"></a><br /></dt>
+<dd><p>Virtual destructor. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6Module18register_parameterERKNSt6stringENSt10shared_ptrI6TensorI1TEEE">
+<span id="_CPPv3N6Module18register_parameterERKNSt6stringENSt10shared_ptrI6TensorI1TEEE"></span><span id="_CPPv2N6Module18register_parameterERKNSt6stringENSt10shared_ptrI6TensorI1TEEE"></span><span id="Module::register_parameter__ssCR.std::shared_ptr:Tensor:T::"></span><span class="target" id="classModule_1aa8ada33f06458921aa0f16ecfb75d681"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">register_parameter</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E6Tensor" title="Tensor"><span class="n"><span class="pre">Tensor</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E6Module" title="Module::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">param</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Module18register_parameterERKNSt6stringENSt10shared_ptrI6TensorI1TEEE" title="Link to this definition"></a><br /></dt>
+<dd><p>Registers a trainable parameter in the module. </p>
+<p>This function allows adding learnable parameters (e.g., weights, biases) to the module so they can be accessed later for optimization.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>shape</strong> – The shape of the tensor. </p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – The name of the parameter (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;weight&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;bias&quot;</span></code>). </p></li>
+<li><p><strong>param</strong> – A shared pointer to the tensor representing the parameter. </p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4NK6Tensor5shapeEv">
-<span id="_CPPv3NK6Tensor5shapeEv"></span><span id="_CPPv2NK6Tensor5shapeEv"></span><span id="Tensor::shapeC"></span><span class="target" id="classTensor_1a3cb853a516f5fb1cfb87789e3276588f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">shape</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Tensor5shapeEv" title="Link to this definition"></a><br /></dt>
-<dd><p>Returns the shape of the tensor. </p>
+<dt class="sig sig-object cpp" id="_CPPv4N6Module10parametersEv">
+<span id="_CPPv3N6Module10parametersEv"></span><span id="_CPPv2N6Module10parametersEv"></span><span id="Module::parameters"></span><span class="target" id="classModule_1abb221dc980456b5f9bfe13b4d8d14f0e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E6Tensor" title="Tensor"><span class="n"><span class="pre">Tensor</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E6Module" title="Module::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">parameters</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Module10parametersEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Retrieves all registered parameters. </p>
+<p>This function is useful for optimizers, as it provides access to all trainable tensors inside the module.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A vector representing the shape. </p>
+<dd class="field-odd"><p>A vector of shared pointers to the stored parameters. </p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4NK6Tensor4sizeEv">
-<span id="_CPPv3NK6Tensor4sizeEv"></span><span id="_CPPv2NK6Tensor4sizeEv"></span><span id="Tensor::sizeC"></span><span class="target" id="classTensor_1a4b9956e3f3bb0409e35fdeefc745f13f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6Tensor4sizeEv" title="Link to this definition"></a><br /></dt>
-<dd><p>Returns the total number of elements in the tensor. </p>
+<dt class="sig sig-object cpp" id="_CPPv4N6Module7forwardERKNSt10shared_ptrI6TensorI1TEEE">
+<span id="_CPPv3N6Module7forwardERKNSt10shared_ptrI6TensorI1TEEE"></span><span id="_CPPv2N6Module7forwardERKNSt10shared_ptrI6TensorI1TEEE"></span><span id="Module::forward__std::shared_ptr:Tensor:T::CR"></span><span class="target" id="classModule_1a405a3b9bccf10b49d98d32958f7d20eb"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E6Tensor" title="Tensor"><span class="n"><span class="pre">Tensor</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E6Module" title="Module::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">forward</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E6Tensor" title="Tensor"><span class="n"><span class="pre">Tensor</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E6Module" title="Module::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">input</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N6Module7forwardERKNSt10shared_ptrI6TensorI1TEEE" title="Link to this definition"></a><br /></dt>
+<dd><p>Performs the forward pass of the module. </p>
+<p>This is a pure virtual function that must be overridden by derived classes to define how input data is transformed.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The total number of elements. </p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input</strong> – A shared pointer to the input tensor. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A shared pointer to the output tensor. </p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6ModuleclERKNSt10shared_ptrI6TensorI1TEEE">
+<span id="_CPPv3N6ModuleclERKNSt10shared_ptrI6TensorI1TEEE"></span><span id="_CPPv2N6ModuleclERKNSt10shared_ptrI6TensorI1TEEE"></span><span id="Module::call-operator__std::shared_ptr:Tensor:T::CR"></span><span class="target" id="classModule_1a4d2202b31ee4502520596988d3c91e80"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E6Tensor" title="Tensor"><span class="n"><span class="pre">Tensor</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E6Module" title="Module::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">()</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E6Tensor" title="Tensor"><span class="n"><span class="pre">Tensor</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E6Module" title="Module::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">input</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6ModuleclERKNSt10shared_ptrI6TensorI1TEEE" title="Link to this definition"></a><br /></dt>
+<dd><p>Calls the forward function. </p>
+<p>This operator allows instances of <code class="docutils literal notranslate"><a class="reference internal" href="#classModule"><span class="std std-ref"><span class="pre">Module</span></span></a></code> to be used like functions, simplifying code when chaining modules together.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input</strong> – A shared pointer to the input tensor. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A shared pointer to the output tensor. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6Module4saveERKNSt6stringE">
+<span id="_CPPv3N6Module4saveERKNSt6stringE"></span><span id="_CPPv2N6Module4saveERKNSt6stringE"></span><span id="Module::save__ssCR"></span><span class="target" id="classModule_1abbd9a5f005b8aaed7b7d30ccb9ca2499"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">save</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">filename</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Module4saveERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Saves the module parameters to a file. </p>
+<p>This function is a placeholder for serialization logic to store the model’s parameters on disk.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> – The name of the file to save the parameters. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6Module4loadERKNSt6stringE">
+<span id="_CPPv3N6Module4loadERKNSt6stringE"></span><span id="_CPPv2N6Module4loadERKNSt6stringE"></span><span id="Module::load__ssCR"></span><span class="target" id="classModule_1a10baea2697128f0fd9e3533e09b782bd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">load</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">filename</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Module4loadERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Loads the module parameters from a file. </p>
+<p>This function is a placeholder for deserialization logic to restore the model’s parameters from disk.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> – The name of the file to load the parameters from. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N6Module11parameters_E">
+<span id="_CPPv3N6Module11parameters_E"></span><span id="_CPPv2N6Module11parameters_E"></span><span id="Module::parameters___std::unordered_map:ss.std::shared_ptr:Tensor:T:::"></span><span class="target" id="classModule_1ac59518f7290f8deada2826c034d58ecb"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unordered_map</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E6Tensor" title="Tensor"><span class="n"><span class="pre">Tensor</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E6Module" title="Module::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">parameters_</span></span></span><a class="headerlink" href="#_CPPv4N6Module11parameters_E" title="Link to this definition"></a><br /></dt>
+<dd><p>Stores the learnable parameters of the module. </p>
+<p>Each parameter is identified by a string name (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;weight&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;bias&quot;</span></code>) and stored as a shared pointer to a <code class="docutils literal notranslate"><a class="reference internal" href="#classTensor"><span class="std std-ref"><span class="pre">Tensor</span></span></a><span class="pre">&lt;T&gt;</span></code>. </p>
 </dd></dl>
 
 </div>
