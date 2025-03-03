@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,9 +22,15 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r docs/requirements.txt
-          sudo apt install doxygen
-          doxygen Doxyfile
+          if [ -f docs/requirements.txt ]; then
+            pip install -r docs/requirements.txt
+          fi
+
+      - name: Install Doxygen
+        run: sudo apt install doxygen
+
+      - name: Generate Doxygen Docs
+        run: doxygen Doxyfile
 
       - name: Build documentation
         run: |
@@ -29,7 +38,7 @@ jobs:
           make clean
           make html
           mkdir -p ../gh-pages-docs
-          cp -r build/html/* ../gh-pages-docs/
+          cp -r _build/html/* ../gh-pages-docs/
           cd ..
 
       - name: Deploy to GitHub Pages
@@ -37,3 +46,4 @@ jobs:
         with:
           branch: gh-pages
           folder: gh-pages-docs
+          token: ${{ secrets.GITHUB_TOKEN }} 
