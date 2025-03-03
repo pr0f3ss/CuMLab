@@ -1,27 +1,21 @@
-#include "CuMLab/module.hpp"
+#include "CuMLab/linear.hpp"
+#include "CuMLab/tensor.hpp"
 #include <iostream>
 
 int main() {
-  std::cout << "Testing CuMLab Module System..." << std::endl;
 
-  // Dummy Linear Layer
-  class Linear : public Module {
-  public:
-    Linear() {
-      register_parameter("weight", std::make_shared<Tensor>());
-      register_parameter("bias", std::make_shared<Tensor>());
-    }
+  // Define a linear layer
+  std::shared_ptr<Module<float>> layer =
+      std::make_shared<CuMLab::Linear<float>>(4, 2);
 
-    std::shared_ptr<Tensor>
-    forward(const std::shared_ptr<Tensor> &input) override {
-      std::cout << "Forward pass in Linear Layer" << std::endl;
-      return input;
-    }
-  };
+  // Create an input tensor
+  auto input = std::make_shared<Tensor<float>>(std::vector<int>{1, 4});
 
-  Linear layer;
-  auto output = layer(std::make_shared<Tensor>());
+  // Run the forward pass
+  auto output = layer->forward(input);
 
-  std::cout << "CuMLab compiled and ran successfully!" << std::endl;
+  std::cout << "Output Tensor:\n";
+  output->print();
+
   return 0;
 }

@@ -1,167 +1,86 @@
 #include "CuMLab/tensor.hpp"
 
-// Constructor: Initializes tensor with the given shape, all values set to zero
-Tensor::Tensor(const std::vector<int> &shape) : shape_(shape) {
+namespace CuMLab {
+
+// ─────────────────────────────────────────────────────
+// Constructor
+// ─────────────────────────────────────────────────────
+template <typename T>
+Tensor<T>::Tensor(const std::vector<int> &shape) : shape_(shape) {
   size_ = 1;
-  for (int dim : shape_) {
+  for (int dim : shape)
     size_ *= dim;
-  }
-  data_.resize(size_, 0.0f); // Initialize with zeros
+  data_.resize(size_, static_cast<T>(0)); // Initialize with zeros
 }
 
-// Compute the flattened index from multi-dimensional indices
-int Tensor::compute_index(std::initializer_list<int> indices) const {
-  if (indices.size() != shape_.size()) {
-    throw std::out_of_range("Tensor index out of range.");
-  }
-
-  int index = 0;
-  int stride = 1;
-  auto shape_it = shape_.rbegin();
-  auto idx_it = indices.end() - 1;
-
-  for (; shape_it != shape_.rend(); ++shape_it, --idx_it) {
-    if (*idx_it >= *shape_it || *idx_it < 0) {
-      throw std::out_of_range("Tensor index out of bounds.");
-    }
-    index += (*idx_it) * stride;
-    stride *= (*shape_it);
-  }
-  return index;
+// ─────────────────────────────────────────────────────
+// Accessors
+// ─────────────────────────────────────────────────────
+template <typename T> std::vector<int> Tensor<T>::shape() const {
+  return shape_;
 }
 
-// Access (read/write) an element in the tensor
-float &Tensor::operator()(std::initializer_list<int> indices) {
-  return data_[compute_index(indices)];
+template <typename T> int Tensor<T>::size() const { return size_; }
+
+// ─────────────────────────────────────────────────────
+// Element Access
+// ─────────────────────────────────────────────────────
+template <typename T>
+T &Tensor<T>::operator()(std::initializer_list<int> indices) {
+  int index = 0, multiplier = 1;
+  auto it = indices.begin();
+  for (size_t i = 0; i < shape_.size(); ++i) {
+    index += (*(it + i)) * multiplier;
+    multiplier *= shape_[i];
+  }
+  return data_[index];
 }
 
-// Access (read-only) an element in the tensor
-float Tensor::operator()(std::initializer_list<int> indices) const {
-  return data_[compute_index(indices)];
+template <typename T>
+T Tensor<T>::operator()(std::initializer_list<int> indices) const {
+  int index = 0, multiplier = 1;
+  auto it = indices.begin();
+  for (size_t i = 0; i < shape_.size(); ++i) {
+    index += (*(it + i)) * multiplier;
+    multiplier *= shape_[i];
+  }
+  return data_[index];
 }
 
-// Element-wise addition
-Tensor Tensor::operator+(const Tensor &other) const {
-  if (shape_ != other.shape_) {
-    throw std::invalid_argument("Tensor shapes must match for addition.");
-  }
-
-  Tensor result(shape_);
-  for (int i = 0; i < size_; i++) {
-    result.data_[i] = data_[i] + other.data_[i];
-  }
-  return result;
-}
-
-// Element-wise subtraction
-Tensor Tensor::operator-(const Tensor &other) const {
-  if (shape_ != other.shape_) {
-    throw std::invalid_argument("Tensor shapes must match for subtraction.");
-  }
-
-  Tensor result(shape_);
-  for (int i = 0; i < size_; i++) {
-    result.data_[i] = data_[i] - other.data_[i];
-  }
-  return result;
-}
-
-// Element-wise multiplication (Hadamard product)
-Tensor Tensor::operator*(const Tensor &other) const {
-  if (shape_ != other.shape_) {
-    throw std::invalid_argument("Tensor shapes must match for multiplication.");
-  }
-
-  Tensor result(shape_);
-  for (int i = 0; i < size_; i++) {
-    result.data_[i] = data_[i] * other.data_[i];
-  }
-  return result;
-}
-
-// Element-wise division
-Tensor Tensor::operator/(const Tensor &other) const {
-  if (shape_ != other.shape_) {
-    throw std::invalid_argument("Tensor shapes must match for division.");
-  }
-
-  Tensor result(shape_);
-  for (int i = 0; i < size_; i++) {
-    if (other.data_[i] == 0) {
-      throw std::runtime_error("Division by zero in tensor operation.");
-    }
-    result.data_[i] = data_[i] / other.data_[i];
-  }
-  return result;
-}
-
-// Negation (Unary `-tensor`)
-Tensor Tensor::operator-() const {
-  Tensor result(shape_);
-  for (int i = 0; i < size_; i++) {
-    result.data_[i] = -data_[i];
-  }
-  return result;
-}
-
-// Scalar multiplication
-Tensor Tensor::operator*(float scalar) const {
-  Tensor result(shape_);
-  for (int i = 0; i < size_; i++) {
-    result.data_[i] = data_[i] * scalar;
-  }
-  return result;
-}
-
-// Sum accumulator
-float Tensor::sum() const {
-  float total = 0.0f;
-  for (float val : data_) {
+// ─────────────────────────────────────────────────────
+// Reduction Operations
+// ─────────────────────────────────────────────────────
+template <typename T> T Tensor<T>::sum() const {
+  T total = 0;
+  for (T val : data_)
     total += val;
-  }
   return total;
 }
 
-// Mean
-float Tensor::mean() const {
+template <typename T> T Tensor<T>::mean() const {
   if (size_ == 0)
     throw std::runtime_error("Cannot compute mean of an empty tensor.");
-  return sum() / size_;
+  return sum() / static_cast<T>(size_);
 }
 
-// Max
-float Tensor::max() const {
+template <typename T> T Tensor<T>::max() const {
   if (data_.empty())
     throw std::runtime_error("Tensor is empty.");
-  float max_val = data_[0];
-  for (float val : data_) {
-    if (val > max_val)
-      max_val = val;
-  }
-  return max_val;
+  return *std::max_element(data_.begin(), data_.end());
 }
 
-// Min
-float Tensor::min() const {
+template <typename T> T Tensor<T>::min() const {
   if (data_.empty())
     throw std::runtime_error("Tensor is empty.");
-  float min_val = data_[0];
-  for (float val : data_) {
-    if (val < min_val)
-      min_val = val;
-  }
-  return min_val;
+  return *std::min_element(data_.begin(), data_.end());
 }
 
-// Print tensor for debugging
-void Tensor::print() const {
-  std::cout << "Tensor(shape=[";
-  for (size_t i = 0; i < shape_.size(); i++) {
-    std::cout << shape_[i] << (i < shape_.size() - 1 ? ", " : "");
-  }
-  std::cout << "], data=[";
-  for (size_t i = 0; i < size_; i++) {
-    std::cout << data_[i] << (i < size_ - 1 ? ", " : "");
-  }
-  std::cout << "])\n";
-}
+// ─────────────────────────────────────────────────────
+// Explicit Template Instantiations
+// ─────────────────────────────────────────────────────
+template class Tensor<int>;
+template class Tensor<float>;
+template class Tensor<double>;
+template class Tensor<uint8_t>;
+
+} // namespace CuMLab
