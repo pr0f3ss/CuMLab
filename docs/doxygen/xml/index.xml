@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
+  <compound refid="classModule" kind="class"><name>Module</name>
+    <member refid="classModule_1a45b1881e302e94f0270a6680a5e73b44" kind="variable"><name>parameters_</name></member>
+    <member refid="classModule_1ac0b59ad515f7ddd34618dc5141a0aab0" kind="function"><name>Module</name></member>
+    <member refid="classModule_1a4a48538d35a2da7fcc32d9f509034723" kind="function"><name>~Module</name></member>
+    <member refid="classModule_1ab02960cc56229ed98f9e9c7ca128ad7e" kind="function"><name>register_parameter</name></member>
+    <member refid="classModule_1a9b8efa949128d66c255d1093ec339dc2" kind="function"><name>parameters</name></member>
+    <member refid="classModule_1aaebafabffcff625284e13fc5c212901d" kind="function"><name>forward</name></member>
+    <member refid="classModule_1a91df90cb07d2a4e52336f3bb7040b52c" kind="function"><name>operator()</name></member>
+    <member refid="classModule_1ad237415384ab334229b2d0abf9bbb0bf" kind="function"><name>save</name></member>
+    <member refid="classModule_1abdba7b9fec5b9da2fcac7333da3f573d" kind="function"><name>load</name></member>
+  </compound>
+  <compound refid="classTensor" kind="class"><name>Tensor</name>
+    <member refid="classTensor_1a083e6a5c145f2c2f36571578a6ee43b9" kind="variable"><name>data_</name></member>
+    <member refid="classTensor_1aa0365ef5c0aed66b38881e6ed153f4e9" kind="variable"><name>shape_</name></member>
+    <member refid="classTensor_1ad7f39aa8558f407930ebcb06913d93d5" kind="variable"><name>size_</name></member>
+    <member refid="classTensor_1aa8790d7ce4367839cf5729b3a5d014ee" kind="function"><name>compute_index</name></member>
+    <member refid="classTensor_1a757b2404b5c2223960fde5569bad6325" kind="function"><name>Tensor</name></member>
+    <member refid="classTensor_1a3cb853a516f5fb1cfb87789e3276588f" kind="function"><name>shape</name></member>
+    <member refid="classTensor_1a4b9956e3f3bb0409e35fdeefc745f13f" kind="function"><name>size</name></member>
+    <member refid="classTensor_1a36dda31557504ba77cf33c47c7010d2a" kind="function"><name>operator()</name></member>
+    <member refid="classTensor_1a69cfe026b9d536f9a22dfa7f5e58633c" kind="function"><name>operator()</name></member>
+    <member refid="classTensor_1a8e1eb90bc2ac97670a30fcbf0ae91f53" kind="function"><name>operator+</name></member>
+    <member refid="classTensor_1a6ef34ac192b6236977624b19488b8562" kind="function"><name>operator-</name></member>
+    <member refid="classTensor_1a9495c1b3e5ac705b29a85672eb8a8dca" kind="function"><name>operator*</name></member>
+    <member refid="classTensor_1a53855a4e246850c4cfc0e807bd6ec765" kind="function"><name>operator/</name></member>
+    <member refid="classTensor_1a3fdca3117142b32cf89a72c5e3effbfe" kind="function"><name>operator-</name></member>
+    <member refid="classTensor_1a8fbcbd7e63a06fcc06f3df9469df6289" kind="function"><name>operator*</name></member>
+    <member refid="classTensor_1a596013d735a78a238a4fca7a3fdedb53" kind="function"><name>sum</name></member>
+    <member refid="classTensor_1a8365f24385e92aae793aa1a1f07bc71d" kind="function"><name>mean</name></member>
+    <member refid="classTensor_1ad1a6dd006622ed0693685847fde157a4" kind="function"><name>max</name></member>
+    <member refid="classTensor_1a1340fe15ec7a04ce46144a5ac97a08ab" kind="function"><name>min</name></member>
+    <member refid="classTensor_1a97b9db5c100214dea0b0242f45a36102" kind="function"><name>print</name></member>
+    <member refid="classTensor_1a16b07c716627c19fbee317859cd23d50" kind="function"><name>Tensor</name></member>
+  </compound>
+  <compound refid="module_8hpp" kind="file"><name>module.hpp</name>
+  </compound>
+  <compound refid="tensor_8hpp" kind="file"><name>tensor.hpp</name>
+  </compound>
+  <compound refid="module_8cpp" kind="file"><name>module.cpp</name>
+  </compound>
+  <compound refid="tensor_8cpp" kind="file"><name>tensor.cpp</name>
+  </compound>
+  <compound refid="dir_2e40d83da1bcd8d0c5e3802eb8f754df" kind="dir"><name>include/CuMLab</name>
+  </compound>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>include</name>
+  </compound>
+  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>src</name>
+  </compound>
+</doxygenindex>

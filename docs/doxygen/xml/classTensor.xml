@@ -1,0 +1,390 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classTensor" kind="class" language="C++" prot="public">
+    <compoundname>Tensor</compoundname>
+    <includes refid="tensor_8hpp" local="no">tensor.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classTensor_1a083e6a5c145f2c2f36571578a6ee43b9" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; Tensor::data_</definition>
+        <argsstring></argsstring>
+        <name>data_</name>
+        <qualifiedname>Tensor::data_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/tensor.hpp" line="10" column="15" bodyfile="include/CuMLab/tensor.hpp" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTensor_1aa0365ef5c0aed66b38881e6ed153f4e9" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt;int&gt; Tensor::shape_</definition>
+        <argsstring></argsstring>
+        <name>shape_</name>
+        <qualifiedname>Tensor::shape_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/tensor.hpp" line="11" column="15" bodyfile="include/CuMLab/tensor.hpp" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTensor_1ad7f39aa8558f407930ebcb06913d93d5" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Tensor::size_</definition>
+        <argsstring></argsstring>
+        <name>size_</name>
+        <qualifiedname>Tensor::size_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/tensor.hpp" line="12" column="7" bodyfile="include/CuMLab/tensor.hpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classTensor_1aa8790d7ce4367839cf5729b3a5d014ee" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Tensor::compute_index</definition>
+        <argsstring>(std::initializer_list&lt; int &gt; indices) const</argsstring>
+        <name>compute_index</name>
+        <qualifiedname>Tensor::compute_index</qualifiedname>
+        <param>
+          <type>std::initializer_list&lt; int &gt;</type>
+          <declname>indices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/tensor.hpp" line="15" column="7" bodyfile="src/tensor.cpp" bodystart="13" bodyend="31"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classTensor_1a757b2404b5c2223960fde5569bad6325" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Tensor::Tensor</definition>
+        <argsstring>(const std::vector&lt; int &gt; &amp;shape)</argsstring>
+        <name>Tensor</name>
+        <qualifiedname>Tensor::Tensor</qualifiedname>
+        <param>
+          <type>const std::vector&lt; int &gt; &amp;</type>
+          <declname>shape</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classTensor" kindref="compound">Tensor</ref> with the given shape, initializing all elements to zero. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shape</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The shape of the tensor. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/tensor.hpp" line="23" column="3" bodyfile="src/tensor.cpp" bodystart="4" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classTensor_1a3cb853a516f5fb1cfb87789e3276588f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt; int &gt; Tensor::shape</definition>
+        <argsstring>() const</argsstring>
+        <name>shape</name>
+        <qualifiedname>Tensor::shape</qualifiedname>
+        <briefdescription>
+<para>Returns the shape of the tensor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A vector representing the shape. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/tensor.hpp" line="29" column="15" bodyfile="include/CuMLab/tensor.hpp" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classTensor_1a4b9956e3f3bb0409e35fdeefc745f13f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Tensor::size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <qualifiedname>Tensor::size</qualifiedname>
+        <briefdescription>
+<para>Returns the total number of elements in the tensor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The total number of elements. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/tensor.hpp" line="35" column="7" bodyfile="include/CuMLab/tensor.hpp" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classTensor_1a36dda31557504ba77cf33c47c7010d2a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float &amp;</type>
+        <definition>float &amp; Tensor::operator()</definition>
+        <argsstring>(std::initializer_list&lt; int &gt; indices)</argsstring>
+        <name>operator()</name>
+        <qualifiedname>Tensor::operator()</qualifiedname>
+        <param>
+          <type>std::initializer_list&lt; int &gt;</type>
+          <declname>indices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/tensor.hpp" line="37" column="9" bodyfile="src/tensor.cpp" bodystart="34" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classTensor_1a69cfe026b9d536f9a22dfa7f5e58633c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Tensor::operator()</definition>
+        <argsstring>(std::initializer_list&lt; int &gt; indices) const</argsstring>
+        <name>operator()</name>
+        <qualifiedname>Tensor::operator()</qualifiedname>
+        <param>
+          <type>std::initializer_list&lt; int &gt;</type>
+          <declname>indices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/tensor.hpp" line="38" column="9" bodyfile="src/tensor.cpp" bodystart="39" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classTensor_1a8e1eb90bc2ac97670a30fcbf0ae91f53" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classTensor" kindref="compound">Tensor</ref></type>
+        <definition>Tensor Tensor::operator+</definition>
+        <argsstring>(const Tensor &amp;other) const</argsstring>
+        <name>operator+</name>
+        <qualifiedname>Tensor::operator+</qualifiedname>
+        <param>
+          <type>const <ref refid="classTensor" kindref="compound">Tensor</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/tensor.hpp" line="41" column="10" bodyfile="src/tensor.cpp" bodystart="44" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classTensor_1a6ef34ac192b6236977624b19488b8562" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classTensor" kindref="compound">Tensor</ref></type>
+        <definition>Tensor Tensor::operator-</definition>
+        <argsstring>(const Tensor &amp;other) const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>Tensor::operator-</qualifiedname>
+        <param>
+          <type>const <ref refid="classTensor" kindref="compound">Tensor</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/tensor.hpp" line="42" column="10" bodyfile="src/tensor.cpp" bodystart="57" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classTensor_1a9495c1b3e5ac705b29a85672eb8a8dca" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classTensor" kindref="compound">Tensor</ref></type>
+        <definition>Tensor Tensor::operator*</definition>
+        <argsstring>(const Tensor &amp;other) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>Tensor::operator*</qualifiedname>
+        <param>
+          <type>const <ref refid="classTensor" kindref="compound">Tensor</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/tensor.hpp" line="43" column="10" bodyfile="src/tensor.cpp" bodystart="70" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classTensor_1a53855a4e246850c4cfc0e807bd6ec765" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classTensor" kindref="compound">Tensor</ref></type>
+        <definition>Tensor Tensor::operator/</definition>
+        <argsstring>(const Tensor &amp;other) const</argsstring>
+        <name>operator/</name>
+        <qualifiedname>Tensor::operator/</qualifiedname>
+        <param>
+          <type>const <ref refid="classTensor" kindref="compound">Tensor</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/tensor.hpp" line="44" column="10" bodyfile="src/tensor.cpp" bodystart="83" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="classTensor_1a3fdca3117142b32cf89a72c5e3effbfe" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classTensor" kindref="compound">Tensor</ref></type>
+        <definition>Tensor Tensor::operator-</definition>
+        <argsstring>() const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>Tensor::operator-</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/tensor.hpp" line="45" column="10" bodyfile="src/tensor.cpp" bodystart="99" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="classTensor_1a8fbcbd7e63a06fcc06f3df9469df6289" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classTensor" kindref="compound">Tensor</ref></type>
+        <definition>Tensor Tensor::operator*</definition>
+        <argsstring>(float scalar) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>Tensor::operator*</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>scalar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/tensor.hpp" line="47" column="10" bodyfile="src/tensor.cpp" bodystart="108" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="classTensor_1a596013d735a78a238a4fca7a3fdedb53" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Tensor::sum</definition>
+        <argsstring>() const</argsstring>
+        <name>sum</name>
+        <qualifiedname>Tensor::sum</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/tensor.hpp" line="50" column="9" bodyfile="src/tensor.cpp" bodystart="117" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="classTensor_1a8365f24385e92aae793aa1a1f07bc71d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Tensor::mean</definition>
+        <argsstring>() const</argsstring>
+        <name>mean</name>
+        <qualifiedname>Tensor::mean</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/tensor.hpp" line="51" column="9" bodyfile="src/tensor.cpp" bodystart="126" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="classTensor_1ad1a6dd006622ed0693685847fde157a4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Tensor::max</definition>
+        <argsstring>() const</argsstring>
+        <name>max</name>
+        <qualifiedname>Tensor::max</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/tensor.hpp" line="52" column="9" bodyfile="src/tensor.cpp" bodystart="133" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="classTensor_1a1340fe15ec7a04ce46144a5ac97a08ab" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Tensor::min</definition>
+        <argsstring>() const</argsstring>
+        <name>min</name>
+        <qualifiedname>Tensor::min</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/tensor.hpp" line="53" column="9" bodyfile="src/tensor.cpp" bodystart="145" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="classTensor_1a97b9db5c100214dea0b0242f45a36102" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Tensor::print</definition>
+        <argsstring>() const</argsstring>
+        <name>print</name>
+        <qualifiedname>Tensor::print</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/tensor.hpp" line="55" column="8" bodyfile="src/tensor.cpp" bodystart="157" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="classTensor_1a16b07c716627c19fbee317859cd23d50" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Tensor::Tensor</definition>
+        <argsstring>()=default</argsstring>
+        <name>Tensor</name>
+        <qualifiedname>Tensor::Tensor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/module.cpp" line="6" column="3"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/CuMLab/tensor.hpp" line="8" column="1" bodyfile="include/CuMLab/tensor.hpp" bodystart="8" bodyend="56"/>
+    <listofallmembers>
+      <member refid="classTensor_1aa8790d7ce4367839cf5729b3a5d014ee" prot="private" virt="non-virtual"><scope>Tensor</scope><name>compute_index</name></member>
+      <member refid="classTensor_1a083e6a5c145f2c2f36571578a6ee43b9" prot="private" virt="non-virtual"><scope>Tensor</scope><name>data_</name></member>
+      <member refid="classTensor_1ad1a6dd006622ed0693685847fde157a4" prot="public" virt="non-virtual"><scope>Tensor</scope><name>max</name></member>
+      <member refid="classTensor_1a8365f24385e92aae793aa1a1f07bc71d" prot="public" virt="non-virtual"><scope>Tensor</scope><name>mean</name></member>
+      <member refid="classTensor_1a1340fe15ec7a04ce46144a5ac97a08ab" prot="public" virt="non-virtual"><scope>Tensor</scope><name>min</name></member>
+      <member refid="classTensor_1a36dda31557504ba77cf33c47c7010d2a" prot="public" virt="non-virtual"><scope>Tensor</scope><name>operator()</name></member>
+      <member refid="classTensor_1a69cfe026b9d536f9a22dfa7f5e58633c" prot="public" virt="non-virtual"><scope>Tensor</scope><name>operator()</name></member>
+      <member refid="classTensor_1a9495c1b3e5ac705b29a85672eb8a8dca" prot="public" virt="non-virtual"><scope>Tensor</scope><name>operator*</name></member>
+      <member refid="classTensor_1a8fbcbd7e63a06fcc06f3df9469df6289" prot="public" virt="non-virtual"><scope>Tensor</scope><name>operator*</name></member>
+      <member refid="classTensor_1a8e1eb90bc2ac97670a30fcbf0ae91f53" prot="public" virt="non-virtual"><scope>Tensor</scope><name>operator+</name></member>
+      <member refid="classTensor_1a6ef34ac192b6236977624b19488b8562" prot="public" virt="non-virtual"><scope>Tensor</scope><name>operator-</name></member>
+      <member refid="classTensor_1a3fdca3117142b32cf89a72c5e3effbfe" prot="public" virt="non-virtual"><scope>Tensor</scope><name>operator-</name></member>
+      <member refid="classTensor_1a53855a4e246850c4cfc0e807bd6ec765" prot="public" virt="non-virtual"><scope>Tensor</scope><name>operator/</name></member>
+      <member refid="classTensor_1a97b9db5c100214dea0b0242f45a36102" prot="public" virt="non-virtual"><scope>Tensor</scope><name>print</name></member>
+      <member refid="classTensor_1a3cb853a516f5fb1cfb87789e3276588f" prot="public" virt="non-virtual"><scope>Tensor</scope><name>shape</name></member>
+      <member refid="classTensor_1aa0365ef5c0aed66b38881e6ed153f4e9" prot="private" virt="non-virtual"><scope>Tensor</scope><name>shape_</name></member>
+      <member refid="classTensor_1a4b9956e3f3bb0409e35fdeefc745f13f" prot="public" virt="non-virtual"><scope>Tensor</scope><name>size</name></member>
+      <member refid="classTensor_1ad7f39aa8558f407930ebcb06913d93d5" prot="private" virt="non-virtual"><scope>Tensor</scope><name>size_</name></member>
+      <member refid="classTensor_1a596013d735a78a238a4fca7a3fdedb53" prot="public" virt="non-virtual"><scope>Tensor</scope><name>sum</name></member>
+      <member refid="classTensor_1a757b2404b5c2223960fde5569bad6325" prot="public" virt="non-virtual"><scope>Tensor</scope><name>Tensor</name></member>
+      <member refid="classTensor_1a16b07c716627c19fbee317859cd23d50" prot="public" virt="non-virtual"><scope>Tensor</scope><name>Tensor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

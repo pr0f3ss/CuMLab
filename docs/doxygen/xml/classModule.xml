@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classModule" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>Module</compoundname>
+    <includes refid="module_8hpp" local="no">module.hpp</includes>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classModule_1a45b1881e302e94f0270a6680a5e73b44" prot="protected" static="no" mutable="no">
+        <type>std::unordered_map&lt; std::string, std::shared_ptr&lt; <ref refid="classTensor" kindref="compound">Tensor</ref> &gt; &gt;</type>
+        <definition>std::unordered_map&lt;std::string, std::shared_ptr&lt;Tensor&gt; &gt; Module::parameters_</definition>
+        <argsstring></argsstring>
+        <name>parameters_</name>
+        <qualifiedname>Module::parameters_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/module.hpp" line="14" column="22" bodyfile="include/CuMLab/module.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classModule_1ac0b59ad515f7ddd34618dc5141a0aab0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Module::Module</definition>
+        <argsstring>()=default</argsstring>
+        <name>Module</name>
+        <qualifiedname>Module::Module</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/module.hpp" line="17" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classModule_1a4a48538d35a2da7fcc32d9f509034723" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual Module::~Module</definition>
+        <argsstring>()=default</argsstring>
+        <name>~Module</name>
+        <qualifiedname>Module::~Module</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/module.hpp" line="18" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classModule_1ab02960cc56229ed98f9e9c7ca128ad7e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Module::register_parameter</definition>
+        <argsstring>(const std::string &amp;name, std::shared_ptr&lt; Tensor &gt; param)</argsstring>
+        <name>register_parameter</name>
+        <qualifiedname>Module::register_parameter</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classTensor" kindref="compound">Tensor</ref> &gt;</type>
+          <declname>param</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/module.hpp" line="21" column="8" bodyfile="include/CuMLab/module.hpp" bodystart="21" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classModule_1a9b8efa949128d66c255d1093ec339dc2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="classTensor" kindref="compound">Tensor</ref> &gt; &gt;</type>
+        <definition>std::vector&lt; std::shared_ptr&lt; Tensor &gt; &gt; Module::parameters</definition>
+        <argsstring>()</argsstring>
+        <name>parameters</name>
+        <qualifiedname>Module::parameters</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/module.hpp" line="27" column="15" bodyfile="include/CuMLab/module.hpp" bodystart="27" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classModule_1aaebafabffcff625284e13fc5c212901d" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classTensor" kindref="compound">Tensor</ref> &gt;</type>
+        <definition>virtual std::shared_ptr&lt; Tensor &gt; Module::forward</definition>
+        <argsstring>(const std::shared_ptr&lt; Tensor &gt; &amp;input)=0</argsstring>
+        <name>forward</name>
+        <qualifiedname>Module::forward</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classTensor" kindref="compound">Tensor</ref> &gt; &amp;</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/module.hpp" line="37" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classModule_1a91df90cb07d2a4e52336f3bb7040b52c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classTensor" kindref="compound">Tensor</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; Tensor &gt; Module::operator()</definition>
+        <argsstring>(const std::shared_ptr&lt; Tensor &gt; &amp;input)</argsstring>
+        <name>operator()</name>
+        <qualifiedname>Module::operator()</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classTensor" kindref="compound">Tensor</ref> &gt; &amp;</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/module.hpp" line="40" column="19" bodyfile="include/CuMLab/module.hpp" bodystart="40" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classModule_1ad237415384ab334229b2d0abf9bbb0bf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Module::save</definition>
+        <argsstring>(const std::string &amp;filename)</argsstring>
+        <name>save</name>
+        <qualifiedname>Module::save</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/module.hpp" line="45" column="8" bodyfile="include/CuMLab/module.hpp" bodystart="45" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classModule_1abdba7b9fec5b9da2fcac7333da3f573d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Module::load</definition>
+        <argsstring>(const std::string &amp;filename)</argsstring>
+        <name>load</name>
+        <qualifiedname>Module::load</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/module.hpp" line="51" column="8" bodyfile="include/CuMLab/module.hpp" bodystart="51" bodyend="54"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/CuMLab/module.hpp" line="12" column="1" bodyfile="include/CuMLab/module.hpp" bodystart="12" bodyend="55"/>
+    <listofallmembers>
+      <member refid="classModule_1aaebafabffcff625284e13fc5c212901d" prot="public" virt="pure-virtual"><scope>Module</scope><name>forward</name></member>
+      <member refid="classModule_1abdba7b9fec5b9da2fcac7333da3f573d" prot="public" virt="non-virtual"><scope>Module</scope><name>load</name></member>
+      <member refid="classModule_1ac0b59ad515f7ddd34618dc5141a0aab0" prot="public" virt="non-virtual"><scope>Module</scope><name>Module</name></member>
+      <member refid="classModule_1a91df90cb07d2a4e52336f3bb7040b52c" prot="public" virt="non-virtual"><scope>Module</scope><name>operator()</name></member>
+      <member refid="classModule_1a9b8efa949128d66c255d1093ec339dc2" prot="public" virt="non-virtual"><scope>Module</scope><name>parameters</name></member>
+      <member refid="classModule_1a45b1881e302e94f0270a6680a5e73b44" prot="protected" virt="non-virtual"><scope>Module</scope><name>parameters_</name></member>
+      <member refid="classModule_1ab02960cc56229ed98f9e9c7ca128ad7e" prot="public" virt="non-virtual"><scope>Module</scope><name>register_parameter</name></member>
+      <member refid="classModule_1ad237415384ab334229b2d0abf9bbb0bf" prot="public" virt="non-virtual"><scope>Module</scope><name>save</name></member>
+      <member refid="classModule_1a4a48538d35a2da7fcc32d9f509034723" prot="public" virt="virtual"><scope>Module</scope><name>~Module</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

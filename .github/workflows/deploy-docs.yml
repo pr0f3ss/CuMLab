@@ -1,0 +1,39 @@
+name: Deploy Sphinx Docs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        run: |
+          pip install -r docs/requirements.txt
+          sudo apt install doxygen
+          doxygen Doxyfile
+
+      - name: Build documentation
+        run: |
+          cd docs
+          make clean
+          make html
+          mkdir -p ../gh-pages-docs
+          cp -r _build/html/* ../gh-pages-docs/
+          cd ..
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: gh-pages-docs

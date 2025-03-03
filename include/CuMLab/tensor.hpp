@@ -15,10 +15,23 @@ private:
   int compute_index(std::initializer_list<int> indices) const;
 
 public:
-  // Constructor
+  /**
+   * @brief Constructs a Tensor with the given shape, initializing all elements
+   * to zero.
+   * @param shape The shape of the tensor.
+   */
   Tensor(const std::vector<int> &shape);
 
+  /**
+   * @brief Returns the shape of the tensor.
+   * @return A vector representing the shape.
+   */
   std::vector<int> shape() const { return shape_; }
+
+  /**
+   * @brief Returns the total number of elements in the tensor.
+   * @return The total number of elements.
+   */
   int size() const { return size_; }
 
   float &operator()(std::initializer_list<int> indices);
