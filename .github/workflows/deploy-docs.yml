@@ -38,7 +38,7 @@ jobs:
           make clean
           make html
           mkdir -p ../gh-pages-docs
-          cp -r _build/html/* ../gh-pages-docs/
+          cp -r build/html/* ../gh-pages-docs/
           cd ..
 
       - name: Deploy to GitHub Pages
