@@ -2,8 +2,10 @@
 #include <iostream>
 
 int main() {
-  Tensor t1({2, 3});
-  Tensor t2({2, 3});
+  using namespace CuMLab;
+
+  Tensor<float> t1({2, 3});
+  Tensor<float> t2({2, 3});
 
   // Assign values
   t1({0, 0}) = 2.0f;
