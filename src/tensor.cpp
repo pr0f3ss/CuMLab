@@ -48,6 +48,67 @@ T Tensor<T>::operator()(std::initializer_list<int> indices) const {
 }
 
 // ─────────────────────────────────────────────────────
+// Element-Wise Operations
+// ─────────────────────────────────────────────────────
+template <typename T>
+Tensor<T> Tensor<T>::operator+(const Tensor<T> &other) const {
+  if (shape_ != other.shape_)
+    throw std::invalid_argument("Shape mismatch in addition");
+
+  Tensor<T> result(shape_);
+  for (size_t i = 0; i < data_.size(); ++i) {
+    result.data_[i] = data_[i] + other.data_[i];
+  }
+  return result;
+}
+
+template <typename T>
+Tensor<T> Tensor<T>::operator-(const Tensor<T> &other) const {
+  if (shape_ != other.shape_)
+    throw std::invalid_argument("Shape mismatch in subtraction");
+
+  Tensor<T> result(shape_);
+  for (size_t i = 0; i < data_.size(); ++i) {
+    result.data_[i] = data_[i] - other.data_[i];
+  }
+  return result;
+}
+
+template <typename T>
+Tensor<T> Tensor<T>::operator*(const Tensor<T> &other) const {
+  if (shape_ != other.shape_)
+    throw std::invalid_argument("Shape mismatch in multiplication");
+
+  Tensor<T> result(shape_);
+  for (size_t i = 0; i < data_.size(); ++i) {
+    result.data_[i] = data_[i] * other.data_[i];
+  }
+  return result;
+}
+
+template <typename T>
+Tensor<T> Tensor<T>::operator/(const Tensor<T> &other) const {
+  if (shape_ != other.shape_)
+    throw std::invalid_argument("Shape mismatch in division");
+
+  Tensor<T> result(shape_);
+  for (size_t i = 0; i < data_.size(); ++i) {
+    if (other.data_[i] == static_cast<T>(0))
+      throw std::runtime_error("Division by zero");
+    result.data_[i] = data_[i] / other.data_[i];
+  }
+  return result;
+}
+
+template <typename T> Tensor<T> Tensor<T>::operator-() const {
+  Tensor<T> result(shape_);
+  for (size_t i = 0; i < data_.size(); ++i) {
+    result.data_[i] = -data_[i];
+  }
+  return result;
+}
+
+// ─────────────────────────────────────────────────────
 // Reduction Operations
 // ─────────────────────────────────────────────────────
 template <typename T> T Tensor<T>::sum() const {
@@ -75,6 +136,27 @@ template <typename T> T Tensor<T>::min() const {
   return *std::min_element(data_.begin(), data_.end());
 }
 
+// ─────────────────────────────────────────────────────
+// Debug Instructions
+// ─────────────────────────────────────────────────────
+template <typename T> void Tensor<T>::print() const {
+  std::cout << "Shape: (";
+  for (size_t i = 0; i < shape_.size(); ++i) {
+    std::cout << shape_[i];
+    if (i < shape_.size() - 1)
+      std::cout << ", ";
+  }
+  std::cout << ")\n";
+
+  // Print data in [x y z] format
+  std::cout << "Values: [";
+  for (size_t i = 0; i < data_.size(); ++i) {
+    std::cout << data_[i];
+    if (i < data_.size() - 1)
+      std::cout << " ";
+  }
+  std::cout << "]\n";
+}
 // ─────────────────────────────────────────────────────
 // Explicit Template Instantiations
 // ─────────────────────────────────────────────────────

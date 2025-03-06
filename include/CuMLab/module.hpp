@@ -7,6 +7,8 @@
 #include <unordered_map>
 #include <vector>
 
+namespace CuMLab {
+
 template <typename T> class Tensor; ///< Forward declaration of Tensor class.
 
 /**
@@ -123,5 +125,7 @@ public:
     // TODO: Implement default deserialization
   }
 };
+
+} // namespace CuMLab
 
 #endif // CUMLAB_MODULE_HPP

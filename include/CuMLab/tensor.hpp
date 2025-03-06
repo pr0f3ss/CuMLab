@@ -1,10 +1,11 @@
 #ifndef CUMLAB_TENSOR_HPP
 #define CUMLAB_TENSOR_HPP
 
+#include <algorithm>
+#include <cstdint>
 #include <iostream>
 #include <stdexcept>
 #include <vector>
-
 
 namespace CuMLab {
 

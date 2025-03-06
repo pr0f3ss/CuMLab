@@ -3,10 +3,10 @@
 #include <iostream>
 
 int main() {
+  using namespace CuMLab;
 
   // Define a linear layer
-  std::shared_ptr<Module<float>> layer =
-      std::make_shared<CuMLab::Linear<float>>(4, 2);
+  std::shared_ptr<Module<float>> layer = std::make_shared<Linear<float>>(4, 2);
 
   // Create an input tensor
   auto input = std::make_shared<Tensor<float>>(std::vector<int>{1, 4});
