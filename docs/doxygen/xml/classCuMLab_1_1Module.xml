@@ -1,0 +1,290 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classCuMLab_1_1Module" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>CuMLab::Module</compoundname>
+    <derivedcompoundref refid="classCuMLab_1_1Linear" prot="public" virt="non-virtual">CuMLab::Linear&lt; T &gt;</derivedcompoundref>
+    <includes refid="module_8hpp" local="no">module.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classCuMLab_1_1Module_1adfb20f0e90aa30f9648dc2e14b03623b" prot="protected" static="no" mutable="no">
+        <type>std::unordered_map&lt; std::string, std::shared_ptr&lt; <ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt; &gt; &gt;</type>
+        <definition>std::unordered_map&lt;std::string, std::shared_ptr&lt;Tensor&lt;T&gt; &gt; &gt; CuMLab::Module&lt; T &gt;::parameters_</definition>
+        <argsstring></argsstring>
+        <name>parameters_</name>
+        <qualifiedname>CuMLab::Module::parameters_</qualifiedname>
+        <briefdescription>
+<para>Stores the learnable parameters of the module. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Each parameter is identified by a string name (e.g., <computeroutput>&quot;weight&quot;</computeroutput>, <computeroutput>&quot;bias&quot;</computeroutput>) and stored as a shared pointer to a <computeroutput><ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt;T&gt;</computeroutput>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/module.hpp" line="31" column="22" bodyfile="include/CuMLab/module.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCuMLab_1_1Module_1afd49e44327f905008406418f3e4c1fac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CuMLab::Module&lt; T &gt;::Module</definition>
+        <argsstring>()=default</argsstring>
+        <name>Module</name>
+        <qualifiedname>CuMLab::Module::Module</qualifiedname>
+        <briefdescription>
+<para>Default constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/module.hpp" line="37" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classCuMLab_1_1Module_1a4db7e10f7e48036bbf865c6b904df270" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual CuMLab::Module&lt; T &gt;::~Module</definition>
+        <argsstring>()=default</argsstring>
+        <name>~Module</name>
+        <qualifiedname>CuMLab::Module::~Module</qualifiedname>
+        <briefdescription>
+<para>Virtual destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/module.hpp" line="42" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classCuMLab_1_1Module_1ab9a5de25021b4b5cbb82bb499537d121" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CuMLab::Module&lt; T &gt;::register_parameter</definition>
+        <argsstring>(const std::string &amp;name, std::shared_ptr&lt; Tensor&lt; T &gt; &gt; param)</argsstring>
+        <name>register_parameter</name>
+        <qualifiedname>CuMLab::Module::register_parameter</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt; &gt;</type>
+          <declname>param</declname>
+        </param>
+        <briefdescription>
+<para>Registers a trainable parameter in the module. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function allows adding learnable parameters (e.g., weights, biases) to the module so they can be accessed later for optimization.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the parameter (e.g., <computeroutput>&quot;weight&quot;</computeroutput>, <computeroutput>&quot;bias&quot;</computeroutput>). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>param</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A shared pointer to the tensor representing the parameter. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/module.hpp" line="53" column="8" bodyfile="include/CuMLab/module.hpp" bodystart="53" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classCuMLab_1_1Module_1aac870cec5cc365665ddeda91d837c77f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; std::shared_ptr&lt; <ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt; &gt; &gt;</type>
+        <definition>std::vector&lt; std::shared_ptr&lt; Tensor&lt; T &gt; &gt; &gt; CuMLab::Module&lt; T &gt;::parameters</definition>
+        <argsstring>()</argsstring>
+        <name>parameters</name>
+        <qualifiedname>CuMLab::Module::parameters</qualifiedname>
+        <briefdescription>
+<para>Retrieves all registered parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is useful for optimizers, as it provides access to all trainable tensors inside the module.</para>
+<para><simplesect kind="return"><para>A vector of shared pointers to the stored parameters. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/module.hpp" line="66" column="15" bodyfile="include/CuMLab/module.hpp" bodystart="66" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classCuMLab_1_1Module_1a83b6376f9c60255c0423eead18d2ed96" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt; &gt;</type>
+        <definition>virtual std::shared_ptr&lt; Tensor&lt; T &gt; &gt; CuMLab::Module&lt; T &gt;::forward</definition>
+        <argsstring>(const std::shared_ptr&lt; Tensor&lt; T &gt; &gt; &amp;input) override=0</argsstring>
+        <name>forward</name>
+        <qualifiedname>CuMLab::Module::forward</qualifiedname>
+        <reimplementedby refid="classCuMLab_1_1Linear_1a6a5f160e64d6df19b82a2e91bd89c9ff">forward</reimplementedby>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt; &gt; &amp;</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+<para>Performs the forward pass of the module. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is a pure virtual function that must be overridden by derived classes to define how input data is transformed.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A shared pointer to the input tensor. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A shared pointer to the output tensor. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/module.hpp" line="84" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classCuMLab_1_1Module_1a7a477126353f56f6585dd3bce12cef13" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; Tensor&lt; T &gt; &gt; CuMLab::Module&lt; T &gt;::operator()</definition>
+        <argsstring>(const std::shared_ptr&lt; Tensor&lt; T &gt; &gt; &amp;input)</argsstring>
+        <name>operator()</name>
+        <qualifiedname>CuMLab::Module::operator()</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt; &gt; &amp;</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+<para>Calls the forward function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This operator allows instances of <computeroutput><ref refid="classCuMLab_1_1Module" kindref="compound">Module</ref></computeroutput> to be used like functions, simplifying code when chaining modules together.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A shared pointer to the input tensor. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A shared pointer to the output tensor. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/module.hpp" line="96" column="3" bodyfile="include/CuMLab/module.hpp" bodystart="96" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="classCuMLab_1_1Module_1a460444b7f3b04c7b2c99b905137996d2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CuMLab::Module&lt; T &gt;::save</definition>
+        <argsstring>(const std::string &amp;filename)</argsstring>
+        <name>save</name>
+        <qualifiedname>CuMLab::Module::save</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Saves the module parameters to a file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is a placeholder for serialization logic to store the model&apos;s parameters on disk.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the file to save the parameters. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/module.hpp" line="108" column="8" bodyfile="include/CuMLab/module.hpp" bodystart="108" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="classCuMLab_1_1Module_1a42647528066ae6db1c4bfa3111919c4c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CuMLab::Module&lt; T &gt;::load</definition>
+        <argsstring>(const std::string &amp;filename)</argsstring>
+        <name>load</name>
+        <qualifiedname>CuMLab::Module::load</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Loads the module parameters from a file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is a placeholder for deserialization logic to restore the model&apos;s parameters from disk.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the file to load the parameters from. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/module.hpp" line="122" column="8" bodyfile="include/CuMLab/module.hpp" bodystart="122" bodyend="126"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Forward declaration of <ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref> class. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Base class for all neural network modules.</para>
+<para>A <computeroutput><ref refid="classCuMLab_1_1Module" kindref="compound">Module</ref></computeroutput> represents a building block of a neural network, such as a layer. It supports storing parameters (e.g., weights, biases) and requires subclasses to implement a <computeroutput>forward</computeroutput> function.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The data type used in the tensor (e.g., <computeroutput>float</computeroutput>, <computeroutput>int</computeroutput>, <computeroutput>uint8_t</computeroutput>). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>CuMLab::Linear&lt; T &gt;</label>
+        <link refid="classCuMLab_1_1Linear"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>CuMLab::Module&lt; T &gt;</label>
+        <link refid="classCuMLab_1_1Module"/>
+      </node>
+    </inheritancegraph>
+    <location file="include/CuMLab/module.hpp" line="23" column="12" bodyfile="include/CuMLab/module.hpp" bodystart="23" bodyend="127"/>
+    <listofallmembers>
+      <member refid="classCuMLab_1_1Module_1a83b6376f9c60255c0423eead18d2ed96" prot="public" virt="pure-virtual"><scope>CuMLab::Module</scope><name>forward</name></member>
+      <member refid="classCuMLab_1_1Module_1a42647528066ae6db1c4bfa3111919c4c" prot="public" virt="non-virtual"><scope>CuMLab::Module</scope><name>load</name></member>
+      <member refid="classCuMLab_1_1Module_1afd49e44327f905008406418f3e4c1fac" prot="public" virt="non-virtual"><scope>CuMLab::Module</scope><name>Module</name></member>
+      <member refid="classCuMLab_1_1Module_1a7a477126353f56f6585dd3bce12cef13" prot="public" virt="non-virtual"><scope>CuMLab::Module</scope><name>operator()</name></member>
+      <member refid="classCuMLab_1_1Module_1aac870cec5cc365665ddeda91d837c77f" prot="public" virt="non-virtual"><scope>CuMLab::Module</scope><name>parameters</name></member>
+      <member refid="classCuMLab_1_1Module_1adfb20f0e90aa30f9648dc2e14b03623b" prot="protected" virt="non-virtual"><scope>CuMLab::Module</scope><name>parameters_</name></member>
+      <member refid="classCuMLab_1_1Module_1ab9a5de25021b4b5cbb82bb499537d121" prot="public" virt="non-virtual"><scope>CuMLab::Module</scope><name>register_parameter</name></member>
+      <member refid="classCuMLab_1_1Module_1a460444b7f3b04c7b2c99b905137996d2" prot="public" virt="non-virtual"><scope>CuMLab::Module</scope><name>save</name></member>
+      <member refid="classCuMLab_1_1Module_1a4db7e10f7e48036bbf865c6b904df270" prot="public" virt="virtual"><scope>CuMLab::Module</scope><name>~Module</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

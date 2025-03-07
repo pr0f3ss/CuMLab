@@ -40,19 +40,12 @@
         <label>vector</label>
       </node>
     </incdepgraph>
-    <innerclass refid="classTensor" prot="public">Tensor</innerclass>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <programlisting>
 <codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="module_8hpp" kindref="compound">CuMLab/module.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>TODO:<sp/>Implement<sp/>actual<sp/>tensor<sp/>class</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classTensor" kindref="compound">Tensor</ref><sp/>{</highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="6"><highlight class="normal"><sp/><sp/><ref refid="classTensor_1a16b07c716627c19fbee317859cd23d50" kindref="member">Tensor</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="7"><highlight class="normal">};</highlight></codeline>
     </programlisting>
     <location file="src/module.cpp"/>
   </compounddef>

@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="linear_8hpp" kind="file" language="C++">
+    <compoundname>linear.hpp</compoundname>
+    <includes refid="module_8hpp" local="yes">CuMLab/module.hpp</includes>
+    <includes refid="tensor_8hpp" local="yes">CuMLab/tensor.hpp</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>include/CuMLab/linear.hpp</label>
+        <link refid="linear_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>CuMLab/module.hpp</label>
+        <link refid="module_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>CuMLab/tensor.hpp</label>
+        <link refid="tensor_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>algorithm</label>
+      </node>
+      <node id="10">
+        <label>cstdint</label>
+      </node>
+      <node id="3">
+        <label>iostream</label>
+      </node>
+      <node id="4">
+        <label>memory</label>
+      </node>
+      <node id="11">
+        <label>stdexcept</label>
+      </node>
+      <node id="5">
+        <label>string</label>
+      </node>
+      <node id="6">
+        <label>unordered_map</label>
+      </node>
+      <node id="7">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classCuMLab_1_1Linear" prot="public">CuMLab::Linear</innerclass>
+    <innernamespace refid="namespaceCuMLab">CuMLab</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>CUMLAB_LINEAR_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CUMLAB_LINEAR_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="module_8hpp" kindref="compound">CuMLab/module.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="tensor_8hpp" kindref="compound">CuMLab/tensor.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="namespaceCuMLab" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceCuMLab" kindref="compound">CuMLab</ref><sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="classCuMLab_1_1Linear" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;<sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classCuMLab_1_1Linear" kindref="compound">Linear</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classCuMLab_1_1Module" kindref="compound">Module</ref>&lt;T&gt;<sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="19" refid="classCuMLab_1_1Linear_1a574620633ce56b6f4f3c8818c0e764aa" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classCuMLab_1_1Linear_1a574620633ce56b6f4f3c8818c0e764aa" kindref="member">in_features_</ref>,<sp/><ref refid="classCuMLab_1_1Linear_1aec53c8909fe0ed1b4db59daad42c169f" kindref="member">out_features_</ref>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="28" refid="classCuMLab_1_1Linear_1a46af6cfbee493c873fd340fb0bc699ec" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classCuMLab_1_1Linear_1a46af6cfbee493c873fd340fb0bc699ec" kindref="member">Linear</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>in_features,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>out_features)</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><ref refid="classCuMLab_1_1Linear_1a574620633ce56b6f4f3c8818c0e764aa" kindref="member">in_features_</ref>(in_features),<sp/><ref refid="classCuMLab_1_1Linear_1aec53c8909fe0ed1b4db59daad42c169f" kindref="member">out_features_</ref>(out_features)<sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Register<sp/>weight<sp/>and<sp/>bias<sp/>parameters</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="classCuMLab_1_1Module_1ab9a5de25021b4b5cbb82bb499537d121" kindref="member">register_parameter</ref>(</highlight><highlight class="stringliteral">&quot;weight&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::make_shared&lt;<ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor&lt;T&gt;</ref>&gt;(</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;{in_features,<sp/>out_features}));</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="classCuMLab_1_1Module_1ab9a5de25021b4b5cbb82bb499537d121" kindref="member">register_parameter</ref>(</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;bias&quot;</highlight><highlight class="normal">,<sp/>std::make_shared&lt;<ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor&lt;T&gt;</ref>&gt;(std::vector&lt;int&gt;{out_features}));</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;Tensor&lt;T&gt;&gt;</highlight></codeline>
+<codeline lineno="49" refid="classCuMLab_1_1Linear_1a6a5f160e64d6df19b82a2e91bd89c9ff" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classCuMLab_1_1Linear_1a6a5f160e64d6df19b82a2e91bd89c9ff" kindref="member">forward</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;<ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor&lt;T&gt;</ref>&gt;<sp/>&amp;input)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>weight<sp/>=<sp/>this-&gt;<ref refid="classCuMLab_1_1Module_1adfb20f0e90aa30f9648dc2e14b03623b" kindref="member">parameters_</ref>[</highlight><highlight class="stringliteral">&quot;weight&quot;</highlight><highlight class="normal">];</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>bias<sp/>=<sp/>this-&gt;<ref refid="classCuMLab_1_1Module_1adfb20f0e90aa30f9648dc2e14b03623b" kindref="member">parameters_</ref>[</highlight><highlight class="stringliteral">&quot;bias&quot;</highlight><highlight class="normal">];</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>output<sp/>=<sp/>std::make_shared&lt;Tensor&lt;T&gt;&gt;(*input<sp/>*<sp/>(*weight));</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>*output<sp/>=<sp/>*output<sp/>+<sp/>(*bias);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>output;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>CuMLab</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>CUMLAB_LINEAR_HPP</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="include/CuMLab/linear.hpp"/>
+  </compounddef>
+</doxygen>

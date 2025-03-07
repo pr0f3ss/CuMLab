@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classCuMLab_1_1Linear" kind="class" language="C++" prot="public">
+    <compoundname>CuMLab::Linear</compoundname>
+    <basecompoundref refid="classCuMLab_1_1Module" prot="public" virt="non-virtual">CuMLab::Module&lt; T &gt;</basecompoundref>
+    <includes refid="linear_8hpp" local="no">linear.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classCuMLab_1_1Linear_1a574620633ce56b6f4f3c8818c0e764aa" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CuMLab::Linear&lt; T &gt;::in_features_</definition>
+        <argsstring></argsstring>
+        <name>in_features_</name>
+        <qualifiedname>CuMLab::Linear::in_features_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/linear.hpp" line="19" column="7" bodyfile="include/CuMLab/linear.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCuMLab_1_1Linear_1aec53c8909fe0ed1b4db59daad42c169f" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CuMLab::Linear&lt; T &gt;::out_features_</definition>
+        <argsstring></argsstring>
+        <name>out_features_</name>
+        <qualifiedname>CuMLab::Linear::out_features_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/linear.hpp" line="19" column="20" bodyfile="include/CuMLab/linear.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCuMLab_1_1Linear_1a46af6cfbee493c873fd340fb0bc699ec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CuMLab::Linear&lt; T &gt;::Linear</definition>
+        <argsstring>(int in_features, int out_features)</argsstring>
+        <name>Linear</name>
+        <qualifiedname>CuMLab::Linear::Linear</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>in_features</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>out_features</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a linear layer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in_features</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of input features. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out_features</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of output features. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/linear.hpp" line="28" column="3" bodyfile="include/CuMLab/linear.hpp" bodystart="28" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classCuMLab_1_1Linear_1a6a5f160e64d6df19b82a2e91bd89c9ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>std::shared_ptr&lt; <ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; Tensor&lt; T &gt; &gt; CuMLab::Linear&lt; T &gt;::forward</definition>
+        <argsstring>(const std::shared_ptr&lt; Tensor&lt; T &gt; &gt; &amp;input) override</argsstring>
+        <name>forward</name>
+        <qualifiedname>CuMLab::Linear::forward</qualifiedname>
+        <reimplements refid="classCuMLab_1_1Module_1a83b6376f9c60255c0423eead18d2ed96">forward</reimplements>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt; &gt; &amp;</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+<para>Forward pass of the linear layer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Computes Y = XW + B.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input tensor. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The output tensor after applying the linear transformation. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/linear.hpp" line="49" column="3" bodyfile="include/CuMLab/linear.hpp" bodystart="49" bodyend="57"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Fully Connected (<ref refid="classCuMLab_1_1Linear" kindref="compound">Linear</ref>) Layer. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This layer performs the operation Y = XW + B, where:<itemizedlist>
+<listitem><para>X is the input tensor</para>
+</listitem><listitem><para>W is the weight matrix</para>
+</listitem><listitem><para>B is the bias vector </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>CuMLab::Linear&lt; T &gt;</label>
+        <link refid="classCuMLab_1_1Linear"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>CuMLab::Module&lt; T &gt;</label>
+        <link refid="classCuMLab_1_1Module"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>CuMLab::Linear&lt; T &gt;</label>
+        <link refid="classCuMLab_1_1Linear"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>CuMLab::Module&lt; T &gt;</label>
+        <link refid="classCuMLab_1_1Module"/>
+      </node>
+    </collaborationgraph>
+    <location file="include/CuMLab/linear.hpp" line="17" column="12" bodyfile="include/CuMLab/linear.hpp" bodystart="17" bodyend="58"/>
+    <listofallmembers>
+      <member refid="classCuMLab_1_1Linear_1a6a5f160e64d6df19b82a2e91bd89c9ff" prot="public" virt="virtual"><scope>CuMLab::Linear</scope><name>forward</name></member>
+      <member refid="classCuMLab_1_1Linear_1a574620633ce56b6f4f3c8818c0e764aa" prot="private" virt="non-virtual"><scope>CuMLab::Linear</scope><name>in_features_</name></member>
+      <member refid="classCuMLab_1_1Linear_1a46af6cfbee493c873fd340fb0bc699ec" prot="public" virt="non-virtual"><scope>CuMLab::Linear</scope><name>Linear</name></member>
+      <member refid="classCuMLab_1_1Module_1a42647528066ae6db1c4bfa3111919c4c" prot="public" virt="non-virtual"><scope>CuMLab::Linear</scope><name>load</name></member>
+      <member refid="classCuMLab_1_1Module_1afd49e44327f905008406418f3e4c1fac" prot="public" virt="non-virtual"><scope>CuMLab::Linear</scope><name>Module</name></member>
+      <member refid="classCuMLab_1_1Module_1a7a477126353f56f6585dd3bce12cef13" prot="public" virt="non-virtual"><scope>CuMLab::Linear</scope><name>operator()</name></member>
+      <member refid="classCuMLab_1_1Linear_1aec53c8909fe0ed1b4db59daad42c169f" prot="private" virt="non-virtual"><scope>CuMLab::Linear</scope><name>out_features_</name></member>
+      <member refid="classCuMLab_1_1Module_1aac870cec5cc365665ddeda91d837c77f" prot="public" virt="non-virtual"><scope>CuMLab::Linear</scope><name>parameters</name></member>
+      <member refid="classCuMLab_1_1Module_1adfb20f0e90aa30f9648dc2e14b03623b" prot="protected" virt="non-virtual"><scope>CuMLab::Linear</scope><name>parameters_</name></member>
+      <member refid="classCuMLab_1_1Module_1ab9a5de25021b4b5cbb82bb499537d121" prot="public" virt="non-virtual"><scope>CuMLab::Linear</scope><name>register_parameter</name></member>
+      <member refid="classCuMLab_1_1Module_1a460444b7f3b04c7b2c99b905137996d2" prot="public" virt="non-virtual"><scope>CuMLab::Linear</scope><name>save</name></member>
+      <member refid="classCuMLab_1_1Module_1a4db7e10f7e48036bbf865c6b904df270" prot="public" virt="virtual"><scope>CuMLab::Linear</scope><name>~Module</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
