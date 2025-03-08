@@ -81,7 +81,7 @@ public:
    * @return A shared pointer to the output tensor.
    */
   virtual std::shared_ptr<Tensor<T>>
-  forward(const std::shared_ptr<Tensor<T>> &input) override = 0;
+  forward(const std::shared_ptr<Tensor<T>> &input) = 0;
 
   /**
    * @brief Calls the forward function.

@@ -3,6 +3,7 @@
 
 #include "CuMLab/module.hpp"
 #include "CuMLab/tensor.hpp"
+#include <memory>
 
 namespace CuMLab {
 

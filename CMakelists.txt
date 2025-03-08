@@ -6,13 +6,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Library target
 add_library(CuMLab STATIC
-    src/module.cpp
     src/tensor.cpp
 )
 
 # Include directories
 target_include_directories(CuMLab PUBLIC ${PROJECT_SOURCE_DIR}/include)
 
-# Example executable
+# Example executables
 add_executable(tensor_example examples/tensor_example.cpp)
 target_link_libraries(tensor_example PRIVATE CuMLab)
+
+add_executable(example examples/example.cpp)
+target_link_libraries(example PRIVATE CuMLab)

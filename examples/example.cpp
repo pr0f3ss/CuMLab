@@ -5,17 +5,20 @@
 int main() {
   using namespace CuMLab;
 
-  // Define a linear layer
-  std::shared_ptr<Module<float>> layer = std::make_shared<Linear<float>>(4, 2);
+  // Using float
+  std::shared_ptr<Module<float>> layer_f =
+      std::make_shared<Linear<float>>(4, 2);
+  auto input_f = std::make_shared<Tensor<float>>(std::vector<int>{1, 4});
+  auto output_f = layer_f->forward(input_f);
+  std::cout << "Float Output Tensor:\n";
+  output_f->print();
 
-  // Create an input tensor
-  auto input = std::make_shared<Tensor<float>>(std::vector<int>{1, 4});
-
-  // Run the forward pass
-  auto output = layer->forward(input);
-
-  std::cout << "Output Tensor:\n";
-  output->print();
+  // Using int
+  std::shared_ptr<Module<int>> layer_i = std::make_shared<Linear<int>>(4, 2);
+  auto input_i = std::make_shared<Tensor<int>>(std::vector<int>{1, 4});
+  auto output_i = layer_i->forward(input_i);
+  std::cout << "Int Output Tensor:\n";
+  output_i->print();
 
   return 0;
 }

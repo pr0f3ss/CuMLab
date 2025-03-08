@@ -52,14 +52,30 @@ T Tensor<T>::operator()(std::initializer_list<int> indices) const {
 // ─────────────────────────────────────────────────────
 template <typename T>
 Tensor<T> Tensor<T>::operator+(const Tensor<T> &other) const {
-  if (shape_ != other.shape_)
-    throw std::invalid_argument("Shape mismatch in addition");
-
-  Tensor<T> result(shape_);
-  for (size_t i = 0; i < data_.size(); ++i) {
-    result.data_[i] = data_[i] + other.data_[i];
+  // Check if shapes match exactly
+  if (shape_ == other.shape_) {
+    Tensor<T> result(shape_);
+    for (size_t i = 0; i < data_.size(); ++i) {
+      result.data_[i] = data_[i] + other.data_[i];
+    }
+    return result;
   }
-  return result;
+
+  // Broadcasting case: If `other` is a 1D tensor (bias)
+  if (other.shape_.size() == 1 && shape_.back() == other.shape_[0]) {
+    Tensor<T> result(shape_);
+    for (size_t i = 0; i < static_cast<size_t>(shape_[0]); ++i) { // Cast to int
+      for (size_t j = 0; j < static_cast<size_t>(shape_.back());
+           ++j) { // Cast to int
+        result({static_cast<int>(i), static_cast<int>(j)}) =
+            (*this)({static_cast<int>(i), static_cast<int>(j)}) +
+            other({static_cast<int>(j)});
+      }
+    }
+    return result;
+  }
+
+  throw std::invalid_argument("Shape mismatch in addition: Cannot broadcast");
 }
 
 template <typename T>
@@ -76,12 +92,28 @@ Tensor<T> Tensor<T>::operator-(const Tensor<T> &other) const {
 
 template <typename T>
 Tensor<T> Tensor<T>::operator*(const Tensor<T> &other) const {
-  if (shape_ != other.shape_)
-    throw std::invalid_argument("Shape mismatch in multiplication");
+  if (shape_.size() != 2 || other.shape_.size() != 2) {
+    throw std::invalid_argument("Matrix multiplication requires 2D tensors.");
+  }
 
-  Tensor<T> result(shape_);
-  for (size_t i = 0; i < data_.size(); ++i) {
-    result.data_[i] = data_[i] * other.data_[i];
+  int rows = shape_[0];
+  int colsA = shape_[1];
+  int colsB = other.shape_[1];
+
+  if (colsA != other.shape_[0]) {
+    throw std::invalid_argument(
+        "Shape mismatch in multiplication: Inner dimensions must match.");
+  }
+
+  Tensor<T> result({rows, colsB});
+  for (int i = 0; i < rows; ++i) {
+    for (int j = 0; j < colsB; ++j) {
+      T sum = 0;
+      for (int k = 0; k < colsA; ++k) {
+        sum += (*this)({i, k}) * other({k, j});
+      }
+      result({i, j}) = sum;
+    }
   }
   return result;
 }
