@@ -20,7 +20,7 @@ public:
   std::shared_ptr<Tensor<T>>
   forward(const std::shared_ptr<Tensor<T>> &input) override {
     auto output = std::make_shared<Tensor<T>>(input->shape());
-    for (size_t i = 0; i < input->size(); ++i) {
+    for (size_t i = 0; i < static_cast<size_t>(input->size()); ++i) {
       (*output)({static_cast<int>(i)}) =
           1 / (1 + std::exp(-(*input)({static_cast<int>(i)})));
     }
