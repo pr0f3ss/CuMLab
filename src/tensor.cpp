@@ -27,23 +27,59 @@ template <typename T> int Tensor<T>::size() const { return size_; }
 // ─────────────────────────────────────────────────────
 template <typename T>
 T &Tensor<T>::operator()(std::initializer_list<int> indices) {
-  int index = 0, multiplier = 1;
-  auto it = indices.begin();
-  for (size_t i = 0; i < shape_.size(); ++i) {
-    index += (*(it + i)) * multiplier;
-    multiplier *= shape_[i];
+  std::cout << indices.size() << " : " << shape_.size() << std::endl;
+  if (indices.size() != shape_.size() && indices.size() != 1) {
+    throw std::invalid_argument(
+        "Incorrect number of indices for tensor access.");
   }
+
+  int index = 0;
+  if (indices.size() == 1) {
+    index = *(indices.begin()); // Direct flat indexing
+    if (index < 0 || index >= size_) {
+      throw std::out_of_range("Flat index out of bounds");
+    }
+  } else {
+    int multiplier = 1;
+    for (int i = static_cast<int>(shape_.size()) - 1; i >= 0; --i) {
+      int idx = *(indices.begin() + i);
+      if (idx < 0 || idx >= shape_[i]) {
+        throw std::out_of_range("Multi-dimensional index out of bounds");
+      }
+      index += idx * multiplier;
+      multiplier *= shape_[i];
+    }
+  }
+
   return data_[index];
 }
 
 template <typename T>
 T Tensor<T>::operator()(std::initializer_list<int> indices) const {
-  int index = 0, multiplier = 1;
-  auto it = indices.begin();
-  for (size_t i = 0; i < shape_.size(); ++i) {
-    index += (*(it + i)) * multiplier;
-    multiplier *= shape_[i];
+  std::cout << indices.size() << " : " << shape_.size() << std::endl;
+  if (indices.size() != shape_.size() && indices.size() != 1) {
+    throw std::invalid_argument(
+        "Incorrect number of indices for tensor access.");
   }
+
+  int index = 0;
+  if (indices.size() == 1) {
+    index = *(indices.begin()); // Direct flat indexing
+    if (index < 0 || index >= size_) {
+      throw std::out_of_range("Flat index out of bounds");
+    }
+  } else {
+    int multiplier = 1;
+    for (int i = static_cast<int>(shape_.size()) - 1; i >= 0; --i) {
+      int idx = *(indices.begin() + i);
+      if (idx < 0 || idx >= shape_[i]) {
+        throw std::out_of_range("Multi-dimensional index out of bounds");
+      }
+      index += idx * multiplier;
+      multiplier *= shape_[i];
+    }
+  }
+
   return data_[index];
 }
 
