@@ -18,3 +18,6 @@ target_link_libraries(tensor_example PRIVATE CuMLab)
 
 add_executable(example examples/example.cpp)
 target_link_libraries(example PRIVATE CuMLab)
+
+add_executable(activation_example examples/activation_example.cpp)
+target_link_libraries(activation_example PRIVATE CuMLab)

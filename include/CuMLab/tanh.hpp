@@ -21,7 +21,8 @@ public:
   forward(const std::shared_ptr<Tensor<T>> &input) override {
     auto output = std::make_shared<Tensor<T>>(input->shape());
     for (size_t i = 0; i < input->size(); ++i) {
-      output->data()[i] = std::tanh(input->data()[i]);
+      (*output)({static_cast<int>(i)}) =
+          std::tanh((*input)({static_cast<int>(i)}));
     }
     return output;
   }
