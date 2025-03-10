@@ -116,14 +116,31 @@ Tensor<T> Tensor<T>::operator+(const Tensor<T> &other) const {
 
 template <typename T>
 Tensor<T> Tensor<T>::operator-(const Tensor<T> &other) const {
-  if (shape_ != other.shape_)
-    throw std::invalid_argument("Shape mismatch in subtraction");
-
-  Tensor<T> result(shape_);
-  for (size_t i = 0; i < data_.size(); ++i) {
-    result.data_[i] = data_[i] - other.data_[i];
+  // Exact shape match (element-wise subtraction)
+  if (shape_ == other.shape_) {
+    Tensor<T> result(shape_);
+    for (size_t i = 0; i < data_.size(); ++i) {
+      result.data_[i] = data_[i] - other.data_[i];
+    }
+    return result;
   }
-  return result;
+
+  // Case 2: Broadcasting support (1D tensor -> last dimension of this tensor)
+  if (other.shape_.size() == 1 && shape_.back() == other.shape_[0]) {
+    Tensor<T> result(shape_);
+    for (size_t i = 0; i < static_cast<size_t>(shape_[0]); ++i) { // Cast to int
+      for (size_t j = 0; j < static_cast<size_t>(shape_.back());
+           ++j) { // Cast to int
+        result({static_cast<int>(i), static_cast<int>(j)}) =
+            (*this)({static_cast<int>(i), static_cast<int>(j)}) -
+            other({static_cast<int>(j)});
+      }
+    }
+    return result;
+  }
+
+  throw std::invalid_argument(
+      "Shape mismatch in subtraction: Cannot broadcast");
 }
 
 template <typename T>
