@@ -18,3 +18,21 @@ API Documentation
    :members:
    :protected-members:
    :private-members:
+
+.. doxygenclass:: CuMLab::Loss
+   :project: CuMLab
+   :members:
+   :protected-members:
+   :private-members:
+
+.. doxygenclass:: CuMLab::MSELoss
+   :project: CuMLab
+   :members:
+   :protected-members:
+   :private-members:
+
+.. doxygenclass:: CuMLab::MAELoss
+   :project: CuMLab
+   :members:
+   :protected-members:
+   :private-members:
