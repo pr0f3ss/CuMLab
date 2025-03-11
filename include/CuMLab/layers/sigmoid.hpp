@@ -1,7 +1,7 @@
 #ifndef CUMLAB_SIGMOID_HPP
 #define CUMLAB_SIGMOID_HPP
 
-#include "CuMLab/activation.hpp"
+#include "CuMLab/layers/activation.hpp"
 #include <cmath>
 #include <memory>
 

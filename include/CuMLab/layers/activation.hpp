@@ -1,8 +1,8 @@
 #ifndef CUMLAB_ACTIVATION_HPP
 #define CUMLAB_ACTIVATION_HPP
 
-#include "CuMLab/module.hpp"
-#include "CuMLab/tensor.hpp"
+#include "CuMLab/core/tensor.hpp"
+#include "CuMLab/layers/module.hpp"
 #include <cmath>
 #include <memory>
 

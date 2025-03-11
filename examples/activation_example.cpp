@@ -1,9 +1,10 @@
-#include "CuMLab/linear.hpp"
-#include "CuMLab/relu.hpp"
-#include "CuMLab/sigmoid.hpp"
-#include "CuMLab/tanh.hpp"
-#include "CuMLab/tensor.hpp"
+#include "CuMLab/core/tensor.hpp"
+#include "CuMLab/layers/linear.hpp"
+#include "CuMLab/layers/relu.hpp"
+#include "CuMLab/layers/sigmoid.hpp"
+#include "CuMLab/layers/tanh.hpp"
 #include <iostream>
+
 
 int main() {
   using namespace CuMLab;

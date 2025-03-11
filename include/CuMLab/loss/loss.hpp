@@ -1,7 +1,7 @@
 #ifndef CUMLAB_LOSS_HPP
 #define CUMLAB_LOSS_HPP
 
-#include "CuMLab/tensor.hpp"
+#include "CuMLab/core/tensor.hpp"
 #include <memory>
 
 namespace CuMLab {

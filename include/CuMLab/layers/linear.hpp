@@ -1,8 +1,8 @@
 #ifndef CUMLAB_LINEAR_HPP
 #define CUMLAB_LINEAR_HPP
 
-#include "CuMLab/module.hpp"
-#include "CuMLab/tensor.hpp"
+#include "CuMLab/core/tensor.hpp"
+#include "CuMLab/layers/module.hpp"
 #include <limits>
 #include <memory>
 #include <random>

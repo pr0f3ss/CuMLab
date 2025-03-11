@@ -1,7 +1,7 @@
 #ifndef CUMLAB_MSE_LOSS_HPP
 #define CUMLAB_MSE_LOSS_HPP
 
-#include "CuMLab/loss.hpp"
+#include "CuMLab/loss/loss.hpp"
 #include <memory>
 
 namespace CuMLab {

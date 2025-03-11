@@ -1,6 +1,7 @@
-#include "CuMLab/linear.hpp"
-#include "CuMLab/tensor.hpp"
+#include "CuMLab/core/tensor.hpp"
+#include "CuMLab/layers/linear.hpp"
 #include <iostream>
+
 
 int main() {
   using namespace CuMLab;

@@ -1,28 +1,27 @@
-#ifndef CUMLAB_TANH_HPP
-#define CUMLAB_TANH_HPP
+#ifndef CUMLAB_RELU_HPP
+#define CUMLAB_RELU_HPP
 
-#include "CuMLab/activation.hpp"
-#include <cmath>
+#include "CuMLab/layers/activation.hpp"
 #include <memory>
 
 namespace CuMLab {
 
 /**
- * @brief Hyperbolic Tangent (Tanh) activation function.
+ * @brief Rectified Linear Unit (ReLU) activation function.
  */
-template <typename T> class Tanh : public Activation<T> {
+template <typename T> class ReLU : public Activation<T> {
 public:
-  Tanh() = default;
+  ReLU() = default;
 
   /**
-   * @brief Applies Tanh function element-wise.
+   * @brief Applies ReLU: `f(x) = max(0, x)`
    */
   std::shared_ptr<Tensor<T>>
   forward(const std::shared_ptr<Tensor<T>> &input) override {
     auto output = std::make_shared<Tensor<T>>(input->shape());
     for (size_t i = 0; i < static_cast<size_t>(input->size()); ++i) {
       (*output)({static_cast<int>(i)}) =
-          std::tanh((*input)({static_cast<int>(i)}));
+          std::max(static_cast<T>(0), (*input)({static_cast<int>(i)}));
     }
     return output;
   }
@@ -30,4 +29,4 @@ public:
 
 } // namespace CuMLab
 
-#endif // CUMLAB_TANH_HPP
+#endif // CUMLAB_RELU_HPP
