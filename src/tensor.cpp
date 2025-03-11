@@ -1,4 +1,4 @@
-#include "CuMLab/tensor.hpp"
+#include "CuMLab/core/tensor.hpp"
 
 namespace CuMLab {
 
