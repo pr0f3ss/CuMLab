@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/activation_example.dir/examples/activation_example.cpp.o -o activation_example  libCuMLab.a 
