@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classCuMLab_1_1MAELoss" kind="class" language="C++" prot="public">
+    <compoundname>CuMLab::MAELoss</compoundname>
+    <basecompoundref refid="classCuMLab_1_1Loss" prot="public" virt="non-virtual">CuMLab::Loss&lt; T &gt;</basecompoundref>
+    <includes refid="mae__loss_8hpp" local="no">mae_loss.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCuMLab_1_1MAELoss_1aef9e78cfd684a202a1ebd784311b836b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CuMLab::MAELoss&lt; T &gt;::MAELoss</definition>
+        <argsstring>()=default</argsstring>
+        <name>MAELoss</name>
+        <qualifiedname>CuMLab::MAELoss::MAELoss</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/loss/mae_loss.hpp" line="17" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classCuMLab_1_1MAELoss_1ae0cb19c1cac1587ce3783f08d9b3e0b1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>std::shared_ptr&lt; <ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; Tensor&lt; T &gt; &gt; CuMLab::MAELoss&lt; T &gt;::compute_loss</definition>
+        <argsstring>(const std::shared_ptr&lt; Tensor&lt; T &gt; &gt; &amp;prediction, const std::shared_ptr&lt; Tensor&lt; T &gt; &gt; &amp;target) override</argsstring>
+        <name>compute_loss</name>
+        <qualifiedname>CuMLab::MAELoss::compute_loss</qualifiedname>
+        <reimplements refid="classCuMLab_1_1Loss_1a8b21de505ca0c9ed1450b2a17c4625a8">compute_loss</reimplements>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt; &gt; &amp;</type>
+          <declname>prediction</declname>
+        </param>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt; &gt; &amp;</type>
+          <declname>target</declname>
+        </param>
+        <briefdescription>
+<para>Computes the MAE loss. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/loss/mae_loss.hpp" line="23" column="3" bodyfile="include/CuMLab/loss/mae_loss.hpp" bodystart="23" bodyend="43"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Mean Absolute Error (L1 <ref refid="classCuMLab_1_1Loss" kindref="compound">Loss</ref>). </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Computes <computeroutput>MAE = mean(|prediction - target|)</computeroutput> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>CuMLab::Loss&lt; T &gt;</label>
+        <link refid="classCuMLab_1_1Loss"/>
+      </node>
+      <node id="1">
+        <label>CuMLab::MAELoss&lt; T &gt;</label>
+        <link refid="classCuMLab_1_1MAELoss"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>CuMLab::Loss&lt; T &gt;</label>
+        <link refid="classCuMLab_1_1Loss"/>
+      </node>
+      <node id="1">
+        <label>CuMLab::MAELoss&lt; T &gt;</label>
+        <link refid="classCuMLab_1_1MAELoss"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/CuMLab/loss/mae_loss.hpp" line="15" column="12" bodyfile="include/CuMLab/loss/mae_loss.hpp" bodystart="15" bodyend="44"/>
+    <listofallmembers>
+      <member refid="classCuMLab_1_1MAELoss_1ae0cb19c1cac1587ce3783f08d9b3e0b1" prot="public" virt="virtual"><scope>CuMLab::MAELoss</scope><name>compute_loss</name></member>
+      <member refid="classCuMLab_1_1Loss_1ab038fdc39cb8a8260bbdf03782224d50" prot="public" virt="non-virtual"><scope>CuMLab::MAELoss</scope><name>Loss</name></member>
+      <member refid="classCuMLab_1_1MAELoss_1aef9e78cfd684a202a1ebd784311b836b" prot="public" virt="non-virtual"><scope>CuMLab::MAELoss</scope><name>MAELoss</name></member>
+      <member refid="classCuMLab_1_1Loss_1a9be7dd73c38a6994fa62935baf3e7a98" prot="public" virt="virtual"><scope>CuMLab::MAELoss</scope><name>~Loss</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

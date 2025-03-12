@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_26d4dde68a0de35cabd5da409ac9e5dc" kind="dir">
+    <compoundname>include/CuMLab/loss</compoundname>
+    <innerfile refid="loss_8hpp">loss.hpp</innerfile>
+    <innerfile refid="mae__loss_8hpp">mae_loss.hpp</innerfile>
+    <innerfile refid="mse__loss_8hpp">mse_loss.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/CuMLab/loss/"/>
+  </compounddef>
+</doxygen>

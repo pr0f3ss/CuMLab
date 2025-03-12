@@ -1,0 +1,2 @@
+/usr/bin/ar qc libCuMLab.a CMakeFiles/CuMLab.dir/src/tensor.cpp.o
+/usr/bin/ranlib libCuMLab.a

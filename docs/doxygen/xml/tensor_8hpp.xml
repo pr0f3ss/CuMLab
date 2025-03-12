@@ -7,11 +7,13 @@
     <includes local="no">iostream</includes>
     <includes local="no">stdexcept</includes>
     <includes local="no">vector</includes>
-    <includedby refid="linear_8hpp" local="yes">include/CuMLab/linear.hpp</includedby>
+    <includedby refid="activation_8hpp" local="yes">include/CuMLab/layers/activation.hpp</includedby>
+    <includedby refid="linear_8hpp" local="yes">include/CuMLab/layers/linear.hpp</includedby>
+    <includedby refid="loss_8hpp" local="yes">include/CuMLab/loss/loss.hpp</includedby>
     <includedby refid="tensor_8cpp" local="yes">src/tensor.cpp</includedby>
     <incdepgraph>
       <node id="1">
-        <label>include/CuMLab/tensor.hpp</label>
+        <label>include/CuMLab/core/tensor.hpp</label>
         <link refid="tensor_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -41,19 +43,61 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="2">
-        <label>include/CuMLab/linear.hpp</label>
-        <link refid="linear_8hpp"/>
-      </node>
       <node id="1">
-        <label>include/CuMLab/tensor.hpp</label>
+        <label>include/CuMLab/core/tensor.hpp</label>
         <link refid="tensor_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="3" relation="include">
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
         </childnode>
       </node>
+      <node id="2">
+        <label>include/CuMLab/layers/activation.hpp</label>
+        <link refid="activation_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>include/CuMLab/layers/linear.hpp</label>
+        <link refid="linear_8hpp"/>
+      </node>
       <node id="3">
+        <label>include/CuMLab/layers/relu.hpp</label>
+        <link refid="relu_8hpp"/>
+      </node>
+      <node id="4">
+        <label>include/CuMLab/layers/sigmoid.hpp</label>
+        <link refid="sigmoid_8hpp"/>
+      </node>
+      <node id="5">
+        <label>include/CuMLab/layers/tanh.hpp</label>
+        <link refid="tanh_8hpp"/>
+      </node>
+      <node id="7">
+        <label>include/CuMLab/loss/loss.hpp</label>
+        <link refid="loss_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>include/CuMLab/loss/mae_loss.hpp</label>
+        <link refid="mae__loss_8hpp"/>
+      </node>
+      <node id="9">
+        <label>include/CuMLab/loss/mse_loss.hpp</label>
+        <link refid="mse__loss_8hpp"/>
+      </node>
+      <node id="10">
         <label>src/tensor.cpp</label>
         <link refid="tensor_8cpp"/>
       </node>
@@ -74,7 +118,7 @@
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdexcept&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceCuMLab" kindref="compound">CuMLab</ref><sp/>{</highlight></codeline>
+<codeline lineno="10" refid="namespaceCuMLab" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceCuMLab" kindref="compound">CuMLab</ref><sp/>{</highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight></codeline>
 <codeline lineno="18" refid="classCuMLab_1_1Tensor" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;<sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref><sp/>{</highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
@@ -134,6 +178,6 @@
 <codeline lineno="135"><highlight class="normal"></highlight></codeline>
 <codeline lineno="136"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>CUMLAB_TENSOR_HPP</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="include/CuMLab/tensor.hpp"/>
+    <location file="include/CuMLab/core/tensor.hpp"/>
   </compounddef>
 </doxygen>

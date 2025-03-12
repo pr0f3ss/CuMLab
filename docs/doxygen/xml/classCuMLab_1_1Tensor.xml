@@ -22,7 +22,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/tensor.hpp" line="20" column="15" bodyfile="include/CuMLab/tensor.hpp" bodystart="20" bodyend="-1"/>
+        <location file="include/CuMLab/core/tensor.hpp" line="20" column="15" bodyfile="include/CuMLab/core/tensor.hpp" bodystart="20" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classCuMLab_1_1Tensor_1ab691dc26d63f6aeb77105ac69ccdbed8" prot="private" static="no" mutable="no">
         <type>std::vector&lt; int &gt;</type>
@@ -37,7 +37,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/tensor.hpp" line="21" column="15" bodyfile="include/CuMLab/tensor.hpp" bodystart="21" bodyend="-1"/>
+        <location file="include/CuMLab/core/tensor.hpp" line="21" column="15" bodyfile="include/CuMLab/core/tensor.hpp" bodystart="21" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classCuMLab_1_1Tensor_1aa7a0ef79df3a8cbc7fa6a5df2a79cb6b" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -52,7 +52,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/tensor.hpp" line="22" column="7" bodyfile="include/CuMLab/tensor.hpp" bodystart="22" bodyend="-1"/>
+        <location file="include/CuMLab/core/tensor.hpp" line="22" column="7" bodyfile="include/CuMLab/core/tensor.hpp" bodystart="22" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -83,7 +83,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/tensor.hpp" line="30" column="12" bodyfile="src/tensor.cpp" bodystart="9" bodyend="14"/>
+        <location file="include/CuMLab/core/tensor.hpp" line="30" column="12" bodyfile="src/tensor.cpp" bodystart="9" bodyend="14"/>
       </memberdef>
       <memberdef kind="function" id="classCuMLab_1_1Tensor_1a32a42bead992fe392140d945e15eb4a9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; int &gt;</type>
@@ -101,7 +101,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/tensor.hpp" line="36" column="15" bodyfile="src/tensor.cpp" bodystart="19" bodyend="21"/>
+        <location file="include/CuMLab/core/tensor.hpp" line="36" column="15" bodyfile="src/tensor.cpp" bodystart="19" bodyend="21"/>
       </memberdef>
       <memberdef kind="function" id="classCuMLab_1_1Tensor_1a68f64458b824c3ad64440eee674befa3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -119,7 +119,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/tensor.hpp" line="42" column="7" bodyfile="src/tensor.cpp" bodystart="23" bodyend="23"/>
+        <location file="include/CuMLab/core/tensor.hpp" line="42" column="7" bodyfile="src/tensor.cpp" bodystart="23" bodyend="23"/>
       </memberdef>
       <memberdef kind="function" id="classCuMLab_1_1Tensor_1acfa9f74d63898d345d2f6f8fc4d5f5fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>T &amp;</type>
@@ -159,7 +159,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/tensor.hpp" line="50" column="5" bodyfile="src/tensor.cpp" bodystart="29" bodyend="37"/>
+        <location file="include/CuMLab/core/tensor.hpp" line="50" column="5" bodyfile="src/tensor.cpp" bodystart="29" bodyend="55"/>
       </memberdef>
       <memberdef kind="function" id="classCuMLab_1_1Tensor_1acfb0cb146ee2992ffdf9260dafe67d4a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>T</type>
@@ -199,7 +199,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/tensor.hpp" line="58" column="5" bodyfile="src/tensor.cpp" bodystart="40" bodyend="48"/>
+        <location file="include/CuMLab/core/tensor.hpp" line="58" column="5" bodyfile="src/tensor.cpp" bodystart="58" bodyend="84"/>
       </memberdef>
       <memberdef kind="function" id="classCuMLab_1_1Tensor_1a68c8421a9c1da9c736102ce1a51d94a8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt;</type>
@@ -239,7 +239,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/tensor.hpp" line="70" column="10" bodyfile="src/tensor.cpp" bodystart="54" bodyend="63"/>
+        <location file="include/CuMLab/core/tensor.hpp" line="70" column="10" bodyfile="src/tensor.cpp" bodystart="90" bodyend="115"/>
       </memberdef>
       <memberdef kind="function" id="classCuMLab_1_1Tensor_1a1539620a590d85420321cf6049f900d7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt;</type>
@@ -258,7 +258,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/tensor.hpp" line="75" column="10" bodyfile="src/tensor.cpp" bodystart="66" bodyend="75"/>
+        <location file="include/CuMLab/core/tensor.hpp" line="75" column="10" bodyfile="src/tensor.cpp" bodystart="118" bodyend="144"/>
       </memberdef>
       <memberdef kind="function" id="classCuMLab_1_1Tensor_1ad56e6e95700973037f344edae4a1d07d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt;</type>
@@ -277,7 +277,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/tensor.hpp" line="81" column="10" bodyfile="src/tensor.cpp" bodystart="78" bodyend="87"/>
+        <location file="include/CuMLab/core/tensor.hpp" line="81" column="10" bodyfile="src/tensor.cpp" bodystart="147" bodyend="172"/>
       </memberdef>
       <memberdef kind="function" id="classCuMLab_1_1Tensor_1aed7ac62ba0ef3e56ec78df23a5b7a9e1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt;</type>
@@ -296,7 +296,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/tensor.hpp" line="86" column="10" bodyfile="src/tensor.cpp" bodystart="90" bodyend="101"/>
+        <location file="include/CuMLab/core/tensor.hpp" line="86" column="10" bodyfile="src/tensor.cpp" bodystart="175" bodyend="186"/>
       </memberdef>
       <memberdef kind="function" id="classCuMLab_1_1Tensor_1a04b03f9d776f73269b7568cc6422e77b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt;</type>
@@ -311,7 +311,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/tensor.hpp" line="91" column="10" bodyfile="src/tensor.cpp" bodystart="103" bodyend="109"/>
+        <location file="include/CuMLab/core/tensor.hpp" line="91" column="10" bodyfile="src/tensor.cpp" bodystart="188" bodyend="194"/>
       </memberdef>
       <memberdef kind="function" id="classCuMLab_1_1Tensor_1a82a7d2af93a8d0bb0506b71e3dd76475" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt;</type>
@@ -330,7 +330,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/tensor.hpp" line="96" column="10"/>
+        <location file="include/CuMLab/core/tensor.hpp" line="96" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classCuMLab_1_1Tensor_1a7a9d4c05fae4852aaac1ec2eb3b32851" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>T</type>
@@ -345,7 +345,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/tensor.hpp" line="105" column="5" bodyfile="src/tensor.cpp" bodystart="114" bodyend="119"/>
+        <location file="include/CuMLab/core/tensor.hpp" line="105" column="5" bodyfile="src/tensor.cpp" bodystart="199" bodyend="204"/>
       </memberdef>
       <memberdef kind="function" id="classCuMLab_1_1Tensor_1a15bcc7a804159e68ad9e3b9ad694ab69" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>T</type>
@@ -360,7 +360,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/tensor.hpp" line="110" column="5" bodyfile="src/tensor.cpp" bodystart="121" bodyend="125"/>
+        <location file="include/CuMLab/core/tensor.hpp" line="110" column="5" bodyfile="src/tensor.cpp" bodystart="206" bodyend="210"/>
       </memberdef>
       <memberdef kind="function" id="classCuMLab_1_1Tensor_1af0556e445f0c4fdb8f7e3fa6ae94b40f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>T</type>
@@ -375,7 +375,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/tensor.hpp" line="115" column="5" bodyfile="src/tensor.cpp" bodystart="127" bodyend="131"/>
+        <location file="include/CuMLab/core/tensor.hpp" line="115" column="5" bodyfile="src/tensor.cpp" bodystart="212" bodyend="216"/>
       </memberdef>
       <memberdef kind="function" id="classCuMLab_1_1Tensor_1a84e6ba8101089446f191e702356b0be3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>T</type>
@@ -390,7 +390,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/tensor.hpp" line="120" column="5" bodyfile="src/tensor.cpp" bodystart="133" bodyend="137"/>
+        <location file="include/CuMLab/core/tensor.hpp" line="120" column="5" bodyfile="src/tensor.cpp" bodystart="218" bodyend="222"/>
       </memberdef>
       <memberdef kind="function" id="classCuMLab_1_1Tensor_1aecddf7562700d395e011055be2d74176" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -405,7 +405,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/tensor.hpp" line="125" column="8" bodyfile="src/tensor.cpp" bodystart="142" bodyend="159"/>
+        <location file="include/CuMLab/core/tensor.hpp" line="125" column="8" bodyfile="src/tensor.cpp" bodystart="227" bodyend="244"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -423,7 +423,7 @@
 </parameterlist>
 </para>
     </detaileddescription>
-    <location file="include/CuMLab/tensor.hpp" line="18" column="12" bodyfile="include/CuMLab/tensor.hpp" bodystart="18" bodyend="126"/>
+    <location file="include/CuMLab/core/tensor.hpp" line="18" column="12" bodyfile="include/CuMLab/core/tensor.hpp" bodystart="18" bodyend="126"/>
     <listofallmembers>
       <member refid="classCuMLab_1_1Tensor_1a8091f3d8ba06e8604ed9fd8c903e55c5" prot="private" virt="non-virtual"><scope>CuMLab::Tensor</scope><name>data_</name></member>
       <member refid="classCuMLab_1_1Tensor_1af0556e445f0c4fdb8f7e3fa6ae94b40f" prot="public" virt="non-virtual"><scope>CuMLab::Tensor</scope><name>max</name></member>

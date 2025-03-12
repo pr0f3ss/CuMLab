@@ -2,13 +2,20 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespaceCuMLab" kind="namespace" language="C++">
     <compoundname>CuMLab</compoundname>
+    <innerclass refid="classCuMLab_1_1Activation" prot="public">CuMLab::Activation</innerclass>
     <innerclass refid="classCuMLab_1_1Linear" prot="public">CuMLab::Linear</innerclass>
+    <innerclass refid="classCuMLab_1_1Loss" prot="public">CuMLab::Loss</innerclass>
+    <innerclass refid="classCuMLab_1_1MAELoss" prot="public">CuMLab::MAELoss</innerclass>
     <innerclass refid="classCuMLab_1_1Module" prot="public">CuMLab::Module</innerclass>
+    <innerclass refid="classCuMLab_1_1MSELoss" prot="public">CuMLab::MSELoss</innerclass>
+    <innerclass refid="classCuMLab_1_1ReLU" prot="public">CuMLab::ReLU</innerclass>
+    <innerclass refid="classCuMLab_1_1Sigmoid" prot="public">CuMLab::Sigmoid</innerclass>
+    <innerclass refid="classCuMLab_1_1Tanh" prot="public">CuMLab::Tanh</innerclass>
     <innerclass refid="classCuMLab_1_1Tensor" prot="public">CuMLab::Tensor</innerclass>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="include/CuMLab/linear.hpp" line="7" column="1"/>
+    <location file="include/CuMLab/core/tensor.hpp" line="10" column="1"/>
   </compounddef>
 </doxygen>

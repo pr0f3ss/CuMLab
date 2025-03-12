@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_97a424284d95bec52005244bf971021d" kind="dir">
+    <compoundname>include/CuMLab/core</compoundname>
+    <innerfile refid="tensor_8hpp">tensor.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/CuMLab/core/"/>
+  </compounddef>
+</doxygen>

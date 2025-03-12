@@ -7,11 +7,11 @@
     <includes local="no">string</includes>
     <includes local="no">unordered_map</includes>
     <includes local="no">vector</includes>
-    <includedby refid="linear_8hpp" local="yes">include/CuMLab/linear.hpp</includedby>
-    <includedby refid="module_8cpp" local="yes">src/module.cpp</includedby>
+    <includedby refid="activation_8hpp" local="yes">include/CuMLab/layers/activation.hpp</includedby>
+    <includedby refid="linear_8hpp" local="yes">include/CuMLab/layers/linear.hpp</includedby>
     <incdepgraph>
       <node id="1">
-        <label>include/CuMLab/module.hpp</label>
+        <label>include/CuMLab/layers/module.hpp</label>
         <link refid="module_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -42,20 +42,38 @@
     </incdepgraph>
     <invincdepgraph>
       <node id="2">
-        <label>include/CuMLab/linear.hpp</label>
+        <label>include/CuMLab/layers/activation.hpp</label>
+        <link refid="activation_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>include/CuMLab/layers/linear.hpp</label>
         <link refid="linear_8hpp"/>
       </node>
       <node id="1">
-        <label>include/CuMLab/module.hpp</label>
+        <label>include/CuMLab/layers/module.hpp</label>
         <link refid="module_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="3" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
       </node>
       <node id="3">
-        <label>src/module.cpp</label>
-        <link refid="module_8cpp"/>
+        <label>include/CuMLab/layers/relu.hpp</label>
+        <link refid="relu_8hpp"/>
+      </node>
+      <node id="4">
+        <label>include/CuMLab/layers/sigmoid.hpp</label>
+        <link refid="sigmoid_8hpp"/>
+      </node>
+      <node id="5">
+        <label>include/CuMLab/layers/tanh.hpp</label>
+        <link refid="tanh_8hpp"/>
       </node>
     </invincdepgraph>
     <innerclass refid="classCuMLab_1_1Module" prot="public">CuMLab::Module</innerclass>
@@ -101,11 +119,11 @@
 <codeline lineno="72"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="73"><highlight class="normal"></highlight></codeline>
 <codeline lineno="83"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;Tensor&lt;T&gt;&gt;</highlight></codeline>
-<codeline lineno="84" refid="classCuMLab_1_1Module_1a83b6376f9c60255c0423eead18d2ed96" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classCuMLab_1_1Module_1a83b6376f9c60255c0423eead18d2ed96" kindref="member">forward</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;<ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor&lt;T&gt;</ref>&gt;<sp/>&amp;input)<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="84" refid="classCuMLab_1_1Module_1aafd5111ced44c82ed572ff813126c81b" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classCuMLab_1_1Module_1aafd5111ced44c82ed572ff813126c81b" kindref="member">forward</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;<ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor&lt;T&gt;</ref>&gt;<sp/>&amp;input)<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="85"><highlight class="normal"></highlight></codeline>
 <codeline lineno="95"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;Tensor&lt;T&gt;&gt;</highlight></codeline>
 <codeline lineno="96" refid="classCuMLab_1_1Module_1a7a477126353f56f6585dd3bce12cef13" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classCuMLab_1_1Module_1a7a477126353f56f6585dd3bce12cef13" kindref="member">operator()</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;<ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor&lt;T&gt;</ref>&gt;<sp/>&amp;input)<sp/>{</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classCuMLab_1_1Module_1a83b6376f9c60255c0423eead18d2ed96" kindref="member">forward</ref>(input);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classCuMLab_1_1Module_1aafd5111ced44c82ed572ff813126c81b" kindref="member">forward</ref>(input);</highlight></codeline>
 <codeline lineno="98"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="99"><highlight class="normal"></highlight></codeline>
 <codeline lineno="108" refid="classCuMLab_1_1Module_1a460444b7f3b04c7b2c99b905137996d2" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCuMLab_1_1Module_1a460444b7f3b04c7b2c99b905137996d2" kindref="member">save</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;filename)<sp/>{</highlight></codeline>
@@ -125,6 +143,6 @@
 <codeline lineno="130"><highlight class="normal"></highlight></codeline>
 <codeline lineno="131"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>CUMLAB_MODULE_HPP</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="include/CuMLab/module.hpp"/>
+    <location file="include/CuMLab/layers/module.hpp"/>
   </compounddef>
 </doxygen>

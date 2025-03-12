@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classCuMLab_1_1Loss" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>CuMLab::Loss</compoundname>
+    <derivedcompoundref refid="classCuMLab_1_1MAELoss" prot="public" virt="non-virtual">CuMLab::MAELoss&lt; T &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classCuMLab_1_1MSELoss" prot="public" virt="non-virtual">CuMLab::MSELoss&lt; T &gt;</derivedcompoundref>
+    <includes refid="loss_8hpp" local="no">loss.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCuMLab_1_1Loss_1ab038fdc39cb8a8260bbdf03782224d50" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>CuMLab::Loss&lt; T &gt;::Loss</definition>
+        <argsstring>()=default</argsstring>
+        <name>Loss</name>
+        <qualifiedname>CuMLab::Loss::Loss</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/loss/loss.hpp" line="14" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classCuMLab_1_1Loss_1a9be7dd73c38a6994fa62935baf3e7a98" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual CuMLab::Loss&lt; T &gt;::~Loss</definition>
+        <argsstring>()=default</argsstring>
+        <name>~Loss</name>
+        <qualifiedname>CuMLab::Loss::~Loss</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/loss/loss.hpp" line="15" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classCuMLab_1_1Loss_1a8b21de505ca0c9ed1450b2a17c4625a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt; &gt;</type>
+        <definition>virtual std::shared_ptr&lt; Tensor&lt; T &gt; &gt; CuMLab::Loss&lt; T &gt;::compute_loss</definition>
+        <argsstring>(const std::shared_ptr&lt; Tensor&lt; T &gt; &gt; &amp;prediction, const std::shared_ptr&lt; Tensor&lt; T &gt; &gt; &amp;target)=0</argsstring>
+        <name>compute_loss</name>
+        <qualifiedname>CuMLab::Loss::compute_loss</qualifiedname>
+        <reimplementedby refid="classCuMLab_1_1MAELoss_1ae0cb19c1cac1587ce3783f08d9b3e0b1">compute_loss</reimplementedby>
+        <reimplementedby refid="classCuMLab_1_1MSELoss_1a503beb5e52603a841182699fafcb91a8">compute_loss</reimplementedby>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt; &gt; &amp;</type>
+          <declname>prediction</declname>
+        </param>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt; &gt; &amp;</type>
+          <declname>target</declname>
+        </param>
+        <briefdescription>
+<para>Computes the loss between prediction and target. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prediction</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The model&apos;s output tensor. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ground truth tensor. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The computed loss (scalar tensor). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/CuMLab/loss/loss.hpp" line="24" column="3"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Base class for loss functions. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>CuMLab::Loss&lt; T &gt;</label>
+        <link refid="classCuMLab_1_1Loss"/>
+      </node>
+      <node id="2">
+        <label>CuMLab::MAELoss&lt; T &gt;</label>
+        <link refid="classCuMLab_1_1MAELoss"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>CuMLab::MSELoss&lt; T &gt;</label>
+        <link refid="classCuMLab_1_1MSELoss"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="include/CuMLab/loss/loss.hpp" line="12" column="12" bodyfile="include/CuMLab/loss/loss.hpp" bodystart="12" bodyend="26"/>
+    <listofallmembers>
+      <member refid="classCuMLab_1_1Loss_1a8b21de505ca0c9ed1450b2a17c4625a8" prot="public" virt="pure-virtual"><scope>CuMLab::Loss</scope><name>compute_loss</name></member>
+      <member refid="classCuMLab_1_1Loss_1ab038fdc39cb8a8260bbdf03782224d50" prot="public" virt="non-virtual"><scope>CuMLab::Loss</scope><name>Loss</name></member>
+      <member refid="classCuMLab_1_1Loss_1a9be7dd73c38a6994fa62935baf3e7a98" prot="public" virt="virtual"><scope>CuMLab::Loss</scope><name>~Loss</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

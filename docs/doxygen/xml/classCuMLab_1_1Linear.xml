@@ -22,7 +22,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/linear.hpp" line="19" column="7" bodyfile="include/CuMLab/linear.hpp" bodystart="19" bodyend="-1"/>
+        <location file="include/CuMLab/layers/linear.hpp" line="23" column="7" bodyfile="include/CuMLab/layers/linear.hpp" bodystart="23" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classCuMLab_1_1Linear_1aec53c8909fe0ed1b4db59daad42c169f" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -36,7 +36,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/linear.hpp" line="19" column="20" bodyfile="include/CuMLab/linear.hpp" bodystart="19" bodyend="-1"/>
+        <location file="include/CuMLab/layers/linear.hpp" line="23" column="20" bodyfile="include/CuMLab/layers/linear.hpp" bodystart="23" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -79,7 +79,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/linear.hpp" line="28" column="3" bodyfile="include/CuMLab/linear.hpp" bodystart="28" bodyend="38"/>
+        <location file="include/CuMLab/layers/linear.hpp" line="32" column="3" bodyfile="include/CuMLab/layers/linear.hpp" bodystart="32" bodyend="62"/>
       </memberdef>
       <memberdef kind="function" id="classCuMLab_1_1Linear_1a6a5f160e64d6df19b82a2e91bd89c9ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>std::shared_ptr&lt; <ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt; &gt;</type>
@@ -87,7 +87,7 @@
         <argsstring>(const std::shared_ptr&lt; Tensor&lt; T &gt; &gt; &amp;input) override</argsstring>
         <name>forward</name>
         <qualifiedname>CuMLab::Linear::forward</qualifiedname>
-        <reimplements refid="classCuMLab_1_1Module_1a83b6376f9c60255c0423eead18d2ed96">forward</reimplements>
+        <reimplements refid="classCuMLab_1_1Module_1aafd5111ced44c82ed572ff813126c81b">forward</reimplements>
         <param>
           <type>const std::shared_ptr&lt; <ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor</ref>&lt; T &gt; &gt; &amp;</type>
           <declname>input</declname>
@@ -112,7 +112,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/CuMLab/linear.hpp" line="49" column="3" bodyfile="include/CuMLab/linear.hpp" bodystart="49" bodyend="57"/>
+        <location file="include/CuMLab/layers/linear.hpp" line="73" column="3" bodyfile="include/CuMLab/layers/linear.hpp" bodystart="73" bodyend="81"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -150,7 +150,7 @@
         <link refid="classCuMLab_1_1Module"/>
       </node>
     </collaborationgraph>
-    <location file="include/CuMLab/linear.hpp" line="17" column="12" bodyfile="include/CuMLab/linear.hpp" bodystart="17" bodyend="58"/>
+    <location file="include/CuMLab/layers/linear.hpp" line="21" column="12" bodyfile="include/CuMLab/layers/linear.hpp" bodystart="21" bodyend="82"/>
     <listofallmembers>
       <member refid="classCuMLab_1_1Linear_1a6a5f160e64d6df19b82a2e91bd89c9ff" prot="public" virt="virtual"><scope>CuMLab::Linear</scope><name>forward</name></member>
       <member refid="classCuMLab_1_1Linear_1a574620633ce56b6f4f3c8818c0e764aa" prot="private" virt="non-virtual"><scope>CuMLab::Linear</scope><name>in_features_</name></member>

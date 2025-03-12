@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="mse__loss_8hpp" kind="file" language="C++">
+    <compoundname>mse_loss.hpp</compoundname>
+    <includes refid="loss_8hpp" local="yes">CuMLab/loss/loss.hpp</includes>
+    <includes local="no">memory</includes>
+    <incdepgraph>
+      <node id="3">
+        <label>CuMLab/core/tensor.hpp</label>
+        <link refid="tensor_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>CuMLab/loss/loss.hpp</label>
+        <link refid="loss_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>include/CuMLab/loss/mse_loss.hpp</label>
+        <link refid="mse__loss_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>algorithm</label>
+      </node>
+      <node id="5">
+        <label>cstdint</label>
+      </node>
+      <node id="6">
+        <label>iostream</label>
+      </node>
+      <node id="9">
+        <label>memory</label>
+      </node>
+      <node id="7">
+        <label>stdexcept</label>
+      </node>
+      <node id="8">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classCuMLab_1_1MSELoss" prot="public">CuMLab::MSELoss</innerclass>
+    <innernamespace refid="namespaceCuMLab">CuMLab</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>CUMLAB_MSE_LOSS_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CUMLAB_MSE_LOSS_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="loss_8hpp" kindref="compound">CuMLab/loss/loss.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceCuMLab" kindref="compound">CuMLab</ref><sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="classCuMLab_1_1MSELoss" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;<sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classCuMLab_1_1MSELoss" kindref="compound">MSELoss</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classCuMLab_1_1Loss" kindref="compound">Loss</ref>&lt;T&gt;<sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="16" refid="classCuMLab_1_1MSELoss_1aa6dd63421c0b83b241d33aff01a9c9fe" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classCuMLab_1_1MSELoss_1aa6dd63421c0b83b241d33aff01a9c9fe" kindref="member">MSELoss</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;Tensor&lt;T&gt;&gt;</highlight></codeline>
+<codeline lineno="22" refid="classCuMLab_1_1MSELoss_1a503beb5e52603a841182699fafcb91a8" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classCuMLab_1_1MSELoss_1a503beb5e52603a841182699fafcb91a8" kindref="member">compute_loss</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;<ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor&lt;T&gt;</ref>&gt;<sp/>&amp;prediction,</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;<ref refid="classCuMLab_1_1Tensor" kindref="compound">Tensor&lt;T&gt;</ref>&gt;<sp/>&amp;target)</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(prediction-&gt;shape()<sp/>!=<sp/>target-&gt;shape())<sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;MSE<sp/>Loss:<sp/>Shape<sp/>mismatch<sp/>between<sp/>prediction<sp/>and<sp/>target.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>diff<sp/>=<sp/>(*prediction)<sp/>-<sp/>(*target);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>squared_diff<sp/>=<sp/>diff<sp/>*<sp/>diff;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>T<sp/>mse_value<sp/>=<sp/>squared_diff.sum()<sp/>/<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">T</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(prediction-&gt;size());</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_shared&lt;Tensor&lt;T&gt;&gt;(std::vector&lt;int&gt;{1},</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;T&gt;{mse_value});</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>CuMLab</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>CUMLAB_MSE_LOSS_HPP</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="include/CuMLab/loss/mse_loss.hpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,6 @@
+/mnt/x/Projects/CuMLab/docs/CMakeFiles/CuMLab.dir
+/mnt/x/Projects/CuMLab/docs/CMakeFiles/activation_example.dir
+/mnt/x/Projects/CuMLab/docs/CMakeFiles/example.dir
+/mnt/x/Projects/CuMLab/docs/CMakeFiles/tensor_example.dir
+/mnt/x/Projects/CuMLab/docs/CMakeFiles/edit_cache.dir
+/mnt/x/Projects/CuMLab/docs/CMakeFiles/rebuild_cache.dir

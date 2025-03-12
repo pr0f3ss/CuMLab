@@ -1,10 +1,24 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
+  <compound refid="classCuMLab_1_1Activation" kind="class"><name>CuMLab::Activation</name>
+    <member refid="classCuMLab_1_1Activation_1a826fef3fa27337a282917ae6e1b3d1c2" kind="function"><name>Activation</name></member>
+    <member refid="classCuMLab_1_1Activation_1a5cdd19be28c5d59b61f1652541f0f0ed" kind="function"><name>~Activation</name></member>
+    <member refid="classCuMLab_1_1Activation_1a0f76bd26677ac9a3c6401ad9caf674c6" kind="function"><name>forward</name></member>
+  </compound>
   <compound refid="classCuMLab_1_1Linear" kind="class"><name>CuMLab::Linear</name>
     <member refid="classCuMLab_1_1Linear_1a574620633ce56b6f4f3c8818c0e764aa" kind="variable"><name>in_features_</name></member>
     <member refid="classCuMLab_1_1Linear_1aec53c8909fe0ed1b4db59daad42c169f" kind="variable"><name>out_features_</name></member>
     <member refid="classCuMLab_1_1Linear_1a46af6cfbee493c873fd340fb0bc699ec" kind="function"><name>Linear</name></member>
     <member refid="classCuMLab_1_1Linear_1a6a5f160e64d6df19b82a2e91bd89c9ff" kind="function"><name>forward</name></member>
+  </compound>
+  <compound refid="classCuMLab_1_1Loss" kind="class"><name>CuMLab::Loss</name>
+    <member refid="classCuMLab_1_1Loss_1ab038fdc39cb8a8260bbdf03782224d50" kind="function"><name>Loss</name></member>
+    <member refid="classCuMLab_1_1Loss_1a9be7dd73c38a6994fa62935baf3e7a98" kind="function"><name>~Loss</name></member>
+    <member refid="classCuMLab_1_1Loss_1a8b21de505ca0c9ed1450b2a17c4625a8" kind="function"><name>compute_loss</name></member>
+  </compound>
+  <compound refid="classCuMLab_1_1MAELoss" kind="class"><name>CuMLab::MAELoss</name>
+    <member refid="classCuMLab_1_1MAELoss_1aef9e78cfd684a202a1ebd784311b836b" kind="function"><name>MAELoss</name></member>
+    <member refid="classCuMLab_1_1MAELoss_1ae0cb19c1cac1587ce3783f08d9b3e0b1" kind="function"><name>compute_loss</name></member>
   </compound>
   <compound refid="classCuMLab_1_1Module" kind="class"><name>CuMLab::Module</name>
     <member refid="classCuMLab_1_1Module_1adfb20f0e90aa30f9648dc2e14b03623b" kind="variable"><name>parameters_</name></member>
@@ -12,10 +26,26 @@
     <member refid="classCuMLab_1_1Module_1a4db7e10f7e48036bbf865c6b904df270" kind="function"><name>~Module</name></member>
     <member refid="classCuMLab_1_1Module_1ab9a5de25021b4b5cbb82bb499537d121" kind="function"><name>register_parameter</name></member>
     <member refid="classCuMLab_1_1Module_1aac870cec5cc365665ddeda91d837c77f" kind="function"><name>parameters</name></member>
-    <member refid="classCuMLab_1_1Module_1a83b6376f9c60255c0423eead18d2ed96" kind="function"><name>forward</name></member>
+    <member refid="classCuMLab_1_1Module_1aafd5111ced44c82ed572ff813126c81b" kind="function"><name>forward</name></member>
     <member refid="classCuMLab_1_1Module_1a7a477126353f56f6585dd3bce12cef13" kind="function"><name>operator()</name></member>
     <member refid="classCuMLab_1_1Module_1a460444b7f3b04c7b2c99b905137996d2" kind="function"><name>save</name></member>
     <member refid="classCuMLab_1_1Module_1a42647528066ae6db1c4bfa3111919c4c" kind="function"><name>load</name></member>
+  </compound>
+  <compound refid="classCuMLab_1_1MSELoss" kind="class"><name>CuMLab::MSELoss</name>
+    <member refid="classCuMLab_1_1MSELoss_1aa6dd63421c0b83b241d33aff01a9c9fe" kind="function"><name>MSELoss</name></member>
+    <member refid="classCuMLab_1_1MSELoss_1a503beb5e52603a841182699fafcb91a8" kind="function"><name>compute_loss</name></member>
+  </compound>
+  <compound refid="classCuMLab_1_1ReLU" kind="class"><name>CuMLab::ReLU</name>
+    <member refid="classCuMLab_1_1ReLU_1a41d9e05e9bace6633dd42861820e8d6f" kind="function"><name>ReLU</name></member>
+    <member refid="classCuMLab_1_1ReLU_1ab6b192a965df46eaa51621cb26215c87" kind="function"><name>forward</name></member>
+  </compound>
+  <compound refid="classCuMLab_1_1Sigmoid" kind="class"><name>CuMLab::Sigmoid</name>
+    <member refid="classCuMLab_1_1Sigmoid_1a074b4a1097b1002e0d2d35bb2ca81d88" kind="function"><name>Sigmoid</name></member>
+    <member refid="classCuMLab_1_1Sigmoid_1aed4ed95c2ebecfdd2b4dbea9b9c4f0bc" kind="function"><name>forward</name></member>
+  </compound>
+  <compound refid="classCuMLab_1_1Tanh" kind="class"><name>CuMLab::Tanh</name>
+    <member refid="classCuMLab_1_1Tanh_1ad51033447a352d989bc916ac866627f2" kind="function"><name>Tanh</name></member>
+    <member refid="classCuMLab_1_1Tanh_1a80dcd7a4d29e78ef019808b4a22b4431" kind="function"><name>forward</name></member>
   </compound>
   <compound refid="classCuMLab_1_1Tensor" kind="class"><name>CuMLab::Tensor</name>
     <member refid="classCuMLab_1_1Tensor_1a8091f3d8ba06e8604ed9fd8c903e55c5" kind="variable"><name>data_</name></member>
@@ -40,19 +70,37 @@
   </compound>
   <compound refid="namespaceCuMLab" kind="namespace"><name>CuMLab</name>
   </compound>
+  <compound refid="tensor_8hpp" kind="file"><name>tensor.hpp</name>
+  </compound>
+  <compound refid="activation_8hpp" kind="file"><name>activation.hpp</name>
+  </compound>
   <compound refid="linear_8hpp" kind="file"><name>linear.hpp</name>
   </compound>
   <compound refid="module_8hpp" kind="file"><name>module.hpp</name>
   </compound>
-  <compound refid="tensor_8hpp" kind="file"><name>tensor.hpp</name>
+  <compound refid="relu_8hpp" kind="file"><name>relu.hpp</name>
   </compound>
-  <compound refid="module_8cpp" kind="file"><name>module.cpp</name>
+  <compound refid="sigmoid_8hpp" kind="file"><name>sigmoid.hpp</name>
+  </compound>
+  <compound refid="tanh_8hpp" kind="file"><name>tanh.hpp</name>
+  </compound>
+  <compound refid="loss_8hpp" kind="file"><name>loss.hpp</name>
+  </compound>
+  <compound refid="mae__loss_8hpp" kind="file"><name>mae_loss.hpp</name>
+  </compound>
+  <compound refid="mse__loss_8hpp" kind="file"><name>mse_loss.hpp</name>
   </compound>
   <compound refid="tensor_8cpp" kind="file"><name>tensor.cpp</name>
+  </compound>
+  <compound refid="dir_97a424284d95bec52005244bf971021d" kind="dir"><name>include/CuMLab/core</name>
   </compound>
   <compound refid="dir_2e40d83da1bcd8d0c5e3802eb8f754df" kind="dir"><name>include/CuMLab</name>
   </compound>
   <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>include</name>
+  </compound>
+  <compound refid="dir_88cd9553e043f505901ccf7a1cae3d82" kind="dir"><name>include/CuMLab/layers</name>
+  </compound>
+  <compound refid="dir_26d4dde68a0de35cabd5da409ac9e5dc" kind="dir"><name>include/CuMLab/loss</name>
   </compound>
   <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>src</name>
   </compound>

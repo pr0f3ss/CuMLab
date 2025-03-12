@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_88cd9553e043f505901ccf7a1cae3d82" kind="dir">
+    <compoundname>include/CuMLab/layers</compoundname>
+    <innerfile refid="activation_8hpp">activation.hpp</innerfile>
+    <innerfile refid="linear_8hpp">linear.hpp</innerfile>
+    <innerfile refid="module_8hpp">module.hpp</innerfile>
+    <innerfile refid="relu_8hpp">relu.hpp</innerfile>
+    <innerfile refid="sigmoid_8hpp">sigmoid.hpp</innerfile>
+    <innerfile refid="tanh_8hpp">tanh.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/CuMLab/layers/"/>
+  </compounddef>
+</doxygen>

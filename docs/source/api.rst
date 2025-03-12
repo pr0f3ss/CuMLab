@@ -14,47 +14,58 @@ CuMLab Modules
 .. doxygenclass:: CuMLab::Module
    :project: CuMLab
    :members:
+   :protected-members:
+   :private-members:
+ 
+.. doxygenclass:: CuMLab::Linear
+   :project: CuMLab
+   :members:
+   :protected-members:
+   :private-members:
 
-   Subclasses:
-
-   - **Layers** 
-      .. doxygenclass:: CuMLab::Linear
-         :project: CuMLab
-         :members:
+CuMLab Activation Functions
+---------------------------
    
-   - **Activation Functions**
-      .. doxygenclass:: CuMLab::Activation
-         :project: CuMLab
-         :members:
+.. doxygenclass:: CuMLab::Activation
+   :project: CuMLab
+   :members:
+   :protected-members:
+   :private-members:
 
-         .. doxygenclass:: CuMLab::ReLU
-            :project: CuMLab
-            :members:
+.. doxygenclass:: CuMLab::ReLU
+   :project: CuMLab
+   :members:
+   :protected-members:
+   :private-members:
 
-         .. doxygenclass:: CuMLab::Sigmoid
-            :project: CuMLab
-            :members:
+.. doxygenclass:: CuMLab::Sigmoid
+   :project: CuMLab
+   :members:
+   :protected-members:
+   :private-members:
 
-         .. doxygenclass:: CuMLab::Tanh
-            :project: CuMLab
-            :members:
+.. doxygenclass:: CuMLab::Tanh
+   :project: CuMLab
+   :members:
+   :protected-members:
+   :private-members:
 
 CuMLab Loss Functions
 ---------------------
 .. doxygenclass:: CuMLab::Loss
    :project: CuMLab
    :members:
+   :protected-members:
+   :private-members:
+    
+.. doxygenclass:: CuMLab::MSELoss
+   :project: CuMLab
+   :members:
+   :protected-members:
+   :private-members:
 
-   Subclasses:
-   
-   - **MSE Loss**  
-     .. doxygenclass:: CuMLab::MSELoss
-        :project: CuMLab
-        :members:
-        :indent: 3
-
-   - **MAE Loss**  
-     .. doxygenclass:: CuMLab::MAELoss
-        :project: CuMLab
-        :members:
-        :indent: 3
+.. doxygenclass:: CuMLab::MAELoss
+   :project: CuMLab
+   :members:
+   :protected-members:
+   :private-members:
