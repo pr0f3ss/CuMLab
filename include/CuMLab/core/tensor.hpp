@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <cstdint>
+#include <functional>
 #include <iostream>
 #include <stdexcept>
 #include <vector>
@@ -17,9 +18,12 @@ namespace CuMLab {
  */
 template <typename T> class Tensor {
 private:
-  std::vector<T> data_;    ///< Flat storage for tensor values.
-  std::vector<int> shape_; ///< Shape of the tensor.
-  int size_;               ///< Total number of elements.
+  std::vector<T> data_;             ///< Flat storage for tensor values.
+  std::vector<int> shape_;          ///< Shape of the tensor.
+  int size_;                        ///< Total number of elements.
+  bool requires_grad_;              ///< Flag for gradient tracking.
+  std::shared_ptr<Tensor<T>> grad_; ///< Gradient storage.
+  std::function<void()> grad_fn_;   ///< Function to compute gradients.
 
 public:
   /**
@@ -27,7 +31,7 @@ public:
    * to zero.
    * @param shape The shape of the tensor.
    */
-  explicit Tensor(const std::vector<int> &shape);
+  explicit Tensor(const std::vector<int> &shape, bool requires_grad = false);
 
   /**
    * @brief Returns the shape of the tensor.
@@ -56,6 +60,25 @@ public:
    * @throws std::out_of_range If indices are out of bounds.
    */
   T operator()(std::initializer_list<int> indices) const;
+
+  // ─────────────────────────────────────────────────────
+  // Gradient
+  // ─────────────────────────────────────────────────────
+
+  /**
+   * @brief Returns the gradient tensor.
+   */
+  std::shared_ptr<Tensor<T>> grad();
+
+  /**
+   * @brief Sets the function that computes gradients for this tensor.
+   */
+  void set_grad_fn(std::function<void()> grad_fn);
+
+  /**
+   * @brief Performs backpropagation.
+   */
+  void backward();
 
   // ─────────────────────────────────────────────────────
   // Element-wise Operations

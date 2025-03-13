@@ -6,11 +6,14 @@ namespace CuMLab {
 // Constructor
 // ─────────────────────────────────────────────────────
 template <typename T>
-Tensor<T>::Tensor(const std::vector<int> &shape) : shape_(shape) {
+Tensor<T>::Tensor(const std::vector<int> &shape, bool requires_grad = false)
+    : shape_(shape), requires_grad_(requires_grad) {
   size_ = 1;
   for (int dim : shape)
     size_ *= dim;
   data_.resize(size_, static_cast<T>(0)); // Initialize with zeros
+  if (requires_grad_)
+    grad_ = std::make_shared<Tensor<T>>(shape_);
 }
 
 // ─────────────────────────────────────────────────────
@@ -21,6 +24,30 @@ template <typename T> std::vector<int> Tensor<T>::shape() const {
 }
 
 template <typename T> int Tensor<T>::size() const { return size_; }
+
+// ─────────────────────────────────────────────────────
+// Gradient
+// ─────────────────────────────────────────────────────
+
+template <typename T> std::shared_ptr<Tensor<T>> Tensor<T>::grad() {
+  return grad_;
+}
+
+template <typename T>
+void Tensor<T>::set_grad_fn(std::function<void()> grad_fn) {
+  grad_fn_ = std::move(grad_fn);
+}
+
+template <typename T> void Tensor<T>::backward() {
+  if (!requires_grad_)
+    throw std::runtime_error("Tensor does not require gradients.");
+  if (!grad_)
+    grad_ = std::make_shared<Tensor<T>>(shape_);
+  (*grad_)({0}) = static_cast<T>(1); // Start gradient at 1 for scalar loss
+
+  if (grad_fn_)
+    grad_fn_(); // Call the gradient function
+}
 
 // ─────────────────────────────────────────────────────
 // Element Access
