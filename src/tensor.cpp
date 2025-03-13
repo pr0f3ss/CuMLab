@@ -6,7 +6,7 @@ namespace CuMLab {
 // Constructor
 // ─────────────────────────────────────────────────────
 template <typename T>
-Tensor<T>::Tensor(const std::vector<int> &shape, bool requires_grad = false)
+Tensor<T>::Tensor(const std::vector<int> &shape, bool requires_grad)
     : shape_(shape), requires_grad_(requires_grad) {
   size_ = 1;
   for (int dim : shape)
@@ -54,7 +54,6 @@ template <typename T> void Tensor<T>::backward() {
 // ─────────────────────────────────────────────────────
 template <typename T>
 T &Tensor<T>::operator()(std::initializer_list<int> indices) {
-  std::cout << indices.size() << " : " << shape_.size() << std::endl;
   if (indices.size() != shape_.size() && indices.size() != 1) {
     throw std::invalid_argument(
         "Incorrect number of indices for tensor access.");
@@ -83,7 +82,6 @@ T &Tensor<T>::operator()(std::initializer_list<int> indices) {
 
 template <typename T>
 T Tensor<T>::operator()(std::initializer_list<int> indices) const {
-  std::cout << indices.size() << " : " << shape_.size() << std::endl;
   if (indices.size() != shape_.size() && indices.size() != 1) {
     throw std::invalid_argument(
         "Incorrect number of indices for tensor access.");
@@ -115,26 +113,51 @@ T Tensor<T>::operator()(std::initializer_list<int> indices) const {
 // ─────────────────────────────────────────────────────
 template <typename T>
 Tensor<T> Tensor<T>::operator+(const Tensor<T> &other) const {
-  // Check if shapes match exactly
+  // Case 1: Shapes match exactly (element-wise addition)
   if (shape_ == other.shape_) {
-    Tensor<T> result(shape_);
+    Tensor<T> result(shape_, requires_grad_ || other.requires_grad_);
     for (size_t i = 0; i < data_.size(); ++i) {
       result.data_[i] = data_[i] + other.data_[i];
     }
+
+    if (result.requires_grad_) {
+      auto self_grad = this->grad_;
+      auto other_grad = other.grad_;
+      result.set_grad_fn([self_grad, other_grad]() {
+        for (size_t i = 0; i < self_grad->size(); ++i) {
+          (*self_grad)({static_cast<int>(i)}) += 1;
+          (*other_grad)({static_cast<int>(i)}) += 1;
+        }
+      });
+    }
+
     return result;
   }
 
-  // Broadcasting case: If `other` is a 1D tensor (bias)
+  // Case 2: Broadcasting (1D tensor applied across last dimension)
   if (other.shape_.size() == 1 && shape_.back() == other.shape_[0]) {
-    Tensor<T> result(shape_);
-    for (size_t i = 0; i < static_cast<size_t>(shape_[0]); ++i) { // Cast to int
-      for (size_t j = 0; j < static_cast<size_t>(shape_.back());
-           ++j) { // Cast to int
+    Tensor<T> result(shape_, requires_grad_ || other.requires_grad_);
+    for (size_t i = 0; i < static_cast<size_t>(shape_[0]); ++i) {
+      for (size_t j = 0; j < static_cast<size_t>(shape_.back()); ++j) {
         result({static_cast<int>(i), static_cast<int>(j)}) =
             (*this)({static_cast<int>(i), static_cast<int>(j)}) +
             other({static_cast<int>(j)});
       }
     }
+
+    if (result.requires_grad_) {
+      auto self_grad = this->grad_;
+      auto other_grad = other.grad_;
+      result.set_grad_fn([self_grad, other_grad, this, &other]() {
+        for (size_t i = 0; i < static_cast<size_t>(shape_[0]); ++i) {
+          for (size_t j = 0; j < static_cast<size_t>(shape_.back()); ++j) {
+            (*self_grad)({static_cast<int>(i), static_cast<int>(j)}) += 1;
+            (*other_grad)({static_cast<int>(j)}) += 1; // Accumulate across rows
+          }
+        }
+      });
+    }
+
     return result;
   }
 
@@ -185,7 +208,7 @@ Tensor<T> Tensor<T>::operator*(const Tensor<T> &other) const {
         "Shape mismatch in multiplication: Inner dimensions must match.");
   }
 
-  Tensor<T> result({rows, colsB});
+  Tensor<T> result({rows, colsB}, requires_grad_ || other.requires_grad_);
   for (int i = 0; i < rows; ++i) {
     for (int j = 0; j < colsB; ++j) {
       T sum = 0;
@@ -195,9 +218,27 @@ Tensor<T> Tensor<T>::operator*(const Tensor<T> &other) const {
       result({i, j}) = sum;
     }
   }
+
+  if (result.requires_grad_) {
+    auto self_grad = this->grad_;
+    auto other_grad = other.grad_;
+    auto this_ptr = this;
+    auto other_ptr = &other;
+
+    result.set_grad_fn([self_grad, other_grad, this_ptr, other_ptr]() {
+      for (int i = 0; i < this_ptr->shape_[0]; ++i) {
+        for (int j = 0; j < other_ptr->shape_[1]; ++j) {
+          for (int k = 0; k < this_ptr->shape_[1]; ++k) {
+            (*self_grad)({i, k}) += (*other_ptr)({k, j});
+            (*other_grad)({k, j}) += (*this_ptr)({i, k});
+          }
+        }
+      }
+    });
+  }
+
   return result;
 }
-
 template <typename T>
 Tensor<T> Tensor<T>::operator/(const Tensor<T> &other) const {
   if (shape_ != other.shape_)
