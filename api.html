@@ -46,11 +46,14 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#cumlab-core">CuMLab Core</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensorE"><code class="docutils literal notranslate"><span class="pre">CuMLab::Tensor</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N6CuMLab6Tensor6TensorERKNSt6vectorIiEE"><code class="docutils literal notranslate"><span class="pre">Tensor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N6CuMLab6Tensor6TensorERKNSt6vectorIiEEb"><code class="docutils literal notranslate"><span class="pre">Tensor()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK6CuMLab6Tensor5shapeEv"><code class="docutils literal notranslate"><span class="pre">shape()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK6CuMLab6Tensor4sizeEv"><code class="docutils literal notranslate"><span class="pre">size()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N6CuMLab6TensorclENSt16initializer_listIiEE"><code class="docutils literal notranslate"><span class="pre">operator()()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK6CuMLab6TensorclENSt16initializer_listIiEE"><code class="docutils literal notranslate"><span class="pre">operator()()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N6CuMLab6Tensor4gradEv"><code class="docutils literal notranslate"><span class="pre">grad()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N6CuMLab6Tensor11set_grad_fnENSt8functionIFvvEEE"><code class="docutils literal notranslate"><span class="pre">set_grad_fn()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N6CuMLab6Tensor8backwardEv"><code class="docutils literal notranslate"><span class="pre">backward()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK6CuMLab6TensorplERK6TensorI1TE"><code class="docutils literal notranslate"><span class="pre">operator+()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK6CuMLab6TensormiERK6TensorI1TE"><code class="docutils literal notranslate"><span class="pre">operator-()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK6CuMLab6TensormlERK6TensorI1TE"><code class="docutils literal notranslate"><span class="pre">operator*()</span></code></a></li>
@@ -65,6 +68,9 @@
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N6CuMLab6Tensor5data_E"><code class="docutils literal notranslate"><span class="pre">data_</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N6CuMLab6Tensor6shape_E"><code class="docutils literal notranslate"><span class="pre">shape_</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N6CuMLab6Tensor5size_E"><code class="docutils literal notranslate"><span class="pre">size_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N6CuMLab6Tensor14requires_grad_E"><code class="docutils literal notranslate"><span class="pre">requires_grad_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N6CuMLab6Tensor5grad_E"><code class="docutils literal notranslate"><span class="pre">grad_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N6CuMLab6Tensor8grad_fn_E"><code class="docutils literal notranslate"><span class="pre">grad_fn_</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -167,8 +173,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N6CuMLab6Tensor6TensorERKNSt6vectorIiEE">
-<span id="_CPPv3N6CuMLab6Tensor6TensorERKNSt6vectorIiEE"></span><span id="_CPPv2N6CuMLab6Tensor6TensorERKNSt6vectorIiEE"></span><span id="CuMLab::Tensor::Tensor__std::vector:i:CR"></span><span class="target" id="classCuMLab_1_1Tensor_1a64b4ff6824f753a289e1a6fb0f1ad328"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Tensor</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">shape</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6CuMLab6Tensor6TensorERKNSt6vectorIiEE" title="Link to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N6CuMLab6Tensor6TensorERKNSt6vectorIiEEb">
+<span id="_CPPv3N6CuMLab6Tensor6TensorERKNSt6vectorIiEEb"></span><span id="_CPPv2N6CuMLab6Tensor6TensorERKNSt6vectorIiEEb"></span><span id="CuMLab::Tensor::Tensor__std::vector:i:CR.b"></span><span class="target" id="classCuMLab_1_1Tensor_1a9a3c35de7c8e80dac1f42f2df742d893"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Tensor</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">shape</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">requires_grad</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6CuMLab6Tensor6TensorERKNSt6vectorIiEEb" title="Link to this definition"></a><br /></dt>
 <dd><p>Constructs a <a class="reference internal" href="#classCuMLab_1_1Tensor"><span class="std std-ref">Tensor</span></a> with the given shape, initializing all elements to zero. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -231,6 +237,24 @@
 <dd class="field-odd"><p>The value of the requested tensor element. </p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6CuMLab6Tensor4gradEv">
+<span id="_CPPv3N6CuMLab6Tensor4gradEv"></span><span id="_CPPv2N6CuMLab6Tensor4gradEv"></span><span id="CuMLab::Tensor::grad"></span><span class="target" id="classCuMLab_1_1Tensor_1ab2aa4c474fd18ba9d9819306db45afc7"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensorE" title="CuMLab::Tensor"><span class="n"><span class="pre">Tensor</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensorE" title="CuMLab::Tensor::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">grad</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6CuMLab6Tensor4gradEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns the gradient tensor. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6CuMLab6Tensor11set_grad_fnENSt8functionIFvvEEE">
+<span id="_CPPv3N6CuMLab6Tensor11set_grad_fnENSt8functionIFvvEEE"></span><span id="_CPPv2N6CuMLab6Tensor11set_grad_fnENSt8functionIFvvEEE"></span><span class="target" id="classCuMLab_1_1Tensor_1ae0233cdb09bcb04a78a739a8f088a04b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_grad_fn</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">void</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">grad_fn</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6CuMLab6Tensor11set_grad_fnENSt8functionIFvvEEE" title="Link to this definition"></a><br /></dt>
+<dd><p>Sets the function that computes gradients for this tensor. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6CuMLab6Tensor8backwardEv">
+<span id="_CPPv3N6CuMLab6Tensor8backwardEv"></span><span id="_CPPv2N6CuMLab6Tensor8backwardEv"></span><span id="CuMLab::Tensor::backward"></span><span class="target" id="classCuMLab_1_1Tensor_1a47d685656474d6df42c57500f30ec606"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">backward</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6CuMLab6Tensor8backwardEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Performs backpropagation. </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -329,6 +353,24 @@
 <dt class="sig sig-object cpp" id="_CPPv4N6CuMLab6Tensor5size_E">
 <span id="_CPPv3N6CuMLab6Tensor5size_E"></span><span id="_CPPv2N6CuMLab6Tensor5size_E"></span><span id="CuMLab::Tensor::size___i"></span><span class="target" id="classCuMLab_1_1Tensor_1aa7a0ef79df3a8cbc7fa6a5df2a79cb6b"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size_</span></span></span><a class="headerlink" href="#_CPPv4N6CuMLab6Tensor5size_E" title="Link to this definition"></a><br /></dt>
 <dd><p>Total number of elements. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N6CuMLab6Tensor14requires_grad_E">
+<span id="_CPPv3N6CuMLab6Tensor14requires_grad_E"></span><span id="_CPPv2N6CuMLab6Tensor14requires_grad_E"></span><span id="CuMLab::Tensor::requires_grad___b"></span><span class="target" id="classCuMLab_1_1Tensor_1ae65157425bea057837fe19c1e2e7555b"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">requires_grad_</span></span></span><a class="headerlink" href="#_CPPv4N6CuMLab6Tensor14requires_grad_E" title="Link to this definition"></a><br /></dt>
+<dd><p>Flag for gradient tracking. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N6CuMLab6Tensor5grad_E">
+<span id="_CPPv3N6CuMLab6Tensor5grad_E"></span><span id="_CPPv2N6CuMLab6Tensor5grad_E"></span><span id="CuMLab::Tensor::grad___std::shared_ptr:Tensor:T::"></span><span class="target" id="classCuMLab_1_1Tensor_1a5814350af911af351bc6f1ccd2bd200c"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensorE" title="CuMLab::Tensor"><span class="n"><span class="pre">Tensor</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensorE" title="CuMLab::Tensor::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">grad_</span></span></span><a class="headerlink" href="#_CPPv4N6CuMLab6Tensor5grad_E" title="Link to this definition"></a><br /></dt>
+<dd><p>Gradient storage. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N6CuMLab6Tensor8grad_fn_E">
+<span id="_CPPv3N6CuMLab6Tensor8grad_fn_E"></span><span id="_CPPv2N6CuMLab6Tensor8grad_fn_E"></span><span class="target" id="classCuMLab_1_1Tensor_1a5bfb7abe3c0efe3ac6be960cebad13ad"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">void</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">grad_fn_</span></span></span><a class="headerlink" href="#_CPPv4N6CuMLab6Tensor8grad_fn_E" title="Link to this definition"></a><br /></dt>
+<dd><p>Function to compute gradients. </p>
 </dd></dl>
 
 </div>
