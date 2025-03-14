@@ -9,9 +9,13 @@ template <typename T>
 Tensor<T>::Tensor(const std::vector<int> &shape, bool requires_grad)
     : shape_(shape), requires_grad_(requires_grad) {
   size_ = 1;
-  for (int dim : shape)
+  for (int dim : shape) {
+    if (dim <= 0) {
+      throw std::invalid_argument("Invalid tensor dimension (must be > 0).");
+    }
     size_ *= dim;
-  data_.resize(size_, static_cast<T>(0)); // Initialize with zeros
+  }
+  data_.resize(size_, static_cast<T>(0));
   if (requires_grad_)
     grad_ = std::make_shared<Tensor<T>>(shape_);
 }
@@ -41,9 +45,13 @@ void Tensor<T>::set_grad_fn(std::function<void()> grad_fn) {
 template <typename T> void Tensor<T>::backward() {
   if (!requires_grad_)
     throw std::runtime_error("Tensor does not require gradients.");
+
   if (!grad_)
     grad_ = std::make_shared<Tensor<T>>(shape_);
-  (*grad_)({0}) = static_cast<T>(1); // Start gradient at 1 for scalar loss
+
+  for (size_t i = 0; i < grad_->size(); ++i) {
+    (*grad_)({static_cast<int>(i)}) = static_cast<T>(1);
+  }
 
   if (grad_fn_)
     grad_fn_(); // Call the gradient function
@@ -134,7 +142,7 @@ Tensor<T> Tensor<T>::operator+(const Tensor<T> &other) const {
     return result;
   }
 
-  // Case 2: Broadcasting (1D tensor applied across last dimension)
+  // Case 2: **Bias Broadcasting Case**
   if (other.shape_.size() == 1 && shape_.back() == other.shape_[0]) {
     Tensor<T> result(shape_, requires_grad_ || other.requires_grad_);
     for (size_t i = 0; i < static_cast<size_t>(shape_[0]); ++i) {
@@ -229,8 +237,8 @@ Tensor<T> Tensor<T>::operator*(const Tensor<T> &other) const {
       for (int i = 0; i < this_ptr->shape_[0]; ++i) {
         for (int j = 0; j < other_ptr->shape_[1]; ++j) {
           for (int k = 0; k < this_ptr->shape_[1]; ++k) {
-            (*self_grad)({i, k}) += (*other_ptr)({k, j});
-            (*other_grad)({k, j}) += (*this_ptr)({i, k});
+            (*self_grad)({i, k}) += (*other_ptr)({k, j}); // dZ/dA = B
+            (*other_grad)({k, j}) += (*this_ptr)({i, k}); // dZ/dB = A
           }
         }
       }

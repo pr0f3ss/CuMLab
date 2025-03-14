@@ -38,8 +38,10 @@ int main() {
   // Print gradients
   std::cout << "Gradient of A:\n";
   A->grad()->print();
+
   std::cout << "Gradient of B:\n";
   B->grad()->print();
+
   std::cout << "Gradient of bias:\n";
   bias->grad()->print();
 
