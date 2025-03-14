@@ -16,6 +16,7 @@ Tensor<T>::Tensor(const std::vector<int> &shape, bool requires_grad)
     size_ *= dim;
   }
   data_.resize(size_, static_cast<T>(0));
+
   if (requires_grad_)
     grad_ = std::make_shared<Tensor<T>>(shape_);
 }
@@ -156,12 +157,18 @@ Tensor<T> Tensor<T>::operator+(const Tensor<T> &other) const {
     if (result.requires_grad_) {
       auto self_grad = this->grad_;
       auto other_grad = other.grad_;
-      result.set_grad_fn([self_grad, other_grad, this, &other]() {
-        for (size_t i = 0; i < static_cast<size_t>(shape_[0]); ++i) {
-          for (size_t j = 0; j < static_cast<size_t>(shape_.back()); ++j) {
+
+      result.set_grad_fn([self_grad, other_grad]() {
+        for (size_t i = 0; i < static_cast<size_t>(self_grad->shape_[0]); ++i) {
+          for (size_t j = 0; j < static_cast<size_t>(self_grad->shape_[1]);
+               ++j) {
             (*self_grad)({static_cast<int>(i), static_cast<int>(j)}) += 1;
-            (*other_grad)({static_cast<int>(j)}) += 1; // Accumulate across rows
           }
+        }
+
+        for (size_t j = 0; j < static_cast<size_t>(other_grad->shape_[0]);
+             ++j) {
+          (*other_grad)({static_cast<int>(j)}) += 1; // Accumulate across rows
         }
       });
     }
@@ -216,7 +223,8 @@ Tensor<T> Tensor<T>::operator*(const Tensor<T> &other) const {
         "Shape mismatch in multiplication: Inner dimensions must match.");
   }
 
-  Tensor<T> result({rows, colsB}, requires_grad_ || other.requires_grad_);
+  Tensor<T> result(std::vector<int>{rows, colsB},
+                   requires_grad_ || other.requires_grad_);
   for (int i = 0; i < rows; ++i) {
     for (int j = 0; j < colsB; ++j) {
       T sum = 0;
@@ -234,9 +242,9 @@ Tensor<T> Tensor<T>::operator*(const Tensor<T> &other) const {
     auto other_ptr = &other;
 
     result.set_grad_fn([self_grad, other_grad, this_ptr, other_ptr]() {
-      for (int i = 0; i < this_ptr->shape_[0]; ++i) {
-        for (int j = 0; j < other_ptr->shape_[1]; ++j) {
-          for (int k = 0; k < this_ptr->shape_[1]; ++k) {
+      for (int i = 0; i < this_ptr->shape()[0]; ++i) {
+        for (int j = 0; j < other_ptr->shape()[1]; ++j) {
+          for (int k = 0; k < this_ptr->shape()[1]; ++k) {
             (*self_grad)({i, k}) += (*other_ptr)({k, j}); // dZ/dA = B
             (*other_grad)({k, j}) += (*this_ptr)({i, k}); // dZ/dB = A
           }
@@ -247,6 +255,7 @@ Tensor<T> Tensor<T>::operator*(const Tensor<T> &other) const {
 
   return result;
 }
+
 template <typename T>
 Tensor<T> Tensor<T>::operator/(const Tensor<T> &other) const {
   if (shape_ != other.shape_)
