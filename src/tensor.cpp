@@ -47,11 +47,11 @@ template <typename T> void Tensor<T>::backward() {
   if (!requires_grad_)
     throw std::runtime_error("Tensor does not require gradients.");
 
-  if (!grad_)
+  if (!grad_) {
     grad_ = std::make_shared<Tensor<T>>(shape_);
-
-  for (size_t i = 0; i < grad_->size(); ++i) {
-    (*grad_)({static_cast<int>(i)}) = static_cast<T>(1);
+    for (size_t i = 0; i < grad_->size(); ++i) {
+      (*grad_)({static_cast<int>(i)}) = static_cast<T>(1);
+    }
   }
 
   if (grad_fn_)
@@ -130,14 +130,7 @@ Tensor<T> Tensor<T>::operator+(const Tensor<T> &other) const {
     }
 
     if (result.requires_grad_) {
-      auto self_grad = this->grad_;
-      auto other_grad = other.grad_;
-      result.set_grad_fn([self_grad, other_grad]() {
-        for (size_t i = 0; i < self_grad->size(); ++i) {
-          (*self_grad)({static_cast<int>(i)}) += 1;
-          (*other_grad)({static_cast<int>(i)}) += 1;
-        }
-      });
+      std::cout << "Gradient calculation not yet implemented.\n";
     }
 
     return result;
@@ -155,20 +148,39 @@ Tensor<T> Tensor<T>::operator+(const Tensor<T> &other) const {
     }
 
     if (result.requires_grad_) {
+      auto prev_grad_fn = this->grad_fn_;
+
       auto self_grad = this->grad_;
       auto other_grad = other.grad_;
+      std::shared_ptr<Tensor<T>> other_ptr = std::make_shared<Tensor<T>>(other);
+      std::shared_ptr<Tensor<T>> result_grad = result.grad_;
 
-      result.set_grad_fn([self_grad, other_grad]() {
-        for (size_t i = 0; i < static_cast<size_t>(self_grad->shape_[0]); ++i) {
-          for (size_t j = 0; j < static_cast<size_t>(self_grad->shape_[1]);
-               ++j) {
-            (*self_grad)({static_cast<int>(i), static_cast<int>(j)}) += 1;
+      result.set_grad_fn([prev_grad_fn, self_grad, other_grad, this, other_ptr,
+                          result_grad]() {
+        if (!self_grad || !other_grad || !result_grad) {
+          std::cerr << "Warning: Gradient computation skipped due to expired "
+                       "pointers!\n";
+          return;
+        }
+
+        if (result_grad->data_.empty() ||
+            std::all_of(result_grad->data_.begin(), result_grad->data_.end(),
+                        [](T val) { return val == 0; })) {
+          for (auto &val : result_grad->data_) {
+            val = static_cast<T>(1); // Set all values to 1
           }
         }
 
-        for (size_t j = 0; j < static_cast<size_t>(other_grad->shape_[0]);
-             ++j) {
-          (*other_grad)({static_cast<int>(j)}) += 1; // Accumulate across rows
+        if (prev_grad_fn) {
+          prev_grad_fn();
+        }
+
+        // Bias gradient: Sum over all rows
+        for (size_t j = 0; j < other_grad->shape_[0]; ++j) {
+          for (size_t i = 0; i < self_grad->shape_[0]; ++i) {
+            (*other_grad)({static_cast<int>(j)}) +=
+                (*result_grad)({static_cast<int>(i), static_cast<int>(j)});
+          }
         }
       });
     }
@@ -239,14 +251,42 @@ Tensor<T> Tensor<T>::operator*(const Tensor<T> &other) const {
     auto self_grad = this->grad_;
     auto other_grad = other.grad_;
     auto this_ptr = this;
-    auto other_ptr = &other;
+    std::shared_ptr<Tensor<T>> other_ptr = std::make_shared<Tensor<T>>(other);
+    std::shared_ptr<Tensor<T>> result_grad = result.grad_;
 
-    result.set_grad_fn([self_grad, other_grad, this_ptr, other_ptr]() {
-      for (int i = 0; i < this_ptr->shape()[0]; ++i) {
-        for (int j = 0; j < other_ptr->shape()[1]; ++j) {
-          for (int k = 0; k < this_ptr->shape()[1]; ++k) {
-            (*self_grad)({i, k}) += (*other_ptr)({k, j}); // dZ/dA = B
-            (*other_grad)({k, j}) += (*this_ptr)({i, k}); // dZ/dB = A
+    result.set_grad_fn([self_grad, other_grad, this, other_ptr, result_grad]() {
+      if (!self_grad || !other_grad || !result_grad) {
+        std::cerr << "Warning: Gradient computation skipped due to expired "
+                     "pointers!\n";
+        return;
+      }
+
+      if (result_grad->data_.empty() ||
+          std::all_of(result_grad->data_.begin(), result_grad->data_.end(),
+                      [](T val) { return val == 0; })) {
+        for (auto &val : result_grad->data_) {
+          val = static_cast<T>(1); // Set all values to 1
+        }
+      }
+
+      // Compute dL/dA = dL/dZ * B^T
+      for (size_t i = 0; i < self_grad->shape_[0]; ++i) {
+        for (size_t k = 0; k < self_grad->shape_[1]; ++k) {
+          for (size_t j = 0; j < other_ptr->shape_[1]; ++j) {
+            (*self_grad)({static_cast<int>(i), static_cast<int>(k)}) +=
+                (*result_grad)({static_cast<int>(i), static_cast<int>(j)}) *
+                (*other_ptr)({static_cast<int>(k), static_cast<int>(j)});
+          }
+        }
+      }
+
+      // Compute dL/dB = A^T * dL/dZ
+      for (size_t k = 0; k < other_grad->shape_[0]; ++k) {
+        for (size_t j = 0; j < other_grad->shape_[1]; ++j) {
+          for (size_t i = 0; i < this->shape_[0]; ++i) {
+            (*other_grad)({static_cast<int>(k), static_cast<int>(j)}) +=
+                this->operator()({static_cast<int>(i), static_cast<int>(k)}) *
+                (*result_grad)({static_cast<int>(i), static_cast<int>(j)});
           }
         }
       }
