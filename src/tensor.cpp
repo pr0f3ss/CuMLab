@@ -16,9 +16,6 @@ Tensor<T>::Tensor(const std::vector<int> &shape, bool requires_grad)
     size_ *= dim;
   }
   data_.resize(size_, static_cast<T>(0));
-
-  if (requires_grad_)
-    grad_ = std::make_shared<Tensor<T>>(shape_);
 }
 
 // ─────────────────────────────────────────────────────
@@ -49,9 +46,7 @@ template <typename T> void Tensor<T>::backward() {
 
   if (!grad_) {
     grad_ = std::make_shared<Tensor<T>>(shape_);
-    for (size_t i = 0; i < grad_->size(); ++i) {
-      (*grad_)({static_cast<int>(i)}) = static_cast<T>(1);
-    }
+    std::fill(grad_->data_.begin(), grad_->data_.end(), static_cast<T>(1));
   }
 
   if (grad_fn_)
@@ -121,77 +116,6 @@ T Tensor<T>::operator()(std::initializer_list<int> indices) const {
 // Element-Wise Operations
 // ─────────────────────────────────────────────────────
 template <typename T>
-Tensor<T> Tensor<T>::operator+(const Tensor<T> &other) const {
-  // Case 1: Shapes match exactly (element-wise addition)
-  if (shape_ == other.shape_) {
-    Tensor<T> result(shape_, requires_grad_ || other.requires_grad_);
-    for (size_t i = 0; i < data_.size(); ++i) {
-      result.data_[i] = data_[i] + other.data_[i];
-    }
-
-    if (result.requires_grad_) {
-      std::cout << "Gradient calculation not yet implemented.\n";
-    }
-
-    return result;
-  }
-
-  // Case 2: **Bias Broadcasting Case**
-  if (other.shape_.size() == 1 && shape_.back() == other.shape_[0]) {
-    Tensor<T> result(shape_, requires_grad_ || other.requires_grad_);
-    for (size_t i = 0; i < static_cast<size_t>(shape_[0]); ++i) {
-      for (size_t j = 0; j < static_cast<size_t>(shape_.back()); ++j) {
-        result({static_cast<int>(i), static_cast<int>(j)}) =
-            (*this)({static_cast<int>(i), static_cast<int>(j)}) +
-            other({static_cast<int>(j)});
-      }
-    }
-
-    if (result.requires_grad_) {
-      auto prev_grad_fn = this->grad_fn_;
-
-      auto self_grad = this->grad_;
-      auto other_grad = other.grad_;
-      std::shared_ptr<Tensor<T>> other_ptr = std::make_shared<Tensor<T>>(other);
-      std::shared_ptr<Tensor<T>> result_grad = result.grad_;
-
-      result.set_grad_fn([prev_grad_fn, self_grad, other_grad, this, other_ptr,
-                          result_grad]() {
-        if (!self_grad || !other_grad || !result_grad) {
-          std::cerr << "Warning: Gradient computation skipped due to expired "
-                       "pointers!\n";
-          return;
-        }
-
-        if (result_grad->data_.empty() ||
-            std::all_of(result_grad->data_.begin(), result_grad->data_.end(),
-                        [](T val) { return val == 0; })) {
-          for (auto &val : result_grad->data_) {
-            val = static_cast<T>(1); // Set all values to 1
-          }
-        }
-
-        if (prev_grad_fn) {
-          prev_grad_fn();
-        }
-
-        // Bias gradient: Sum over all rows
-        for (size_t j = 0; j < other_grad->shape_[0]; ++j) {
-          for (size_t i = 0; i < self_grad->shape_[0]; ++i) {
-            (*other_grad)({static_cast<int>(j)}) +=
-                (*result_grad)({static_cast<int>(i), static_cast<int>(j)});
-          }
-        }
-      });
-    }
-
-    return result;
-  }
-
-  throw std::invalid_argument("Shape mismatch in addition: Cannot broadcast");
-}
-
-template <typename T>
 Tensor<T> Tensor<T>::operator-(const Tensor<T> &other) const {
   // Exact shape match (element-wise subtraction)
   if (shape_ == other.shape_) {
@@ -218,82 +142,6 @@ Tensor<T> Tensor<T>::operator-(const Tensor<T> &other) const {
 
   throw std::invalid_argument(
       "Shape mismatch in subtraction: Cannot broadcast");
-}
-
-template <typename T>
-Tensor<T> Tensor<T>::operator*(const Tensor<T> &other) const {
-  if (shape_.size() != 2 || other.shape_.size() != 2) {
-    throw std::invalid_argument("Matrix multiplication requires 2D tensors.");
-  }
-
-  int rows = shape_[0];
-  int colsA = shape_[1];
-  int colsB = other.shape_[1];
-
-  if (colsA != other.shape_[0]) {
-    throw std::invalid_argument(
-        "Shape mismatch in multiplication: Inner dimensions must match.");
-  }
-
-  Tensor<T> result(std::vector<int>{rows, colsB},
-                   requires_grad_ || other.requires_grad_);
-  for (int i = 0; i < rows; ++i) {
-    for (int j = 0; j < colsB; ++j) {
-      T sum = 0;
-      for (int k = 0; k < colsA; ++k) {
-        sum += (*this)({i, k}) * other({k, j});
-      }
-      result({i, j}) = sum;
-    }
-  }
-
-  if (result.requires_grad_) {
-    auto self_grad = this->grad_;
-    auto other_grad = other.grad_;
-    auto this_ptr = this;
-    std::shared_ptr<Tensor<T>> other_ptr = std::make_shared<Tensor<T>>(other);
-    std::shared_ptr<Tensor<T>> result_grad = result.grad_;
-
-    result.set_grad_fn([self_grad, other_grad, this, other_ptr, result_grad]() {
-      if (!self_grad || !other_grad || !result_grad) {
-        std::cerr << "Warning: Gradient computation skipped due to expired "
-                     "pointers!\n";
-        return;
-      }
-
-      if (result_grad->data_.empty() ||
-          std::all_of(result_grad->data_.begin(), result_grad->data_.end(),
-                      [](T val) { return val == 0; })) {
-        for (auto &val : result_grad->data_) {
-          val = static_cast<T>(1); // Set all values to 1
-        }
-      }
-
-      // Compute dL/dA = dL/dZ * B^T
-      for (size_t i = 0; i < self_grad->shape_[0]; ++i) {
-        for (size_t k = 0; k < self_grad->shape_[1]; ++k) {
-          for (size_t j = 0; j < other_ptr->shape_[1]; ++j) {
-            (*self_grad)({static_cast<int>(i), static_cast<int>(k)}) +=
-                (*result_grad)({static_cast<int>(i), static_cast<int>(j)}) *
-                (*other_ptr)({static_cast<int>(k), static_cast<int>(j)});
-          }
-        }
-      }
-
-      // Compute dL/dB = A^T * dL/dZ
-      for (size_t k = 0; k < other_grad->shape_[0]; ++k) {
-        for (size_t j = 0; j < other_grad->shape_[1]; ++j) {
-          for (size_t i = 0; i < this->shape_[0]; ++i) {
-            (*other_grad)({static_cast<int>(k), static_cast<int>(j)}) +=
-                this->operator()({static_cast<int>(i), static_cast<int>(k)}) *
-                (*result_grad)({static_cast<int>(i), static_cast<int>(j)});
-          }
-        }
-      }
-    });
-  }
-
-  return result;
 }
 
 template <typename T>
