@@ -28,12 +28,12 @@ int main() {
   (*bias)({1}) = -0.5f;
 
   // Compute function: Z = A * B + bias (broadcasted)
-  auto Z = matmul(A, B);
+  auto Z = matmul(A, B) + bias;
   std::cout << "Z = A * B + bias:\n";
-  // Z.print();
+  Z->print();
 
   // Compute gradients
-  // Z.backward();
+  Z->backward();
 
   // Print gradients
   std::cout << "Gradient of A:\n";
