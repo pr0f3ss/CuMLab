@@ -16,13 +16,16 @@ template <typename T> class Tensor;
 // ─────────────────────────────────────────────────────────────────────────
 // Function templates that use shared_ptr
 // ─────────────────────────────────────────────────────────────────────────
-template <typename U>
-std::shared_ptr<Tensor<U>> operator+(const std::shared_ptr<Tensor<U>> &lhs,
-                                     const std::shared_ptr<Tensor<U>> &rhs);
+template <typename T>
+std::shared_ptr<Tensor<T>> operator+(const std::shared_ptr<Tensor<T>> &lhs,
+                                     const std::shared_ptr<Tensor<T>> &rhs);
 
 template <typename T>
 std::shared_ptr<Tensor<T>> matmul(const std::shared_ptr<Tensor<T>> &lhs,
                                   const std::shared_ptr<Tensor<T>> &rhs);
+
+template <typename T>
+std::shared_ptr<Tensor<T>> transpose(const std::shared_ptr<Tensor<T>> &input);
 
 // ─────────────────────────────────────────────────────────────────────────
 // Tensor class template
@@ -175,6 +178,10 @@ public:
   friend std::shared_ptr<Tensor<U>>
   matmul(const std::shared_ptr<Tensor<U>> &lhs,
          const std::shared_ptr<Tensor<U>> &rhs);
+
+  template <typename U>
+  friend std::shared_ptr<Tensor<U>>
+  transpose(const std::shared_ptr<Tensor<U>> &input);
 };
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -432,6 +439,10 @@ std::shared_ptr<Tensor<T>> matmul(const std::shared_ptr<Tensor<T>> &lhs,
             lhs->grad_->data_[m * K + k] += grad_val;
           }
         }
+
+        if (lhs->grad_fn_) {
+          lhs->grad_fn_();
+        }
       }
 
       // Propagate grads to rhs
@@ -451,8 +462,80 @@ std::shared_ptr<Tensor<T>> matmul(const std::shared_ptr<Tensor<T>> &lhs,
             rhs->grad_->data_[k * N + n] += grad_val;
           }
         }
+
+        if (rhs->grad_fn_) {
+          rhs->grad_fn_();
+        }
       }
     };
+  }
+
+  return result;
+}
+
+/**
+ * @brief Returns a transposed copy of a 2D Tensor.
+ *
+ * For a tensor of shape (rows, cols), we create a new tensor of shape (cols,
+ * rows). The data is rearranged accordingly. If `requires_grad` is true, the
+ * returned tensor sets a grad_fn_ that propagates gradients back to the
+ * original.
+ *
+ * @tparam U The numeric type of the Tensor (float, double, etc.)
+ * @param input The shared pointer to a Tensor<T> (must be 2D).
+ * @return A new std::shared_ptr<Tensor<T>> that is the transpose of `input`.
+ */
+template <typename T>
+std::shared_ptr<Tensor<T>> transpose(const std::shared_ptr<Tensor<T>> &input) {
+  if (!input) {
+    throw std::invalid_argument("Cannot transpose a null pointer.");
+  }
+
+  // For simplicity, we only handle 2D shape. Extend as needed for higher dims.
+  if (input->shape_.size() != 2) {
+    throw std::invalid_argument("transpose() only supports 2D tensors.");
+  }
+
+  int rows = input->shape_[0];
+  int cols = input->shape_[1];
+
+  bool req_grad = input->requires_grad_;
+  // The transposed shape
+  std::vector<int> new_shape = {cols, rows};
+
+  // Create the output tensor
+  auto result = std::make_shared<Tensor<T>>(new_shape, req_grad);
+
+  // Forward pass: copy data in transposed order
+  for (int r = 0; r < rows; ++r) {
+    for (int c = 0; c < cols; ++c) {
+      // in row-major, input(r, c) maps to result(c, r)
+      result->data_[c * rows + r] = input->data_[r * cols + c];
+    }
+  }
+
+  // If we need gradient, define how it backpropagates.
+  if (req_grad) {
+    // We'll capture both pointers by value in the lambda.
+    result->set_grad_fn([input, result]() mutable {
+      // If the input also needs grad, allocate if not present
+      if (input->requires_grad_) {
+        if (!input->grad_) {
+          input->grad_ = std::make_shared<Tensor<T>>(input->shape_, false);
+        }
+        int rows = input->shape_[0];
+        int cols = input->shape_[1];
+
+        // The gradient w.r.t. input is the transpose of result->grad_
+        for (int r = 0; r < rows; ++r) {
+          for (int c = 0; c < cols; ++c) {
+            // input->grad_(r, c) += result->grad_(c, r)
+            input->grad_->data_[r * cols + c] +=
+                result->grad_->data_[c * rows + r];
+          }
+        }
+      }
+    });
   }
 
   return result;

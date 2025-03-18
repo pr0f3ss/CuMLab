@@ -4,46 +4,52 @@
 int main() {
   using namespace CuMLab;
 
-  Tensor<float> t1({2, 3});
-  Tensor<float> t2({2, 3});
+  auto A = std::make_shared<Tensor<float>>(std::vector<int>{2, 3}, true);
+  auto B = std::make_shared<Tensor<float>>(std::vector<int>{2, 3}, true);
 
   // Assign values
-  t1({0, 0}) = 2.0f;
-  t1({0, 1}) = 4.0f;
-  t1({1, 2}) = 6.0f;
+  (*A)({0, 0}) = 1.0f;
+  (*A)({0, 1}) = 2.0f;
+  (*A)({0, 2}) = 3.0f;
+  (*A)({1, 0}) = 4.0f;
+  (*A)({1, 1}) = 5.0f;
+  (*A)({1, 2}) = 6.0f;
 
-  t2({0, 0}) = 1.0f;
-  t2({0, 1}) = 2.0f;
-  t2({0, 2}) = 3.0f;
-  t2({1, 0}) = 4.0f;
-  t2({1, 1}) = 5.0f;
-  t2({1, 2}) = 6.0f;
+  (*B)({0, 0}) = 6.0f;
+  (*B)({0, 1}) = 5.0f;
+  (*B)({0, 2}) = 4.0f;
+  (*B)({1, 0}) = 3.0f;
+  (*B)({1, 1}) = 2.0f;
+  (*B)({1, 2}) = 1.0f;
 
-  std::cout << "Tensor 1:" << std::endl;
-  t1.print();
+  std::cout << "A:" << std::endl;
+  A->print();
 
-  std::cout << "Tensor 2:" << std::endl;
-  t2.print();
+  std::cout << "B:" << std::endl;
+  B->print();
 
-  std::cout << "Addition:" << std::endl;
-  (t1 + t2).print();
+  std::cout << "A+B:" << std::endl;
+  (A + B)->print();
 
-  std::cout << "Subtraction:" << std::endl;
-  (t1 - t2).print();
+  std::cout << "A-B:" << std::endl;
+  // (t1 - t2).print();
 
-  std::cout << "Element-wise Multiplication:" << std::endl;
-  (t1 * t2).print();
+  std::cout << "A*B^T:" << std::endl;
+  (matmul(A, transpose(B)))->print();
 
-  std::cout << "Element-wise Division:" << std::endl;
-  (t1 / t2).print();
+  std::cout << "A*B:" << std::endl;
+  // (A * B).print();
 
-  std::cout << "Negation (-Tensor 1):" << std::endl;
-  (-t1).print();
+  std::cout << "A/B:" << std::endl;
+  // (A / B)->print();
 
-  std::cout << "Sum: " << t1.sum() << std::endl;
-  std::cout << "Mean: " << t1.mean() << std::endl;
-  std::cout << "Max: " << t1.max() << std::endl;
-  std::cout << "Min: " << t1.min() << std::endl;
+  std::cout << "-A:" << std::endl;
+  // (-A).print();
+
+  std::cout << "Sum: " << A->sum() << std::endl;
+  std::cout << "Mean: " << A->mean() << std::endl;
+  std::cout << "Max: " << A->max() << std::endl;
+  std::cout << "Min: " << A->min() << std::endl;
 
   return 0;
 }
