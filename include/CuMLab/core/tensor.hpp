@@ -25,6 +25,10 @@ std::shared_ptr<Tensor<T>> operator-(const std::shared_ptr<Tensor<T>> &lhs,
                                      const std::shared_ptr<Tensor<T>> &rhs);
 
 template <typename T>
+std::shared_ptr<Tensor<T>> operator*(const std::shared_ptr<Tensor<T>> &lhs,
+                                     const std::shared_ptr<Tensor<T>> &rhs);
+
+template <typename T>
 std::shared_ptr<Tensor<T>> matmul(const std::shared_ptr<Tensor<T>> &lhs,
                                   const std::shared_ptr<Tensor<T>> &rhs);
 
@@ -118,11 +122,6 @@ public:
    */
   Tensor<T> operator-() const;
 
-  /**
-   * @brief Multiplies each element of the tensor by a scalar value.
-   */
-  Tensor<T> operator*(T scalar) const;
-
   // ─────────────────────────────────────────────────────
   // Reduction Operations
   // ─────────────────────────────────────────────────────
@@ -162,6 +161,11 @@ public:
   template <typename U>
   friend std::shared_ptr<Tensor<U>>
   operator-(const std::shared_ptr<Tensor<U>> &lhs,
+            const std::shared_ptr<Tensor<U>> &rhs);
+
+  template <typename U>
+  friend std::shared_ptr<Tensor<U>>
+  operator*(const std::shared_ptr<Tensor<U>> &lhs,
             const std::shared_ptr<Tensor<U>> &rhs);
 
   template <typename U>
@@ -301,18 +305,19 @@ std::shared_ptr<Tensor<T>> operator+(const std::shared_ptr<Tensor<T>> &lhs,
   }
 
   // 2) Compute the broadcasted shape
-  std::vector<int> out_shape = broadcasted_shape(lhs->shape_, rhs->shape_);
+  auto out_shape_ptr = std::make_shared<std::vector<int>>(
+      broadcasted_shape(lhs->shape_, rhs->shape_));
 
   bool requires_grad = (lhs->requires_grad_ || rhs->requires_grad_);
   // 3) Allocate the result
-  auto result = std::make_shared<Tensor<T>>(out_shape, requires_grad);
+  auto result = std::make_shared<Tensor<T>>(*out_shape_ptr, requires_grad);
 
   // 4) Forward pass: for each index in result, figure out where to read from
   // lhs and rhs
   int out_size = result->size_;
   for (int i = 0; i < out_size; ++i) {
     // unravel 'i' in out_shape
-    auto coords = unravel_index(i, out_shape);
+    auto coords = unravel_index(i, *out_shape_ptr);
 
     // figure out the offset in lhs
     int lhs_offset = broadcasted_offset(coords, lhs->shape_);
@@ -325,7 +330,7 @@ std::shared_ptr<Tensor<T>> operator+(const std::shared_ptr<Tensor<T>> &lhs,
 
   // 5) If we need grad, define the backward function
   if (requires_grad) {
-    result->grad_fn_ = [lhs, rhs, result, &out_shape]() {
+    result->grad_fn_ = [lhs, rhs, result, out_shape_ptr]() {
       // We'll need to do a similar loop over all elements in
       // result->grad_->data_ and accumulate into lhs->grad_ and rhs->grad_.
       const int out_size = result->size_;
@@ -339,7 +344,7 @@ std::shared_ptr<Tensor<T>> operator+(const std::shared_ptr<Tensor<T>> &lhs,
 
       for (int i = 0; i < out_size; ++i) {
         T grad_val = result->grad_->data_[i];
-        auto coords = unravel_index(i, out_shape);
+        auto coords = unravel_index(i, *out_shape_ptr);
 
         if (lhs->requires_grad_) {
           int lhs_offset = broadcasted_offset(coords, lhs->shape_);
@@ -378,18 +383,19 @@ std::shared_ptr<Tensor<U>> operator-(const std::shared_ptr<Tensor<U>> &lhs,
   }
 
   // 2) Determine the broadcasted output shape
-  std::vector<int> out_shape = broadcasted_shape(lhs->shape_, rhs->shape_);
+  auto out_shape_ptr = std::make_shared<std::vector<int>>(
+      broadcasted_shape(lhs->shape_, rhs->shape_));
 
   // 3) Create the result Tensor
   bool requires_grad = (lhs->requires_grad_ || rhs->requires_grad_);
-  auto result = std::make_shared<Tensor<U>>(out_shape, requires_grad);
+  auto result = std::make_shared<Tensor<U>>(*out_shape_ptr, requires_grad);
 
   // 4) Forward pass: for each element in `result`, figure out which element(s)
   //    in `lhs` and `rhs` we subtract (accounting for broadcasting).
   int out_size = result->size_;
   for (int i = 0; i < out_size; ++i) {
     // Convert the flat index `i` into N-dimensional coords in `out_shape`
-    auto coords = unravel_index(i, out_shape);
+    auto coords = unravel_index(i, *out_shape_ptr);
 
     // Map those coords to offsets in lhs and rhs
     int lhs_offset = broadcasted_offset(coords, lhs->shape_);
@@ -401,7 +407,7 @@ std::shared_ptr<Tensor<U>> operator-(const std::shared_ptr<Tensor<U>> &lhs,
 
   // 5) If gradients are required, define how to backprop
   if (requires_grad) {
-    result->grad_fn_ = [lhs, rhs, result, &out_shape]() mutable {
+    result->grad_fn_ = [lhs, rhs, result, out_shape_ptr]() mutable {
       // If no gradient flows into `result` (i.e. result->grad_ is null),
       // there's nothing to propagate.
       if (!result->grad_) {
@@ -423,7 +429,7 @@ std::shared_ptr<Tensor<U>> operator-(const std::shared_ptr<Tensor<U>> &lhs,
       //   dL/d(rhs) += -1 * dL/d(result)
       for (int i = 0; i < out_size; ++i) {
         U grad_val = result->grad_->data_[i];
-        auto coords = unravel_index(i, out_shape);
+        auto coords = unravel_index(i, *out_shape_ptr);
 
         if (lhs->requires_grad_) {
           int lhs_offset = broadcasted_offset(coords, lhs->shape_);
@@ -433,6 +439,90 @@ std::shared_ptr<Tensor<U>> operator-(const std::shared_ptr<Tensor<U>> &lhs,
           int rhs_offset = broadcasted_offset(coords, rhs->shape_);
           // Subtraction => derivative wrt rhs is -1
           rhs->grad_->data_[rhs_offset] -= grad_val;
+        }
+      }
+
+      if (lhs->grad_fn_) {
+        lhs->grad_fn_();
+      }
+      if (rhs->grad_fn_) {
+        rhs->grad_fn_();
+      }
+    };
+  }
+
+  return result;
+}
+
+/**
+ * @brief Element-wise (Hadamard) product with broadcasting: lhs * rhs.
+ *
+ * If lhs->shape_ and rhs->shape_ are broadcastable, the result has
+ * the broadcasted shape. Each output element is lhs[i] * rhs[i],
+ * extended for broadcast if necessary.
+ */
+template <typename U>
+std::shared_ptr<Tensor<U>> operator*(const std::shared_ptr<Tensor<U>> &lhs,
+                                     const std::shared_ptr<Tensor<U>> &rhs) {
+  // 1) Null-check
+  if (!lhs || !rhs) {
+    throw std::invalid_argument("Null pointer passed to operator*");
+  }
+
+  // 2) Determine the broadcasted output shape
+  auto out_shape_ptr = std::make_shared<std::vector<int>>(
+      broadcasted_shape(lhs->shape_, rhs->shape_));
+
+  // 3) Create the result tensor
+  bool requires_grad = (lhs->requires_grad_ || rhs->requires_grad_);
+  auto result = std::make_shared<Tensor<U>>(*out_shape_ptr, requires_grad);
+
+  // 4) Forward pass: For each index in `result`, figure out the corresponding
+  //    index in `lhs` and `rhs` (accounting for broadcast), then multiply.
+  int out_size = result->size_;
+  for (int i = 0; i < out_size; ++i) {
+    auto coords = unravel_index(i, *out_shape_ptr);
+
+    int lhs_offset = broadcasted_offset(coords, lhs->shape_);
+    int rhs_offset = broadcasted_offset(coords, rhs->shape_);
+
+    result->data_[i] = lhs->data_[lhs_offset] * rhs->data_[rhs_offset];
+  }
+
+  // 5) Backward pass if needed
+  if (requires_grad) {
+    // We'll capture by value in the lambda:
+    result->grad_fn_ = [lhs, rhs, result, out_shape_ptr]() mutable {
+      // If no grad flows into `result`, do nothing
+      if (!result->grad_) {
+        return;
+      }
+
+      const int out_size = result->size_;
+
+      // Allocate grads in lhs/rhs if needed
+      if (lhs->requires_grad_ && !lhs->grad_) {
+        lhs->grad_ = std::make_shared<Tensor<U>>(lhs->shape_, false);
+      }
+      if (rhs->requires_grad_ && !rhs->grad_) {
+        rhs->grad_ = std::make_shared<Tensor<U>>(rhs->shape_, false);
+      }
+
+      // For each element in `result->grad_`,
+      //   dL/d(lhs) += rhs * dL/d(result)
+      //   dL/d(rhs) += lhs * dL/d(result)
+      for (int i = 0; i < out_size; ++i) {
+        U grad_val = result->grad_->data_[i];
+        auto coords = unravel_index(i, *out_shape_ptr);
+
+        int lhs_offset = broadcasted_offset(coords, lhs->shape_);
+        int rhs_offset = broadcasted_offset(coords, rhs->shape_);
+
+        if (lhs->requires_grad_) {
+          lhs->grad_->data_[lhs_offset] += rhs->data_[rhs_offset] * grad_val;
+        }
+        if (rhs->requires_grad_) {
+          rhs->grad_->data_[rhs_offset] += lhs->data_[lhs_offset] * grad_val;
         }
       }
 

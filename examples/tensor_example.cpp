@@ -38,7 +38,7 @@ int main() {
   (matmul(A, transpose(B)))->print();
 
   std::cout << "A*B:" << std::endl;
-  // (A * B).print();
+  (A * B)->print();
 
   std::cout << "A/B:" << std::endl;
   // (A / B)->print();
