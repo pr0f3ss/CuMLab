@@ -39,6 +39,9 @@ std::shared_ptr<Tensor<T>> operator/(const std::shared_ptr<Tensor<T>> &lhs,
 template <typename T>
 std::shared_ptr<Tensor<T>> transpose(const std::shared_ptr<Tensor<T>> &input);
 
+template <typename T>
+std::shared_ptr<Tensor<T>> operator-(const std::shared_ptr<Tensor<T>> &input);
+
 // ─────────────────────────────────────────────────────────────────────────
 // Tensor class template
 // ─────────────────────────────────────────────────────────────────────────
@@ -185,6 +188,10 @@ public:
   template <typename U>
   friend std::shared_ptr<Tensor<U>>
   transpose(const std::shared_ptr<Tensor<U>> &input);
+
+  template <typename U>
+  friend std::shared_ptr<Tensor<U>>
+  operator-(const std::shared_ptr<Tensor<U>> &input);
 };
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -796,6 +803,53 @@ std::shared_ptr<Tensor<T>> transpose(const std::shared_ptr<Tensor<T>> &input) {
         }
       }
     });
+  }
+
+  return result;
+}
+
+/**
+ * @brief Returns a new Tensor with each element = -(input element).
+ *
+ * If input requires grad, we set up a grad_fn that accumulates
+ * -result->grad_ into input->grad_.
+ */
+template <typename U>
+std::shared_ptr<Tensor<U>> operator-(const std::shared_ptr<Tensor<U>> &input) {
+  if (!input) {
+    throw std::invalid_argument(
+        "Null pointer passed to unary negation operator-");
+  }
+
+  // 1) Create the result, same shape as input
+  bool requires_grad = input->requires_grad_;
+  auto result = std::make_shared<Tensor<U>>(input->shape_, requires_grad);
+
+  // 2) Forward: out[i] = -input[i]
+  for (int i = 0; i < input->size_; ++i) {
+    result->data_[i] = -input->data_[i];
+  }
+
+  // 3) Backward if needed
+  if (requires_grad) {
+    result->grad_fn_ = [input, result]() mutable {
+      if (!result->grad_) {
+        return;
+      }
+      // dL/d(input[i]) = -1 * dL/d(result[i])
+      if (input->requires_grad_) {
+        if (!input->grad_) {
+          input->grad_ = std::make_shared<Tensor<U>>(input->shape_, false);
+        }
+        for (int i = 0; i < input->size_; ++i) {
+          input->grad_->data_[i] -= result->grad_->data_[i];
+        }
+      }
+
+      if (input->grad_fn_) {
+        input->grad_fn_();
+      }
+    };
   }
 
   return result;

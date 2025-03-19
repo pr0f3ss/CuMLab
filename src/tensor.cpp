@@ -113,18 +113,6 @@ T Tensor<T>::operator()(std::initializer_list<int> indices) const {
 }
 
 // ─────────────────────────────────────────────────────
-// Element-Wise Operations
-// ─────────────────────────────────────────────────────
-
-template <typename T> Tensor<T> Tensor<T>::operator-() const {
-  Tensor<T> result(shape_);
-  for (size_t i = 0; i < data_.size(); ++i) {
-    result.data_[i] = -data_[i];
-  }
-  return result;
-}
-
-// ─────────────────────────────────────────────────────
 // Reduction Operations
 // ─────────────────────────────────────────────────────
 template <typename T> T Tensor<T>::sum() const {
