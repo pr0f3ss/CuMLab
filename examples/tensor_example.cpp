@@ -41,10 +41,10 @@ int main() {
   (A * B)->print();
 
   std::cout << "A/B:" << std::endl;
-  // (A / B)->print();
+  (A / B)->print();
 
   std::cout << "-A:" << std::endl;
-  // (-A).print();
+  // (-A)->print();
 
   std::cout << "Sum: " << A->sum() << std::endl;
   std::cout << "Mean: " << A->mean() << std::endl;

@@ -116,20 +116,6 @@ T Tensor<T>::operator()(std::initializer_list<int> indices) const {
 // Element-Wise Operations
 // ─────────────────────────────────────────────────────
 
-template <typename T>
-Tensor<T> Tensor<T>::operator/(const Tensor<T> &other) const {
-  if (shape_ != other.shape_)
-    throw std::invalid_argument("Shape mismatch in division");
-
-  Tensor<T> result(shape_);
-  for (size_t i = 0; i < data_.size(); ++i) {
-    if (other.data_[i] == static_cast<T>(0))
-      throw std::runtime_error("Division by zero");
-    result.data_[i] = data_[i] / other.data_[i];
-  }
-  return result;
-}
-
 template <typename T> Tensor<T> Tensor<T>::operator-() const {
   Tensor<T> result(shape_);
   for (size_t i = 0; i < data_.size(); ++i) {

@@ -33,6 +33,10 @@ std::shared_ptr<Tensor<T>> matmul(const std::shared_ptr<Tensor<T>> &lhs,
                                   const std::shared_ptr<Tensor<T>> &rhs);
 
 template <typename T>
+std::shared_ptr<Tensor<T>> operator/(const std::shared_ptr<Tensor<T>> &lhs,
+                                     const std::shared_ptr<Tensor<T>> &rhs);
+
+template <typename T>
 std::shared_ptr<Tensor<T>> transpose(const std::shared_ptr<Tensor<T>> &input);
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -172,6 +176,11 @@ public:
   friend std::shared_ptr<Tensor<U>>
   matmul(const std::shared_ptr<Tensor<U>> &lhs,
          const std::shared_ptr<Tensor<U>> &rhs);
+
+  template <typename U>
+  friend std::shared_ptr<Tensor<U>>
+  operator/(const std::shared_ptr<Tensor<U>> &lhs,
+            const std::shared_ptr<Tensor<U>> &rhs);
 
   template <typename U>
   friend std::shared_ptr<Tensor<U>>
@@ -374,9 +383,9 @@ std::shared_ptr<Tensor<T>> operator+(const std::shared_ptr<Tensor<T>> &lhs,
  * Both `lhs` and `rhs` can have shapes that broadcast to the result shape.
  * Returns a new Tensor with the broadcasted shape.
  */
-template <typename U>
-std::shared_ptr<Tensor<U>> operator-(const std::shared_ptr<Tensor<U>> &lhs,
-                                     const std::shared_ptr<Tensor<U>> &rhs) {
+template <typename T>
+std::shared_ptr<Tensor<T>> operator-(const std::shared_ptr<Tensor<T>> &lhs,
+                                     const std::shared_ptr<Tensor<T>> &rhs) {
   // 1) Check for null pointers
   if (!lhs || !rhs) {
     throw std::invalid_argument("Null pointer passed to operator-");
@@ -388,7 +397,7 @@ std::shared_ptr<Tensor<U>> operator-(const std::shared_ptr<Tensor<U>> &lhs,
 
   // 3) Create the result Tensor
   bool requires_grad = (lhs->requires_grad_ || rhs->requires_grad_);
-  auto result = std::make_shared<Tensor<U>>(*out_shape_ptr, requires_grad);
+  auto result = std::make_shared<Tensor<T>>(*out_shape_ptr, requires_grad);
 
   // 4) Forward pass: for each element in `result`, figure out which element(s)
   //    in `lhs` and `rhs` we subtract (accounting for broadcasting).
@@ -418,17 +427,17 @@ std::shared_ptr<Tensor<U>> operator-(const std::shared_ptr<Tensor<U>> &lhs,
 
       // Ensure lhs->grad_ / rhs->grad_ are allocated if needed
       if (lhs->requires_grad_ && !lhs->grad_) {
-        lhs->grad_ = std::make_shared<Tensor<U>>(lhs->shape_, false);
+        lhs->grad_ = std::make_shared<Tensor<T>>(lhs->shape_, false);
       }
       if (rhs->requires_grad_ && !rhs->grad_) {
-        rhs->grad_ = std::make_shared<Tensor<U>>(rhs->shape_, false);
+        rhs->grad_ = std::make_shared<Tensor<T>>(rhs->shape_, false);
       }
 
       // For each element in `result->grad_`,
       //   dL/d(lhs) += +1 * dL/d(result)
       //   dL/d(rhs) += -1 * dL/d(result)
       for (int i = 0; i < out_size; ++i) {
-        U grad_val = result->grad_->data_[i];
+        T grad_val = result->grad_->data_[i];
         auto coords = unravel_index(i, *out_shape_ptr);
 
         if (lhs->requires_grad_) {
@@ -461,9 +470,9 @@ std::shared_ptr<Tensor<U>> operator-(const std::shared_ptr<Tensor<U>> &lhs,
  * the broadcasted shape. Each output element is lhs[i] * rhs[i],
  * extended for broadcast if necessary.
  */
-template <typename U>
-std::shared_ptr<Tensor<U>> operator*(const std::shared_ptr<Tensor<U>> &lhs,
-                                     const std::shared_ptr<Tensor<U>> &rhs) {
+template <typename T>
+std::shared_ptr<Tensor<T>> operator*(const std::shared_ptr<Tensor<T>> &lhs,
+                                     const std::shared_ptr<Tensor<T>> &rhs) {
   // 1) Null-check
   if (!lhs || !rhs) {
     throw std::invalid_argument("Null pointer passed to operator*");
@@ -475,7 +484,7 @@ std::shared_ptr<Tensor<U>> operator*(const std::shared_ptr<Tensor<U>> &lhs,
 
   // 3) Create the result tensor
   bool requires_grad = (lhs->requires_grad_ || rhs->requires_grad_);
-  auto result = std::make_shared<Tensor<U>>(*out_shape_ptr, requires_grad);
+  auto result = std::make_shared<Tensor<T>>(*out_shape_ptr, requires_grad);
 
   // 4) Forward pass: For each index in `result`, figure out the corresponding
   //    index in `lhs` and `rhs` (accounting for broadcast), then multiply.
@@ -502,17 +511,17 @@ std::shared_ptr<Tensor<U>> operator*(const std::shared_ptr<Tensor<U>> &lhs,
 
       // Allocate grads in lhs/rhs if needed
       if (lhs->requires_grad_ && !lhs->grad_) {
-        lhs->grad_ = std::make_shared<Tensor<U>>(lhs->shape_, false);
+        lhs->grad_ = std::make_shared<Tensor<T>>(lhs->shape_, false);
       }
       if (rhs->requires_grad_ && !rhs->grad_) {
-        rhs->grad_ = std::make_shared<Tensor<U>>(rhs->shape_, false);
+        rhs->grad_ = std::make_shared<Tensor<T>>(rhs->shape_, false);
       }
 
       // For each element in `result->grad_`,
       //   dL/d(lhs) += rhs * dL/d(result)
       //   dL/d(rhs) += lhs * dL/d(result)
       for (int i = 0; i < out_size; ++i) {
-        U grad_val = result->grad_->data_[i];
+        T grad_val = result->grad_->data_[i];
         auto coords = unravel_index(i, *out_shape_ptr);
 
         int lhs_offset = broadcasted_offset(coords, lhs->shape_);
@@ -639,6 +648,89 @@ std::shared_ptr<Tensor<T>> matmul(const std::shared_ptr<Tensor<T>> &lhs,
 }
 
 /**
+ * @brief Element-wise division with broadcasting: lhs / rhs
+ *
+ * Each element out[i] = lhs[i] / rhs[i], extended for broadcast if necessary.
+ */
+template <typename T>
+std::shared_ptr<Tensor<T>> operator/(const std::shared_ptr<Tensor<T>> &lhs,
+                                     const std::shared_ptr<Tensor<T>> &rhs) {
+  // 1) Null check
+  if (!lhs || !rhs) {
+    throw std::invalid_argument("Null pointer passed to operator/");
+  }
+
+  // 2) Compute broadcasted shape
+  auto out_shape_ptr = std::make_shared<std::vector<int>>(
+      broadcasted_shape(lhs->shape_, rhs->shape_));
+
+  // 3) Create output
+  bool requires_grad = (lhs->requires_grad_ || rhs->requires_grad_);
+  auto result = std::make_shared<Tensor<T>>(*out_shape_ptr, requires_grad);
+
+  // 4) Forward pass
+  int out_size = result->size_;
+  for (int i = 0; i < out_size; ++i) {
+    auto coords = unravel_index(i, *out_shape_ptr);
+    int lhs_offset = broadcasted_offset(coords, lhs->shape_);
+    int rhs_offset = broadcasted_offset(coords, rhs->shape_);
+
+    // Perform the division
+    // (No zero-check; in a real system we might handle or throw if
+    // rhs->data_[...] == 0)
+    result->data_[i] = lhs->data_[lhs_offset] / rhs->data_[rhs_offset];
+  }
+
+  // 5) Backward if needed
+  if (requires_grad) {
+    result->grad_fn_ = [lhs, rhs, result, out_shape_ptr]() mutable {
+      if (!result->grad_) {
+        return;
+      }
+      int out_size = result->size_;
+
+      if (lhs->requires_grad_ && !lhs->grad_) {
+        lhs->grad_ = std::make_shared<Tensor<T>>(lhs->shape_, false);
+      }
+      if (rhs->requires_grad_ && !rhs->grad_) {
+        rhs->grad_ = std::make_shared<Tensor<T>>(rhs->shape_, false);
+      }
+
+      // For each element i:
+      //   dL/dlhs = (1 / rhs[i]) * dL/dout
+      //   dL/drhs = -(lhs[i] / rhs[i]^2) * dL/dout
+      for (int i = 0; i < out_size; ++i) {
+        T grad_val = result->grad_->data_[i];
+        auto coords = unravel_index(i, *out_shape_ptr);
+
+        int lhs_offset = broadcasted_offset(coords, lhs->shape_);
+        int rhs_offset = broadcasted_offset(coords, rhs->shape_);
+
+        if (lhs->requires_grad_) {
+          T rhs_val = rhs->data_[rhs_offset];
+          lhs->grad_->data_[lhs_offset] += (grad_val / rhs_val);
+        }
+        if (rhs->requires_grad_) {
+          T lhs_val = lhs->data_[lhs_offset];
+          T rhs_val = rhs->data_[rhs_offset];
+          rhs->grad_->data_[rhs_offset] -=
+              (lhs_val * grad_val) / (rhs_val * rhs_val);
+        }
+      }
+
+      if (lhs->grad_fn_) {
+        lhs->grad_fn_();
+      }
+      if (rhs->grad_fn_) {
+        rhs->grad_fn_();
+      }
+    };
+  }
+
+  return result;
+}
+
+/**
  * @brief Returns a transposed copy of a 2D Tensor.
  *
  * For a tensor of shape (rows, cols), we create a new tensor of shape (cols,
@@ -646,7 +738,7 @@ std::shared_ptr<Tensor<T>> matmul(const std::shared_ptr<Tensor<T>> &lhs,
  * returned tensor sets a grad_fn_ that propagates gradients back to the
  * original.
  *
- * @tparam U The numeric type of the Tensor (float, double, etc.)
+ * @tparam T The numeric type of the Tensor (float, double, etc.)
  * @param input The shared pointer to a Tensor<T> (must be 2D).
  * @return A new std::shared_ptr<Tensor<T>> that is the transpose of `input`.
  */
