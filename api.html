@@ -54,10 +54,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N6CuMLab6Tensor4gradEv"><code class="docutils literal notranslate"><span class="pre">grad()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N6CuMLab6Tensor11set_grad_fnENSt8functionIFvvEEE"><code class="docutils literal notranslate"><span class="pre">set_grad_fn()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N6CuMLab6Tensor8backwardEv"><code class="docutils literal notranslate"><span class="pre">backward()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK6CuMLab6TensormiERK6TensorI1TE"><code class="docutils literal notranslate"><span class="pre">operator-()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK6CuMLab6TensordvERK6TensorI1TE"><code class="docutils literal notranslate"><span class="pre">operator/()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK6CuMLab6TensormiEv"><code class="docutils literal notranslate"><span class="pre">operator-()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK6CuMLab6TensormlE1T"><code class="docutils literal notranslate"><span class="pre">operator*()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK6CuMLab6Tensor3sumEv"><code class="docutils literal notranslate"><span class="pre">sum()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK6CuMLab6Tensor4meanEv"><code class="docutils literal notranslate"><span class="pre">mean()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK6CuMLab6Tensor3maxEv"><code class="docutils literal notranslate"><span class="pre">max()</span></code></a></li>
@@ -69,6 +67,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N6CuMLab6Tensor14requires_grad_E"><code class="docutils literal notranslate"><span class="pre">requires_grad_</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N6CuMLab6Tensor5grad_E"><code class="docutils literal notranslate"><span class="pre">grad_</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N6CuMLab6Tensor8grad_fn_E"><code class="docutils literal notranslate"><span class="pre">grad_fn_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensormiENSt10shared_ptrI6TensorI1UEEERKNSt10shared_ptrI6TensorI1UEEE"><code class="docutils literal notranslate"><span class="pre">operator-</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -256,41 +255,15 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4NK6CuMLab6TensormiERK6TensorI1TE">
-<span id="_CPPv3NK6CuMLab6TensormiERK6TensorI1TE"></span><span id="_CPPv2NK6CuMLab6TensormiERK6TensorI1TE"></span><span id="CuMLab::Tensor::sub-operator__Tensor:T:CRC"></span><span class="target" id="classCuMLab_1_1Tensor_1a1539620a590d85420321cf6049f900d7"></span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensorE" title="CuMLab::Tensor"><span class="n"><span class="pre">Tensor</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensorE" title="CuMLab::Tensor::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">-</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensorE" title="CuMLab::Tensor"><span class="n"><span class="pre">Tensor</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensorE" title="CuMLab::Tensor::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6CuMLab6TensormiERK6TensorI1TE" title="Link to this definition"></a><br /></dt>
-<dd><p>Performs element-wise addition with another tensor. </p>
-<p>
-Performs element-wise subtraction with another tensor. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>other</strong> – The tensor to add. </p>
-</dd>
-<dt class="field-even">Throws<span class="colon">:</span></dt>
-<dd class="field-even"><p><span><span class="cpp-expr sig sig-inline cpp"><span class="n">std</span><span class="p">::</span><span class="n">invalid_argument</span></span></span> – If tensor shapes do not match.</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A new tensor containing the sum of corresponding elements. </p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK6CuMLab6TensordvERK6TensorI1TE">
 <span id="_CPPv3NK6CuMLab6TensordvERK6TensorI1TE"></span><span id="_CPPv2NK6CuMLab6TensordvERK6TensorI1TE"></span><span id="CuMLab::Tensor::div-operator__Tensor:T:CRC"></span><span class="target" id="classCuMLab_1_1Tensor_1aed7ac62ba0ef3e56ec78df23a5b7a9e1"></span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensorE" title="CuMLab::Tensor"><span class="n"><span class="pre">Tensor</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensorE" title="CuMLab::Tensor::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">/</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensorE" title="CuMLab::Tensor"><span class="n"><span class="pre">Tensor</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensorE" title="CuMLab::Tensor::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6CuMLab6TensordvERK6TensorI1TE" title="Link to this definition"></a><br /></dt>
-<dd><p>Performs element-wise multiplication (Hadamard product) with another tensor. </p>
-<p>Performs element-wise division with another tensor. </p>
+<dd><p>Performs element-wise division with another tensor. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK6CuMLab6TensormiEv">
 <span id="_CPPv3NK6CuMLab6TensormiEv"></span><span id="_CPPv2NK6CuMLab6TensormiEv"></span><span id="CuMLab::Tensor::sub-operatorC"></span><span class="target" id="classCuMLab_1_1Tensor_1a04b03f9d776f73269b7568cc6422e77b"></span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensorE" title="CuMLab::Tensor"><span class="n"><span class="pre">Tensor</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensorE" title="CuMLab::Tensor::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">-</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6CuMLab6TensormiEv" title="Link to this definition"></a><br /></dt>
 <dd><p>Returns a tensor with all elements negated (unary <code class="docutils literal notranslate"><span class="pre">-</span></code>). </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4NK6CuMLab6TensormlE1T">
-<span id="_CPPv3NK6CuMLab6TensormlE1T"></span><span id="_CPPv2NK6CuMLab6TensormlE1T"></span><span id="CuMLab::Tensor::mul-operator__TC"></span><span class="target" id="classCuMLab_1_1Tensor_1a82a7d2af93a8d0bb0506b71e3dd76475"></span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensorE" title="CuMLab::Tensor"><span class="n"><span class="pre">Tensor</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensorE" title="CuMLab::Tensor::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensorE" title="CuMLab::Tensor::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">scalar</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6CuMLab6TensormlE1T" title="Link to this definition"></a><br /></dt>
-<dd><p>Multiplies each element of the tensor by a scalar value. </p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -360,6 +333,16 @@ Performs element-wise subtraction with another tensor. </p>
 <dt class="sig sig-object cpp" id="_CPPv4N6CuMLab6Tensor8grad_fn_E">
 <span id="_CPPv3N6CuMLab6Tensor8grad_fn_E"></span><span id="_CPPv2N6CuMLab6Tensor8grad_fn_E"></span><span class="target" id="classCuMLab_1_1Tensor_1a5bfb7abe3c0efe3ac6be960cebad13ad"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">void</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">grad_fn_</span></span></span><a class="headerlink" href="#_CPPv4N6CuMLab6Tensor8grad_fn_E" title="Link to this definition"></a><br /></dt>
 <dd><p>Function to compute gradients. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-friends">Friends</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN6CuMLab6TensormiENSt10shared_ptrI6TensorI1UEEERKNSt10shared_ptrI6TensorI1UEEE">
+<span id="_CPPv3I0EN6CuMLab6TensormiERKNSt10shared_ptrI6TensorI1UEEE"></span><span id="_CPPv2I0EN6CuMLab6TensormiERKNSt10shared_ptrI6TensorI1UEEE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">U</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classCuMLab_1_1Tensor_1acb4452bc226cb448d93351597540252b"></span><span class="k"><span class="pre">friend</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensorE" title="CuMLab::Tensor"><span class="n"><span class="pre">Tensor</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensormiENSt10shared_ptrI6TensorI1UEEERKNSt10shared_ptrI6TensorI1UEEE" title="CuMLab::Tensor::operator-::U"><span class="n"><span class="pre">U</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">-</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensorE" title="CuMLab::Tensor"><span class="n"><span class="pre">Tensor</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensormiENSt10shared_ptrI6TensorI1UEEERKNSt10shared_ptrI6TensorI1UEEE" title="CuMLab::Tensor::operator-::U"><span class="n"><span class="pre">U</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">input</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN6CuMLab6TensormiENSt10shared_ptrI6TensorI1UEEERKNSt10shared_ptrI6TensorI1UEEE" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns a new <a class="reference internal" href="#classCuMLab_1_1Tensor"><span class="std std-ref">Tensor</span></a> with each element = -(input element). </p>
+<p>If input requires grad, we set up a grad_fn that accumulates -result-&gt;grad_ into input-&gt;grad_. </p>
 </dd></dl>
 
 </div>
