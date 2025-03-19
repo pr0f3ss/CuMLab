@@ -32,7 +32,7 @@ int main() {
   (A + B)->print();
 
   std::cout << "A-B:" << std::endl;
-  // (t1 - t2).print();
+  (A - B)->print();
 
   std::cout << "A*B^T:" << std::endl;
   (matmul(A, transpose(B)))->print();

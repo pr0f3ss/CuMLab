@@ -21,6 +21,10 @@ std::shared_ptr<Tensor<T>> operator+(const std::shared_ptr<Tensor<T>> &lhs,
                                      const std::shared_ptr<Tensor<T>> &rhs);
 
 template <typename T>
+std::shared_ptr<Tensor<T>> operator-(const std::shared_ptr<Tensor<T>> &lhs,
+                                     const std::shared_ptr<Tensor<T>> &rhs);
+
+template <typename T>
 std::shared_ptr<Tensor<T>> matmul(const std::shared_ptr<Tensor<T>> &lhs,
                                   const std::shared_ptr<Tensor<T>> &rhs);
 
@@ -105,25 +109,6 @@ public:
   // ─────────────────────────────────────────────────────
 
   /**
-   * @brief Performs element-wise addition with another tensor.
-   * @param other The tensor to add.
-   * @return A new tensor containing the sum of corresponding elements.
-   * @throws std::invalid_argument If tensor shapes do not match.
-   */
-  // Tensor<T> operator+(const Tensor<T> &other) const;
-
-  /**
-   * @brief Performs element-wise subtraction with another tensor.
-   */
-  Tensor<T> operator-(const Tensor<T> &other) const;
-
-  /**
-   * @brief Performs element-wise multiplication (Hadamard product) with another
-   * tensor.
-   */
-  // Tensor<T> operator*(const Tensor<T> &other) const;
-
-  /**
    * @brief Performs element-wise division with another tensor.
    */
   Tensor<T> operator/(const Tensor<T> &other) const;
@@ -167,11 +152,16 @@ public:
    */
   void print() const;
 
-  // Make operator+ / operator* overloads that accept shared_ptr friend
+  // Function overloads that accept shared_ptr friend
   // functions so they can access private data_ directly if needed.
   template <typename U>
   friend std::shared_ptr<Tensor<U>>
   operator+(const std::shared_ptr<Tensor<U>> &lhs,
+            const std::shared_ptr<Tensor<U>> &rhs);
+
+  template <typename U>
+  friend std::shared_ptr<Tensor<U>>
+  operator-(const std::shared_ptr<Tensor<U>> &lhs,
             const std::shared_ptr<Tensor<U>> &rhs);
 
   template <typename U>
@@ -305,18 +295,19 @@ inline int broadcasted_offset(const std::vector<int> &out_coords,
 template <typename T>
 std::shared_ptr<Tensor<T>> operator+(const std::shared_ptr<Tensor<T>> &lhs,
                                      const std::shared_ptr<Tensor<T>> &rhs) {
+  // 1) Check for null pointers
   if (!lhs || !rhs) {
     throw std::invalid_argument("Null pointer passed to operator+");
   }
 
-  // 1) Compute the broadcasted shape
+  // 2) Compute the broadcasted shape
   std::vector<int> out_shape = broadcasted_shape(lhs->shape_, rhs->shape_);
 
   bool requires_grad = (lhs->requires_grad_ || rhs->requires_grad_);
-  // 2) Allocate the result
+  // 3) Allocate the result
   auto result = std::make_shared<Tensor<T>>(out_shape, requires_grad);
 
-  // 3) Forward pass: for each index in result, figure out where to read from
+  // 4) Forward pass: for each index in result, figure out where to read from
   // lhs and rhs
   int out_size = result->size_;
   for (int i = 0; i < out_size; ++i) {
@@ -332,9 +323,9 @@ std::shared_ptr<Tensor<T>> operator+(const std::shared_ptr<Tensor<T>> &lhs,
     result->data_[i] = lhs->data_[lhs_offset] + rhs->data_[rhs_offset];
   }
 
-  // 4) If we need grad, define the backward function
+  // 5) If we need grad, define the backward function
   if (requires_grad) {
-    result->grad_fn_ = [lhs, rhs, result, out_shape]() {
+    result->grad_fn_ = [lhs, rhs, result, &out_shape]() {
       // We'll need to do a similar loop over all elements in
       // result->grad_->data_ and accumulate into lhs->grad_ and rhs->grad_.
       const int out_size = result->size_;
@@ -364,6 +355,90 @@ std::shared_ptr<Tensor<T>> operator+(const std::shared_ptr<Tensor<T>> &lhs,
         lhs->grad_fn_();
       }
 
+      if (rhs->grad_fn_) {
+        rhs->grad_fn_();
+      }
+    };
+  }
+
+  return result;
+}
+
+/**
+ * @brief Performs element-wise subtraction with broadcasting: lhs - rhs.
+ * Both `lhs` and `rhs` can have shapes that broadcast to the result shape.
+ * Returns a new Tensor with the broadcasted shape.
+ */
+template <typename U>
+std::shared_ptr<Tensor<U>> operator-(const std::shared_ptr<Tensor<U>> &lhs,
+                                     const std::shared_ptr<Tensor<U>> &rhs) {
+  // 1) Check for null pointers
+  if (!lhs || !rhs) {
+    throw std::invalid_argument("Null pointer passed to operator-");
+  }
+
+  // 2) Determine the broadcasted output shape
+  std::vector<int> out_shape = broadcasted_shape(lhs->shape_, rhs->shape_);
+
+  // 3) Create the result Tensor
+  bool requires_grad = (lhs->requires_grad_ || rhs->requires_grad_);
+  auto result = std::make_shared<Tensor<U>>(out_shape, requires_grad);
+
+  // 4) Forward pass: for each element in `result`, figure out which element(s)
+  //    in `lhs` and `rhs` we subtract (accounting for broadcasting).
+  int out_size = result->size_;
+  for (int i = 0; i < out_size; ++i) {
+    // Convert the flat index `i` into N-dimensional coords in `out_shape`
+    auto coords = unravel_index(i, out_shape);
+
+    // Map those coords to offsets in lhs and rhs
+    int lhs_offset = broadcasted_offset(coords, lhs->shape_);
+    int rhs_offset = broadcasted_offset(coords, rhs->shape_);
+
+    // Perform the subtraction
+    result->data_[i] = lhs->data_[lhs_offset] - rhs->data_[rhs_offset];
+  }
+
+  // 5) If gradients are required, define how to backprop
+  if (requires_grad) {
+    result->grad_fn_ = [lhs, rhs, result, &out_shape]() mutable {
+      // If no gradient flows into `result` (i.e. result->grad_ is null),
+      // there's nothing to propagate.
+      if (!result->grad_) {
+        return;
+      }
+
+      const int out_size = result->size_;
+
+      // Ensure lhs->grad_ / rhs->grad_ are allocated if needed
+      if (lhs->requires_grad_ && !lhs->grad_) {
+        lhs->grad_ = std::make_shared<Tensor<U>>(lhs->shape_, false);
+      }
+      if (rhs->requires_grad_ && !rhs->grad_) {
+        rhs->grad_ = std::make_shared<Tensor<U>>(rhs->shape_, false);
+      }
+
+      // For each element in `result->grad_`,
+      //   dL/d(lhs) += +1 * dL/d(result)
+      //   dL/d(rhs) += -1 * dL/d(result)
+      for (int i = 0; i < out_size; ++i) {
+        U grad_val = result->grad_->data_[i];
+        auto coords = unravel_index(i, out_shape);
+
+        if (lhs->requires_grad_) {
+          int lhs_offset = broadcasted_offset(coords, lhs->shape_);
+          lhs->grad_->data_[lhs_offset] += grad_val;
+        }
+        if (rhs->requires_grad_) {
+          int rhs_offset = broadcasted_offset(coords, rhs->shape_);
+          // Subtraction => derivative wrt rhs is -1
+          rhs->grad_->data_[rhs_offset] -= grad_val;
+        }
+      }
+
+      if (lhs->grad_fn_) {
+        lhs->grad_fn_();
+      }
       if (rhs->grad_fn_) {
         rhs->grad_fn_();
       }
@@ -533,6 +608,9 @@ std::shared_ptr<Tensor<T>> transpose(const std::shared_ptr<Tensor<T>> &input) {
             input->grad_->data_[r * cols + c] +=
                 result->grad_->data_[c * rows + r];
           }
+        }
+        if (input->grad_fn_) {
+          input->grad_fn_();
         }
       }
     });
