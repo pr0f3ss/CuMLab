@@ -74,8 +74,7 @@ public:
     auto weight = this->parameters_["weight"];
     auto bias = this->parameters_["bias"];
 
-    auto output = std::make_shared<Tensor<T>>(*input * (*weight));
-    *output = *output + (*bias);
+    auto output = input * weight + bias;
 
     return output;
   }
