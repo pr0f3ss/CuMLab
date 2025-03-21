@@ -74,7 +74,7 @@ public:
     auto weight = this->parameters_["weight"];
     auto bias = this->parameters_["bias"];
 
-    auto output = input * weight + bias;
+    auto output = matmul(input, weight) + bias;
 
     return output;
   }
