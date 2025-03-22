@@ -70,6 +70,17 @@
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensormiENSt10shared_ptrI6TensorI1UEEERKNSt10shared_ptrI6TensorI1UEEE"><code class="docutils literal notranslate"><span class="pre">operator-</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I0EplNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE"><code class="docutils literal notranslate"><span class="pre">operator+()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I0EmiNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE"><code class="docutils literal notranslate"><span class="pre">operator-()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I0EmlNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE"><code class="docutils literal notranslate"><span class="pre">operator*()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I0E6matmulNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE"><code class="docutils literal notranslate"><span class="pre">matmul()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I0EdvNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE"><code class="docutils literal notranslate"><span class="pre">operator/()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I0E9transposeNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE"><code class="docutils literal notranslate"><span class="pre">transpose()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I0EmiNSt10shared_ptrI6TensorI1UEEERKNSt10shared_ptrI6TensorI1UEEE"><code class="docutils literal notranslate"><span class="pre">operator-()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv417broadcasted_shapeRKNSt6vectorIiEERKNSt6vectorIiEE"><code class="docutils literal notranslate"><span class="pre">broadcasted_shape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv413unravel_indexiRKNSt6vectorIiEE"><code class="docutils literal notranslate"><span class="pre">unravel_index()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv411ravel_indexRKNSt6vectorIiEERKNSt6vectorIiEE"><code class="docutils literal notranslate"><span class="pre">ravel_index()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv418broadcasted_offsetRKNSt6vectorIiEERKNSt6vectorIiEE"><code class="docutils literal notranslate"><span class="pre">broadcasted_offset()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#cumlab-modules">CuMLab Modules</a><ul>
@@ -341,8 +352,295 @@
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4I0EN6CuMLab6TensormiENSt10shared_ptrI6TensorI1UEEERKNSt10shared_ptrI6TensorI1UEEE">
 <span id="_CPPv3I0EN6CuMLab6TensormiERKNSt10shared_ptrI6TensorI1UEEE"></span><span id="_CPPv2I0EN6CuMLab6TensormiERKNSt10shared_ptrI6TensorI1UEEE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">U</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classCuMLab_1_1Tensor_1acb4452bc226cb448d93351597540252b"></span><span class="k"><span class="pre">friend</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensorE" title="CuMLab::Tensor"><span class="n"><span class="pre">Tensor</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensormiENSt10shared_ptrI6TensorI1UEEERKNSt10shared_ptrI6TensorI1UEEE" title="CuMLab::Tensor::operator-::U"><span class="n"><span class="pre">U</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">-</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensorE" title="CuMLab::Tensor"><span class="n"><span class="pre">Tensor</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN6CuMLab6TensormiENSt10shared_ptrI6TensorI1UEEERKNSt10shared_ptrI6TensorI1UEEE" title="CuMLab::Tensor::operator-::U"><span class="n"><span class="pre">U</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">input</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN6CuMLab6TensormiENSt10shared_ptrI6TensorI1UEEERKNSt10shared_ptrI6TensorI1UEEE" title="Link to this definition"></a><br /></dt>
-<dd><p>Returns a new <a class="reference internal" href="#classCuMLab_1_1Tensor"><span class="std std-ref">Tensor</span></a> with each element = -(input element). </p>
-<p>If input requires grad, we set up a grad_fn that accumulates -result-&gt;grad_ into input-&gt;grad_. </p>
+<dd><p>Returns a new tensor with each element equal to the negation of the input. </p>
+<p>Computes the element-wise negation of the input tensor. That is, each element in the output tensor is the negative of the corresponding element in the input.</p>
+<p>Supports gradient tracking: if the input tensor requires gradients, the output will also require gradients. During backpropagation, the gradient function will accumulate the negated upstream gradient into the input tensor’s gradient.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>U</strong> – The data type of the tensor elements (e.g., float, double). </p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>input</strong> – A shared pointer to the input tensor. </p>
+</dd>
+<dt class="field-odd">Throws<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><span class="cpp-expr sig sig-inline cpp"><span class="n">std</span><span class="p">::</span><span class="n">invalid_argument</span></span></span> – If the input is null. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A shared pointer to a new tensor containing the negated values. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__TensorOperations"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Tensor</span> <span class="pre">Operations</span></span></dt>
+<dd><p>A collection of overloaded operators for shared pointers to Tensors, enabling autograd. </p>
+<p>These operators facilitate element-wise and matrix operations on Tensors that are wrapped in shared pointers. Each operator is integrated with the autograd mechanism, allowing gradients to flow through the computational graph during backpropagation. They form the building blocks for higher-level neural network components and user-defined models. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EplNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE">
+<span id="_CPPv3I0EplRKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE"></span><span id="_CPPv2I0EplRKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__TensorOperations_1ga4c540105126f3727074231f0a6700df6"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Tensor</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EplNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="operator+::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">+</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Tensor</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EplNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="operator+::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">lhs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Tensor</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EplNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="operator+::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EplNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="Link to this definition"></a><br /></dt>
+<dd><p>Performs element-wise addition with broadcasting support. </p>
+<p>This overload allows adding two tensors stored in shared pointers. If the shapes of the two tensors differ, standard broadcasting rules are applied to make their shapes compatible. The result is a new tensor containing the sum of corresponding (or broadcasted) elements.</p>
+<p>Gradient tracking is supported: if either input requires gradients, the result will also require gradients and store a corresponding backward function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>T</strong> – The data type of the tensor elements (e.g., float, double). </p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>lhs</strong> – A shared pointer to the left-hand side tensor. </p></li>
+<li><p><strong>rhs</strong> – A shared pointer to the right-hand side tensor. </p></li>
+</ul>
+</dd>
+<dt class="field-odd">Throws<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><span class="cpp-expr sig sig-inline cpp"><span class="n">std</span><span class="p">::</span><span class="n">invalid_argument</span></span></span> – If lhs or rhs is null, or if their shapes are not broadcastable. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A shared pointer to the resulting tensor containing the sum. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EmiNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE">
+<span id="_CPPv3I0EmiRKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE"></span><span id="_CPPv2I0EmiRKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__TensorOperations_1ga939e4fa3db1eb86b17dae3a63914976b"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Tensor</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EmiNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="operator-::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">-</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Tensor</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EmiNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="operator-::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">lhs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Tensor</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EmiNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="operator-::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EmiNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="Link to this definition"></a><br /></dt>
+<dd><p>Performs element-wise subtraction with broadcasting support. </p>
+<p>Subtracts elements of the right-hand side tensor from the left-hand side tensor. If the shapes differ, standard broadcasting rules are applied to make them compatible. The result is a new tensor containing the element-wise difference.</p>
+<p>Gradient tracking is supported: if either input tensor has requires_grad set to true, the result tensor will also require gradients and store a backward function for autograd.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>T</strong> – The data type of the tensor elements (e.g., float, double). </p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>lhs</strong> – A shared pointer to the left-hand side tensor. </p></li>
+<li><p><strong>rhs</strong> – A shared pointer to the right-hand side tensor. </p></li>
+</ul>
+</dd>
+<dt class="field-odd">Throws<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><span class="cpp-expr sig sig-inline cpp"><span class="n">std</span><span class="p">::</span><span class="n">invalid_argument</span></span></span> – If lhs or rhs is null, or if their shapes are not broadcastable. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A shared pointer to the resulting tensor containing the difference. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EmlNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE">
+<span id="_CPPv3I0EmlRKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE"></span><span id="_CPPv2I0EmlRKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__TensorOperations_1gabe093907e97c22ad6c377eab3f38e671"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Tensor</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EmlNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="operator*::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Tensor</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EmlNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="operator*::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">lhs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Tensor</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EmlNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="operator*::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EmlNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="Link to this definition"></a><br /></dt>
+<dd><p>Performs element-wise (Hadamard) multiplication with broadcasting support. </p>
+<p>Multiplies corresponding elements of two tensors. If the tensor shapes differ, standard broadcasting rules are applied to align them. The result is a new tensor containing the element-wise products.</p>
+<p>Supports autograd: if either input tensor has requires_grad set to true, the resulting tensor will also require gradients, and a corresponding backward function will be stored to compute partial derivatives during backpropagation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>T</strong> – The data type of the tensor elements (e.g., float, double). </p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>lhs</strong> – A shared pointer to the left-hand side tensor. </p></li>
+<li><p><strong>rhs</strong> – A shared pointer to the right-hand side tensor. </p></li>
+</ul>
+</dd>
+<dt class="field-odd">Throws<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><span class="cpp-expr sig sig-inline cpp"><span class="n">std</span><span class="p">::</span><span class="n">invalid_argument</span></span></span> – If lhs or rhs is null, or if their shapes are not broadcastable. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A shared pointer to a new tensor containing the element-wise product. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0E6matmulNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE">
+<span id="_CPPv3I0E6matmulRKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE"></span><span id="_CPPv2I0E6matmulRKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__TensorOperations_1gab32e6703d8864da888b802f2332f8af7"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Tensor</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E6matmulNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="matmul::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">matmul</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Tensor</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E6matmulNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="matmul::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">lhs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Tensor</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E6matmulNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="matmul::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0E6matmulNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="Link to this definition"></a><br /></dt>
+<dd><p>Performs matrix multiplication of two tensors. </p>
+<p>Multiplies two tensors using standard matrix multiplication rules: the inner dimensions must match (i.e., lhs.shape[-1] == rhs.shape[-2]). The resulting tensor has shape [lhs.shape[0], rhs.shape[1]] for 2D inputs.</p>
+<p>Broadcasting of batch dimensions (e.g., for batched matmul) is not supported unless explicitly implemented.</p>
+<p>Gradient tracking is supported: if either input requires gradients, the output tensor will also require gradients, and a backward function will be recorded to propagate gradients through the matmul operation during backpropagation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>T</strong> – The data type of the tensor elements (e.g., float, double). </p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>lhs</strong> – A shared pointer to the left-hand side tensor. </p></li>
+<li><p><strong>rhs</strong> – A shared pointer to the right-hand side tensor. </p></li>
+</ul>
+</dd>
+<dt class="field-odd">Throws<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><span class="cpp-expr sig sig-inline cpp"><span class="n">std</span><span class="p">::</span><span class="n">invalid_argument</span></span></span> – If lhs or rhs is null, or if their inner dimensions do not match. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A shared pointer to the resulting tensor after matrix multiplication. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EdvNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE">
+<span id="_CPPv3I0EdvRKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE"></span><span id="_CPPv2I0EdvRKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__TensorOperations_1ga282f045097b0b6dbe49183f734f5d267"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Tensor</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EdvNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="operator/::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">/</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Tensor</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EdvNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="operator/::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">lhs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Tensor</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EdvNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="operator/::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EdvNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="Link to this definition"></a><br /></dt>
+<dd><p>Performs element-wise division with broadcasting: lhs / rhs. </p>
+<p>Divides elements of the left-hand side tensor by the corresponding elements of the right-hand side tensor. If the shapes differ, standard broadcasting rules are applied to make them compatible. The result is a new tensor containing the element-wise quotients.</p>
+<p>Gradient tracking is supported: if either input tensor requires gradients, the resulting tensor will also require gradients and retain a backward function for autograd during backpropagation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>T</strong> – The data type of the tensor elements (e.g., float, double). </p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>lhs</strong> – A shared pointer to the left-hand side tensor (numerator). </p></li>
+<li><p><strong>rhs</strong> – A shared pointer to the right-hand side tensor (denominator). </p></li>
+</ul>
+</dd>
+<dt class="field-odd">Throws<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><span class="cpp-expr sig sig-inline cpp"><span class="n">std</span><span class="p">::</span><span class="n">invalid_argument</span></span></span> – If lhs or rhs is null, or if their shapes are not broadcastable. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A shared pointer to the resulting tensor containing the quotients. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0E9transposeNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE">
+<span id="_CPPv3I0E9transposeRKNSt10shared_ptrI6TensorI1TEEE"></span><span id="_CPPv2I0E9transposeRKNSt10shared_ptrI6TensorI1TEEE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__TensorOperations_1ga3238cd34a91e239e0c4241534c916aeb"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Tensor</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E9transposeNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="transpose::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">transpose</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Tensor</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E9transposeNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="transpose::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">input</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0E9transposeNSt10shared_ptrI6TensorI1TEEERKNSt10shared_ptrI6TensorI1TEEE" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns the transpose of a 2D tensor. </p>
+<p>Swaps the two dimensions of a 2D tensor, such that the shape becomes {original_columns, original_rows}. The data is rearranged accordingly.</p>
+<p>This function currently supports only 2D tensors. If the input tensor is not 2-dimensional, an exception is thrown.</p>
+<p>Gradient tracking is supported: if the input tensor requires gradients, the output tensor will also require gradients and store a backward function that transposes the incoming gradient during backpropagation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>T</strong> – The data type of the tensor elements (e.g., float, double). </p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>input</strong> – A shared pointer to the input tensor. </p>
+</dd>
+<dt class="field-odd">Throws<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><span class="cpp-expr sig sig-inline cpp"><span class="n">std</span><span class="p">::</span><span class="n">invalid_argument</span></span></span> – If the input is null or not a 2D tensor. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A shared pointer to the transposed tensor. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EmiNSt10shared_ptrI6TensorI1UEEERKNSt10shared_ptrI6TensorI1UEEE">
+<span id="_CPPv3I0EmiRKNSt10shared_ptrI6TensorI1UEEE"></span><span id="_CPPv2I0EmiRKNSt10shared_ptrI6TensorI1UEEE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">U</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__TensorOperations_1gafc38c8a2d4cad92d4cdc54b4434f7d9c"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Tensor</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EmiNSt10shared_ptrI6TensorI1UEEERKNSt10shared_ptrI6TensorI1UEEE" title="operator-::U"><span class="n"><span class="pre">U</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">-</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Tensor</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EmiNSt10shared_ptrI6TensorI1UEEERKNSt10shared_ptrI6TensorI1UEEE" title="operator-::U"><span class="n"><span class="pre">U</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">input</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EmiNSt10shared_ptrI6TensorI1UEEERKNSt10shared_ptrI6TensorI1UEEE" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns a new tensor with each element equal to the negation of the input. </p>
+<p>Computes the element-wise negation of the input tensor. That is, each element in the output tensor is the negative of the corresponding element in the input.</p>
+<p>Supports gradient tracking: if the input tensor requires gradients, the output will also require gradients. During backpropagation, the gradient function will accumulate the negated upstream gradient into the input tensor’s gradient.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>U</strong> – The data type of the tensor elements (e.g., float, double). </p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>input</strong> – A shared pointer to the input tensor. </p>
+</dd>
+<dt class="field-odd">Throws<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><span class="cpp-expr sig sig-inline cpp"><span class="n">std</span><span class="p">::</span><span class="n">invalid_argument</span></span></span> – If the input is null. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A shared pointer to a new tensor containing the negated values. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__TensorHelperFunctions"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Tensor</span> <span class="pre">Helper</span> <span class="pre">Functions</span></span></dt>
+<dd><p>A collection of inline template functions used for broadcasting and other auxiliary <a class="reference internal" href="#classCuMLab_1_1Tensor"><span class="std std-ref">Tensor</span></a> operations. </p>
+<p>These helper functions handle various low-level tasks such as dimension checking, shape alignment, and data iteration, enabling proper broadcasting within <a class="reference internal" href="#classCuMLab_1_1Tensor"><span class="std std-ref">Tensor</span></a> operations. They are designed to be concise, efficient, and reusable throughout the library. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv417broadcasted_shapeRKNSt6vectorIiEERKNSt6vectorIiEE">
+<span id="_CPPv317broadcasted_shapeRKNSt6vectorIiEERKNSt6vectorIiEE"></span><span id="_CPPv217broadcasted_shapeRKNSt6vectorIiEERKNSt6vectorIiEE"></span><span id="broadcasted_shape__std::vector:i:CR.std::vector:i:CR"></span><span class="target" id="group__TensorHelperFunctions_1gabf5038e088a8081e4c36761826c761bd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">broadcasted_shape</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">lhs_shape</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs_shape</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417broadcasted_shapeRKNSt6vectorIiEERKNSt6vectorIiEE" title="Link to this definition"></a><br /></dt>
+<dd><p>Computes the broadcasted shape of two tensor shapes. </p>
+<p>Given two tensor shapes, this function determines the shape that would result from applying broadcasting rules, similar to NumPy or PyTorch broadcasting. Broadcasting aligns shapes from the trailing dimensions and expands dimensions of size 1 when needed. If any pair of dimensions is incompatible (i.e., not equal and neither is 1), the function throws an exception.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lhs_shape</strong> – The shape of the left-hand side tensor. </p></li>
+<li><p><strong>rhs_shape</strong> – The shape of the right-hand side tensor. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Throws<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><span class="cpp-expr sig sig-inline cpp"><span class="n">std</span><span class="p">::</span><span class="n">invalid_argument</span></span></span> – If the shapes are not broadcast-compatible. </p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A vector representing the broadcasted output shape. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv413unravel_indexiRKNSt6vectorIiEE">
+<span id="_CPPv313unravel_indexiRKNSt6vectorIiEE"></span><span id="_CPPv213unravel_indexiRKNSt6vectorIiEE"></span><span id="unravel_index__i.std::vector:i:CR"></span><span class="target" id="group__TensorHelperFunctions_1ga61e9e8f122c9f43aeff34ced81518083"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unravel_index</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">flat_idx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">shape</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413unravel_indexiRKNSt6vectorIiEE" title="Link to this definition"></a><br /></dt>
+<dd><p>Converts a flat (1D) index into an N-dimensional coordinate based on a given shape. </p>
+<p>Given a flat index and a tensor shape, this function computes the corresponding multi-dimensional index (i.e., N-D coordinate) assuming row-major (C-style) memory layout.</p>
+<p>This is the inverse of flattening a multi-dimensional index using strides. Useful in broadcasting, indexing, and mapping flat arrays to tensor coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>flat_idx</strong> – The flat (linear) index to convert. </p></li>
+<li><p><strong>shape</strong> – The shape of the N-dimensional tensor. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A vector of indices representing the N-D coordinate. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv411ravel_indexRKNSt6vectorIiEERKNSt6vectorIiEE">
+<span id="_CPPv311ravel_indexRKNSt6vectorIiEERKNSt6vectorIiEE"></span><span id="_CPPv211ravel_indexRKNSt6vectorIiEERKNSt6vectorIiEE"></span><span id="ravel_index__std::vector:i:CR.std::vector:i:CR"></span><span class="target" id="group__TensorHelperFunctions_1ga0e2981a6811a21f4d4486e16fa39bef0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ravel_index</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">coords</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">shape</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411ravel_indexRKNSt6vectorIiEERKNSt6vectorIiEE" title="Link to this definition"></a><br /></dt>
+<dd><p>Converts an N-dimensional coordinate into a flat (1D) index. </p>
+<p>Given a multi-dimensional index (<code class="docutils literal notranslate"><span class="pre">coords</span></code>) and the corresponding tensor <code class="docutils literal notranslate"><span class="pre">shape</span></code>, this function computes the equivalent flat index assuming a row-major (C-style) memory layout. This is the inverse of <code class="docutils literal notranslate"><span class="pre">unravel_index</span></code>.</p>
+<p>Commonly used when mapping multi-dimensional indices to flat storage arrays.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coords</strong> – A vector representing the N-D coordinate. </p></li>
+<li><p><strong>shape</strong> – The shape of the N-dimensional tensor. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The corresponding flat (linear) index. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv418broadcasted_offsetRKNSt6vectorIiEERKNSt6vectorIiEE">
+<span id="_CPPv318broadcasted_offsetRKNSt6vectorIiEERKNSt6vectorIiEE"></span><span id="_CPPv218broadcasted_offsetRKNSt6vectorIiEERKNSt6vectorIiEE"></span><span id="broadcasted_offset__std::vector:i:CR.std::vector:i:CR"></span><span class="target" id="group__TensorHelperFunctions_1ga51a2c58d6d4895ff9db8e50c34e81128"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">broadcasted_offset</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">out_coords</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">in_shape</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418broadcasted_offsetRKNSt6vectorIiEERKNSt6vectorIiEE" title="Link to this definition"></a><br /></dt>
+<dd><p>Computes the flat index in the input tensor accounting for broadcasting. </p>
+<p>Given a coordinate from a broadcasted output tensor (<code class="docutils literal notranslate"><span class="pre">out_coords</span></code>) and the original input tensor shape (<code class="docutils literal notranslate"><span class="pre">in_shape</span></code>), this function returns the flat index into the input tensor that corresponds to the broadcasted coordinate.</p>
+<p>If a dimension in the input shape is 1 (i.e., broadcasted), the corresponding coordinate is forced to 0 in that dimension. This ensures correct indexing into tensors that have been broadcasted during operations like addition or multiplication.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>out_coords</strong> – The N-D coordinate in the broadcasted output tensor. </p></li>
+<li><p><strong>in_shape</strong> – The shape of the input tensor (which may have been broadcast). </p></li>
+</ul>
+</dd>
+<dt class="field-even">Throws<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><span class="cpp-expr sig sig-inline cpp"><span class="n">std</span><span class="p">::</span><span class="n">runtime_error</span></span></span> – If a coordinate is out of bounds for a non-broadcastable dimension. </p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The flat index into the input tensor corresponding to the broadcasted coordinate. </p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
