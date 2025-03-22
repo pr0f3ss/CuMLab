@@ -9,6 +9,14 @@ CuMLab Core
    :protected-members:
    :private-members:
 
+.. doxygengroup:: TensorOperations
+   :project: CuMLab
+   :members:
+
+.. doxygengroup:: TensorHelperFunctions
+   :project: CuMLab
+   :members:
+
 CuMLab Modules
 --------------
 .. doxygenclass:: CuMLab::Module

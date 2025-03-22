@@ -199,7 +199,31 @@ public:
 // ─────────────────────────────────────────────────────────────────────────
 
 /**
+ * @defgroup TensorHelperFunctions Tensor Helper Functions
+ * @brief A collection of inline template functions used for broadcasting and
+ * other auxiliary Tensor operations.
+ *
+ * These helper functions handle various low-level tasks such as dimension
+ * checking, shape alignment, and data iteration, enabling proper broadcasting
+ * within Tensor operations. They are designed to be concise, efficient, and
+ * reusable throughout the library.
+ *
+ * @{
+ */
+
+/**
  * @brief Computes the broadcasted shape of two tensor shapes.
+ *
+ * Given two tensor shapes, this function determines the shape that would result
+ * from applying broadcasting rules, similar to NumPy or PyTorch broadcasting.
+ * Broadcasting aligns shapes from the trailing dimensions and expands
+ * dimensions of size 1 when needed. If any pair of dimensions is incompatible
+ * (i.e., not equal and neither is 1), the function throws an exception.
+ *
+ * @param lhs_shape The shape of the left-hand side tensor.
+ * @param rhs_shape The shape of the right-hand side tensor.
+ * @return A vector representing the broadcasted output shape.
+ * @throws std::invalid_argument If the shapes are not broadcast-compatible.
  */
 inline std::vector<int> broadcasted_shape(const std::vector<int> &lhs_shape,
                                           const std::vector<int> &rhs_shape) {
@@ -225,7 +249,20 @@ inline std::vector<int> broadcasted_shape(const std::vector<int> &lhs_shape,
 }
 
 /**
- * @brief Converts a flat index into an N-D coordinate given a shape
+ * @brief Converts a flat (1D) index into an N-dimensional coordinate based on a
+ * given shape.
+ *
+ * Given a flat index and a tensor shape, this function computes the
+ * corresponding multi-dimensional index (i.e., N-D coordinate) assuming
+ * row-major (C-style) memory layout.
+ *
+ * This is the inverse of flattening a multi-dimensional index using strides.
+ * Useful in broadcasting, indexing, and mapping flat arrays to tensor
+ * coordinates.
+ *
+ * @param flat_idx The flat (linear) index to convert.
+ * @param shape The shape of the N-dimensional tensor.
+ * @return A vector of indices representing the N-D coordinate.
  */
 inline std::vector<int> unravel_index(int flat_idx,
                                       const std::vector<int> &shape) {
@@ -244,7 +281,17 @@ inline std::vector<int> unravel_index(int flat_idx,
 }
 
 /**
- * @brief Converts an N-D coordinate back to a flat index
+ * @brief Converts an N-dimensional coordinate into a flat (1D) index.
+ *
+ * Given a multi-dimensional index (`coords`) and the corresponding tensor
+ * `shape`, this function computes the equivalent flat index assuming a
+ * row-major (C-style) memory layout. This is the inverse of `unravel_index`.
+ *
+ * Commonly used when mapping multi-dimensional indices to flat storage arrays.
+ *
+ * @param coords A vector representing the N-D coordinate.
+ * @param shape The shape of the N-dimensional tensor.
+ * @return The corresponding flat (linear) index.
  */
 inline int ravel_index(const std::vector<int> &coords,
                        const std::vector<int> &shape) {
@@ -260,8 +307,25 @@ inline int ravel_index(const std::vector<int> &coords,
 }
 
 /**
- * @brief Adjust out_coords for broadcasting if in_shape dimension is 1
- *    i.e., if a dimension is 1, the coordinate is forced to 0 in that dimension
+ * @brief Computes the flat index in the input tensor accounting for
+ * broadcasting.
+ *
+ * Given a coordinate from a broadcasted output tensor (`out_coords`) and the
+ * original input tensor shape (`in_shape`), this function returns the flat
+ * index into the input tensor that corresponds to the broadcasted coordinate.
+ *
+ * If a dimension in the input shape is 1 (i.e., broadcasted), the corresponding
+ * coordinate is forced to 0 in that dimension. This ensures correct indexing
+ * into tensors that have been broadcasted during operations like addition or
+ * multiplication.
+ *
+ * @param out_coords The N-D coordinate in the broadcasted output tensor.
+ * @param in_shape The shape of the input tensor (which may have been
+ * broadcast).
+ * @return The flat index into the input tensor corresponding to the broadcasted
+ * coordinate.
+ * @throws std::runtime_error If a coordinate is out of bounds for a
+ * non-broadcastable dimension.
  */
 inline int broadcasted_offset(const std::vector<int> &out_coords,
                               const std::vector<int> &in_shape) {
@@ -305,12 +369,44 @@ inline int broadcasted_offset(const std::vector<int> &out_coords,
   return ravel_index(local_coords, in_shape);
 }
 
+/** @} */ // end of TensorHelperFunctions
+
 // ─────────────────────────────────────────────────────────────────────────
 // Template inline function definitions
 // ─────────────────────────────────────────────────────────────────────────
 
 /**
- * @brief Performs tensor addition with broadcasting.
+ * @defgroup TensorOperations Tensor Operations
+ * @brief A collection of overloaded operators for shared pointers to Tensors,
+ * enabling autograd.
+ *
+ * These operators facilitate element-wise and matrix operations on Tensors that
+ * are wrapped in shared pointers. Each operator is integrated with the autograd
+ * mechanism, allowing gradients to flow through the computational graph during
+ * backpropagation. They form the building blocks for higher-level neural
+ * network components and user-defined models.
+ *
+ * @{
+ */
+
+/**
+ * @brief Performs element-wise addition with broadcasting support.
+ *
+ * This overload allows adding two tensors stored in shared pointers.
+ * If the shapes of the two tensors differ, standard broadcasting rules
+ * are applied to make their shapes compatible. The result is a new
+ * tensor containing the sum of corresponding (or broadcasted) elements.
+ *
+ * Gradient tracking is supported: if either input requires gradients,
+ * the result will also require gradients and store a corresponding
+ * backward function.
+ *
+ * @tparam T The data type of the tensor elements (e.g., float, double).
+ * @param lhs A shared pointer to the left-hand side tensor.
+ * @param rhs A shared pointer to the right-hand side tensor.
+ * @return A shared pointer to the resulting tensor containing the sum.
+ * @throws std::invalid_argument If lhs or rhs is null, or if their
+ *         shapes are not broadcastable.
  */
 template <typename T>
 std::shared_ptr<Tensor<T>> operator+(const std::shared_ptr<Tensor<T>> &lhs,
@@ -386,9 +482,23 @@ std::shared_ptr<Tensor<T>> operator+(const std::shared_ptr<Tensor<T>> &lhs,
 }
 
 /**
- * @brief Performs element-wise subtraction with broadcasting: lhs - rhs.
- * Both `lhs` and `rhs` can have shapes that broadcast to the result shape.
- * Returns a new Tensor with the broadcasted shape.
+ * @brief Performs element-wise subtraction with broadcasting support.
+ *
+ * Subtracts elements of the right-hand side tensor from the left-hand side
+ * tensor. If the shapes differ, standard broadcasting rules are applied
+ * to make them compatible. The result is a new tensor containing the
+ * element-wise difference.
+ *
+ * Gradient tracking is supported: if either input tensor has
+ * requires_grad set to true, the result tensor will also require
+ * gradients and store a backward function for autograd.
+ *
+ * @tparam T The data type of the tensor elements (e.g., float, double).
+ * @param lhs A shared pointer to the left-hand side tensor.
+ * @param rhs A shared pointer to the right-hand side tensor.
+ * @return A shared pointer to the resulting tensor containing the difference.
+ * @throws std::invalid_argument If lhs or rhs is null, or if their
+ *         shapes are not broadcastable.
  */
 template <typename T>
 std::shared_ptr<Tensor<T>> operator-(const std::shared_ptr<Tensor<T>> &lhs,
@@ -471,11 +581,24 @@ std::shared_ptr<Tensor<T>> operator-(const std::shared_ptr<Tensor<T>> &lhs,
 }
 
 /**
- * @brief Element-wise (Hadamard) product with broadcasting: lhs * rhs.
+ * @brief Performs element-wise (Hadamard) multiplication with broadcasting
+ * support.
  *
- * If lhs->shape_ and rhs->shape_ are broadcastable, the result has
- * the broadcasted shape. Each output element is lhs[i] * rhs[i],
- * extended for broadcast if necessary.
+ * Multiplies corresponding elements of two tensors. If the tensor shapes
+ * differ, standard broadcasting rules are applied to align them. The result is
+ * a new tensor containing the element-wise products.
+ *
+ * Supports autograd: if either input tensor has requires_grad set to true,
+ * the resulting tensor will also require gradients, and a corresponding
+ * backward function will be stored to compute partial derivatives during
+ * backpropagation.
+ *
+ * @tparam T The data type of the tensor elements (e.g., float, double).
+ * @param lhs A shared pointer to the left-hand side tensor.
+ * @param rhs A shared pointer to the right-hand side tensor.
+ * @return A shared pointer to a new tensor containing the element-wise product.
+ * @throws std::invalid_argument If lhs or rhs is null, or if their shapes are
+ * not broadcastable.
  */
 template <typename T>
 std::shared_ptr<Tensor<T>> operator*(const std::shared_ptr<Tensor<T>> &lhs,
@@ -555,7 +678,26 @@ std::shared_ptr<Tensor<T>> operator*(const std::shared_ptr<Tensor<T>> &lhs,
 }
 
 /**
- * @brief Performs natrix multiplication of two tensors.
+ * @brief Performs matrix multiplication of two tensors.
+ *
+ * Multiplies two tensors using standard matrix multiplication rules:
+ * the inner dimensions must match (i.e., lhs.shape[-1] == rhs.shape[-2]).
+ * The resulting tensor has shape [lhs.shape[0], rhs.shape[1]] for 2D inputs.
+ *
+ * Broadcasting of batch dimensions (e.g., for batched matmul) is not supported
+ * unless explicitly implemented.
+ *
+ * Gradient tracking is supported: if either input requires gradients, the
+ * output tensor will also require gradients, and a backward function will be
+ * recorded to propagate gradients through the matmul operation during
+ * backpropagation.
+ *
+ * @tparam T The data type of the tensor elements (e.g., float, double).
+ * @param lhs A shared pointer to the left-hand side tensor.
+ * @param rhs A shared pointer to the right-hand side tensor.
+ * @return A shared pointer to the resulting tensor after matrix multiplication.
+ * @throws std::invalid_argument If lhs or rhs is null, or if their inner
+ * dimensions do not match.
  */
 template <typename T>
 std::shared_ptr<Tensor<T>> matmul(const std::shared_ptr<Tensor<T>> &lhs,
@@ -655,9 +797,23 @@ std::shared_ptr<Tensor<T>> matmul(const std::shared_ptr<Tensor<T>> &lhs,
 }
 
 /**
- * @brief Element-wise division with broadcasting: lhs / rhs
+ * @brief Performs element-wise division with broadcasting: lhs / rhs.
  *
- * Each element out[i] = lhs[i] / rhs[i], extended for broadcast if necessary.
+ * Divides elements of the left-hand side tensor by the corresponding elements
+ * of the right-hand side tensor. If the shapes differ, standard broadcasting
+ * rules are applied to make them compatible. The result is a new tensor
+ * containing the element-wise quotients.
+ *
+ * Gradient tracking is supported: if either input tensor requires gradients,
+ * the resulting tensor will also require gradients and retain a backward
+ * function for autograd during backpropagation.
+ *
+ * @tparam T The data type of the tensor elements (e.g., float, double).
+ * @param lhs A shared pointer to the left-hand side tensor (numerator).
+ * @param rhs A shared pointer to the right-hand side tensor (denominator).
+ * @return A shared pointer to the resulting tensor containing the quotients.
+ * @throws std::invalid_argument If lhs or rhs is null, or if their shapes are
+ * not broadcastable.
  */
 template <typename T>
 std::shared_ptr<Tensor<T>> operator/(const std::shared_ptr<Tensor<T>> &lhs,
@@ -738,16 +894,22 @@ std::shared_ptr<Tensor<T>> operator/(const std::shared_ptr<Tensor<T>> &lhs,
 }
 
 /**
- * @brief Returns a transposed copy of a 2D Tensor.
+ * @brief Returns the transpose of a 2D tensor.
  *
- * For a tensor of shape (rows, cols), we create a new tensor of shape (cols,
- * rows). The data is rearranged accordingly. If `requires_grad` is true, the
- * returned tensor sets a grad_fn_ that propagates gradients back to the
- * original.
+ * Swaps the two dimensions of a 2D tensor, such that the shape becomes
+ * {original_columns, original_rows}. The data is rearranged accordingly.
  *
- * @tparam T The numeric type of the Tensor (float, double, etc.)
- * @param input The shared pointer to a Tensor<T> (must be 2D).
- * @return A new std::shared_ptr<Tensor<T>> that is the transpose of `input`.
+ * This function currently supports only 2D tensors. If the input tensor is
+ * not 2-dimensional, an exception is thrown.
+ *
+ * Gradient tracking is supported: if the input tensor requires gradients,
+ * the output tensor will also require gradients and store a backward function
+ * that transposes the incoming gradient during backpropagation.
+ *
+ * @tparam T The data type of the tensor elements (e.g., float, double).
+ * @param input A shared pointer to the input tensor.
+ * @return A shared pointer to the transposed tensor.
+ * @throws std::invalid_argument If the input is null or not a 2D tensor.
  */
 template <typename T>
 std::shared_ptr<Tensor<T>> transpose(const std::shared_ptr<Tensor<T>> &input) {
@@ -809,10 +971,22 @@ std::shared_ptr<Tensor<T>> transpose(const std::shared_ptr<Tensor<T>> &input) {
 }
 
 /**
- * @brief Returns a new Tensor with each element = -(input element).
+ * @brief Returns a new tensor with each element equal to the negation of the
+ * input.
  *
- * If input requires grad, we set up a grad_fn that accumulates
- * -result->grad_ into input->grad_.
+ * Computes the element-wise negation of the input tensor. That is, each element
+ * in the output tensor is the negative of the corresponding element in the
+ * input.
+ *
+ * Supports gradient tracking: if the input tensor requires gradients, the
+ * output will also require gradients. During backpropagation, the gradient
+ * function will accumulate the negated upstream gradient into the input
+ * tensor's gradient.
+ *
+ * @tparam U The data type of the tensor elements (e.g., float, double).
+ * @param input A shared pointer to the input tensor.
+ * @return A shared pointer to a new tensor containing the negated values.
+ * @throws std::invalid_argument If the input is null.
  */
 template <typename U>
 std::shared_ptr<Tensor<U>> operator-(const std::shared_ptr<Tensor<U>> &input) {
@@ -854,6 +1028,8 @@ std::shared_ptr<Tensor<U>> operator-(const std::shared_ptr<Tensor<U>> &input) {
 
   return result;
 }
+
+/** @} */ // end of TensorOperations
 
 // Explicit template instantiations
 extern template class Tensor<int>;
